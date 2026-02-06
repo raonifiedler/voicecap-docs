@@ -1,0 +1,6118 @@
+
+<!doctype html>
+<html lang="pt" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Documentação técnica completa do sistema VoiceCap - Captura de informações por voz com IA híbrida multi-tenant">
+      
+      
+        <meta name="author" content="Equipe VoiceCap">
+      
+      
+        <link rel="canonical" href="https://voicecap.com.br/DONE_2_06_casos_de_uso/">
+      
+      
+        <link rel="prev" href="../DONE_2_05_wireframes_ascii_preliminares/">
+      
+      
+        <link rel="next" href="../DONE_2_07_criterios_aceitacao_regras_negocio/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>[14] CONVERSA 6: CASOS DE USO - VoiceCap - Documentação Técnica Completa</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CFira+Code:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Fira Code"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../css/print-site.css">
+    
+      <link rel="stylesheet" href="../css/print-site-material.css">
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="blue">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#conversa-6-casos-de-uso" class="md-skip">
+          Pular para conteúdo
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabeçalho">
+    <a href=".." title="VoiceCap - Documentação Técnica Completa" class="md-header__button md-logo" aria-label="VoiceCap - Documentação Técnica Completa" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            VoiceCap - Documentação Técnica Completa
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              [14] CONVERSA 6: CASOS DE USO
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="blue"  aria-label="Alternar para modo escuro"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Alternar para modo escuro" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="blue"  aria-label="Alternar para modo claro"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Alternar para modo claro" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Buscar" placeholder="Buscar" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Pesquisar">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Compartilhar" aria-label="Compartilhar" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpar" aria-label="Limpar" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando busca
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Abas" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Início
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../DONE_1_01_problem_statement/" class="md-tabs__link">
+          
+  
+  
+  1. Contexto Estratégico do Projeto
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../DONE_2_01_analise_stakeholders_contexto/" class="md-tabs__link">
+          
+  
+  
+  2. Requisitos e Especificações
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../DONE_3_01_00_INDICE_MASTER/" class="md-tabs__link">
+          
+  
+  
+  3. Arquitetura do Sistema
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../DONE_4_01_00_INDICE/" class="md-tabs__link">
+          
+  
+  
+  4. Design de Interface e Interação
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../print_page/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Imprimir Documentação Completa
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navegação" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="VoiceCap - Documentação Técnica Completa" class="md-nav__button md-logo" aria-label="VoiceCap - Documentação Técnica Completa" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    VoiceCap - Documentação Técnica Completa
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Início
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1. Contexto Estratégico do Projeto
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    1. Contexto Estratégico do Projeto
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1" id="__nav_2_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1.1 Descoberta do Problema
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    1.1 Descoberta do Problema
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_1_01_problem_statement/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [1] PROBLEM STATEMENT & ANÁLISE DO PROBLEMA
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_1_02_stakeholders_personas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [2] STAKEHOLDERS & PERSONAS PRIMÁRIAS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_1_03_proposta_valor_bmc/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [3] PROPOSTA DE VALOR & BUSINESS MODEL CANVAS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1.2 Planejamento Estratégico
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    1.2 Planejamento Estratégico
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_1_04_okrs_kpis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [4] OKRs, KPIs E MÉTRICAS DE SUCESSO
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_1_05_restricoes_negocio/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [5] RESTRIÇÕES DE NEGÓCIO (BUDGET/PRAZO/COMPLIANCE)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_1_06_escopo_mvp_futuro/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [6] ESCOPO MVP vs FUTURO
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1.3 Validação de Viabilidade
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    1.3 Validação de Viabilidade
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_1_07_riscos_viabilidade/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [7] RISCOS & ANÁLISE DE VIABILIDADE
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_1_08_documento_final_saidas_camada2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [8] DOCUMENTO FINAL: CONTEXTO ESTRATÉGICO
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2. Requisitos e Especificações
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    2. Requisitos e Especificações
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_1" id="__nav_3_1_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2.1 Análise de Stakeholders e Backlog
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    2.1 Análise de Stakeholders e Backlog
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_2_01_analise_stakeholders_contexto/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [9] CONVERSA 1: ANÁLISE DE STAKEHOLDERS & CONTEXTO
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_2_02_product_backlog_inicial/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [10] CONVERSA 2: PRODUCT BACKLOG INICIAL
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_2_03_user_stories_parte1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [11] CONVERSA 3: USER STORIES (PARTE 1/2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2.2 Especificação Funcional Completa
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    2.2 Especificação Funcional Completa
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_2_04_user_stories_parte2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [12] CONVERSA 4: USER STORIES (PARTE 2/2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_2_05_wireframes_ascii_preliminares/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [13] CONVERSA 5: WIREFRAMES ASCII PRELIMINARES
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [14] CONVERSA 6: CASOS DE USO
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [14] CONVERSA 6: CASOS DE USO
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+  
+
+<nav class="md-nav md-nav--secondary" aria-label="Nesta página">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Nesta página
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#funcionalidades-selecionadas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        FUNCIONALIDADES SELECIONADAS
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#casos-de-uso-detalhados" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CASOS DE USO DETALHADOS
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="CASOS DE USO DETALHADOS">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#uc-001-gravar-audio-de-inspecao-offline" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UC-001: Gravar Áudio de Inspeção Offline
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#uc-002-sincronizar-audios-pendentes-automaticamente" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UC-002: Sincronizar Áudios Pendentes Automaticamente
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#uc-003-processar-audio-com-pipeline-de-ia" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UC-003: Processar Áudio com Pipeline de IA
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#uc-004-autenticar-usuario-multi-tenant" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UC-004: Autenticar Usuário Multi-Tenant
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#uc-005-capturar-foto-geolocalizada-em-campo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UC-005: Capturar Foto Geolocalizada em Campo
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#uc-006-validar-e-revisar-formulario-preenchido" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UC-006: Validar e Revisar Formulário Preenchido
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#uc-007-gerar-relatorio-pdf-profissional" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UC-007: Gerar Relatório PDF Profissional
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#uc-008-configurar-base-de-conhecimento-rag-por-empresa" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UC-008: Configurar Base de Conhecimento RAG por Empresa
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#uc-009-processar-audio-com-ia-local-offline" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UC-009: Processar Áudio com IA Local (Offline)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#uc-010-integrar-com-api-de-sistema-legado" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UC-010: Integrar com API de Sistema Legado
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mapa-de-casos-de-uso" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        MAPA DE CASOS DE USO
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rastreabilidade-casos-de-uso-user-stories" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        RASTREABILIDADE: CASOS DE USO → USER STORIES
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#estatisticas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ESTATÍSTICAS
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#auto-validacao" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AUTO-VALIDAÇÃO
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_2_07_criterios_aceitacao_regras_negocio/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [15] CONVERSA 7: CRITÉRIOS DE ACEITAÇÃO & REGRAS DE NEGÓCIO
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_3" id="__nav_3_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2.3 Requisitos Não-Funcionais
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    2.3 Requisitos Não-Funcionais
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_2_08_rnf_performance_escalabilidade/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [16] CONVERSA 8: RNF - PERFORMANCE & ESCALABILIDADE
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_2_09_rnf_seguranca_disponibilidade/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [17] CONVERSA 9: RNF - SEGURANÇA & DISPONIBILIDADE
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_2_10_rnf_usabilidade_compatibilidade/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [18] CONVERSA 10: RNF - USABILIDADE & COMPATIBILIDADE
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_4" id="__nav_3_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2.4 Priorização e Rastreabilidade
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    2.4 Priorização e Rastreabilidade
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_2_11_priorizacao/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [19] PRIORIZAÇÃO DE REQUISITOS (MoSCoW + RICE)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_2_12_estimativas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [20] ESTIMATIVAS DE ESFORÇO (STORY POINTS)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_2_13_matriz_rastreabilidade/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [21] MATRIZ DE RASTREABILIDADE E DOCUMENTO CONSOLIDADO
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3. Arquitetura do Sistema
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    3. Arquitetura do Sistema
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_1" id="__nav_4_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3.1 Decisões Arquiteturais
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    3.1 Decisões Arquiteturais
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_3_01_00_INDICE_MASTER/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [22] DECISÃO DE ARQUITETURA VOICECAP - ÍNDICE MASTER
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_3_01_01_analise_contexto/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [23] CONVERSA 1: DECISÃO DE ARQUITETURA - PARTE 1/7
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_3_01_02_padroes_candidatos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [24] CONVERSA 1: DECISÃO DE ARQUITETURA - PARTE 2/7
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_3_01_03_matriz_decisao/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [25] CONVERSA 1: DECISÃO DE ARQUITETURA - PARTE 3/7
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_3_01_04_recomendacao/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [26] CONVERSA 1: DECISÃO DE ARQUITETURA - PARTE 4/7
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_3_01_05_tradeoffs_riscos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [27] CONVERSA 1: DECISÃO DE ARQUITETURA - PARTE 5/7
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_3_01_06_roadmap_principios/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [28] CONVERSA 1: DECISÃO DE ARQUITETURA - PARTE 6/7
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_3_01_07_alternativas_adr/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [29] CONVERSA 1: DECISÃO DE ARQUITETURA - PARTE 7/7
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_2" id="__nav_4_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3.2 Diagramação C4 Model
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    3.2 Diagramação C4 Model
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_3_02_c4_context/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [30] DIAGRAMA C4 NÍVEL 1 (SYSTEM CONTEXT) - VoiceCap
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_3_03_c4_container/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [31] DIAGRAMA C4 NÍVEL 2 (CONTAINER) - VoiceCap
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_3_04_01_c4_component_backend/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [32] DIAGRAMA C4 NÍVEL 3 (COMPONENT - BACKEND) - VoiceCap
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_3_04_02_fluxos_validacao/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [33] DIAGRAMA C4 COMPONENT - FLUXOS E VALIDAÇÃO
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_3" id="__nav_4_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3.3 Modelagem de Dados
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    3.3 Modelagem de Dados
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_3_05_01_diagrama_er/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [34] DIAGRAMA ER (ENTITY-RELATIONSHIP) - VoiceCap
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_3_05_02_scripts_ddl_migrations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [35] SCRIPTS SQL DDL E MIGRATIONS - VoiceCap
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_4" id="__nav_4_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3.4 Estrutura de Código Backend
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    3.4 Estrutura de Código Backend
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_3_06_01_estrutura_pastas_backend/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [36] ESTRUTURA DE PASTAS - BACKEND - VoiceCap (Parte 1/2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_3_06_02_exemplos_codigo_validacao/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [37] ESTRUTURA DE PASTAS - BACKEND - VoiceCap (Parte 2/2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_5" id="__nav_4_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3.5 Estrutura de Código Frontend
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    3.5 Estrutura de Código Frontend
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_3_07_01_estrutura_pastas_frontend/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [38] ESTRUTURA DE PASTAS - FRONTEND - VoiceCap (Parte 1/2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_3_07_02_exemplos_codigo_validacao/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [39] ESTRUTURA DE PASTAS - FRONTEND - VoiceCap (Parte 2/2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_6" id="__nav_4_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3.6 Dependências e Tecnologias
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    3.6 Dependências e Tecnologias
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_3_08_01_matriz_backend/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [40] MATRIZ DE DEPENDÊNCIAS - BACKEND (Parte 1/3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_3_08_02_matriz_frontend/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [41] MATRIZ DE DEPENDÊNCIAS - FRONTEND (Parte 2/3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_3_08_03_comunicacao_validacao/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [42] COMUNICAÇÃO & VALIDAÇÃO (Parte 3/3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_7" id="__nav_4_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3.7 Padrões de Domínio (DDD)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    3.7 Padrões de Domínio (DDD)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_3_09_01_padroes_basicos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [43] PADRÕES DE DOMAIN (DDD) - PARTE 1: PADRÕES BÁSICOS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_3_09_02_padroes_avancados/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [44] PADRÕES DE DOMAIN (DDD) - PARTE 2: PADRÕES AVANÇADOS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_3_09_03_templates_validacao/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [45] PADRÕES DE DOMAIN (DDD) - PARTE 3: TEMPLATES E VALIDAÇÃO
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_8" id="__nav_4_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3.8 Especificação de APIs
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    3.8 Especificação de APIs
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_3_10_01_fundamentos_api/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [46] PADRÕES DE API REST - PARTE 1: FUNDAMENTOS API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_3_10_02_controllers_seguranca/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [47] PADRÕES DE API REST - PARTE 2: CONTROLLERS E SEGURANÇA
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_3_10_03_recursos_completos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [48] PADRÕES DE API REST - PARTE 3: RECURSOS COMPLETOS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_9" id="__nav_4_9_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3.9 Estratégia de Testes
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_9">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    3.9 Estratégia de Testes
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_3_11_01_fundamentos_estrategia_testes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [49] ESTRATÉGIA DE TESTES - PARTE 1: FUNDAMENTOS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_3_11_02_exemplos_rnfs_validacao/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [50] ESTRATÉGIA DE TESTES - PARTE 2: EXEMPLOS E VALIDAÇÃO
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_10" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_10" id="__nav_4_10_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3.10 Architecture Decision Records (ADRs)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_10">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    3.10 Architecture Decision Records (ADRs)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_3_12_00_indice/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [51] ÍNDICE DE ADRs - VoiceCap
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_3_12_AUTO_VALIDACAO/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [52] AUTO-VALIDAÇÃO: ADRs VoiceCap
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_3_12_01_adrs_arquitetura/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [53] ADRs DE ARQUITETURA - VoiceCap
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_3_12_02_adrs_dados_backend/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [54] ADRs DE DADOS & BACKEND - VoiceCap
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_3_12_03_adrs_seguranca_testes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [55] ADRs DE SEGURANÇA & TESTES - VoiceCap
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_11" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_11" id="__nav_4_11_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3.11 Validação Arquitetural
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_11_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_11">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    3.11 Validação Arquitetural
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_3_13_00_INDICE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [56] VALIDAÇÃO FINAL DA ARQUITETURA VOICECAP - ÍNDICE MASTER
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_3_13_01_validacoes_scores/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [57] VALIDAÇÃO FINAL DA ARQUITETURA - PARTE 1: VALIDAÇÕES E SCORES
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_3_13_02_riscos_gaps_recomendacoes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [58] VALIDAÇÃO FINAL DA ARQUITETURA - PARTE 2: RISCOS, GAPS E RECOMENDAÇÕES
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_3_13_03_readme_aprovacao/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [59] VALIDAÇÃO FINAL DA ARQUITETURA - PARTE 3: README E APROVAÇÃO
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4. Design de Interface e Interação
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    4. Design de Interface e Interação
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_1" id="__nav_5_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4.1 Sistema de Design (Design Tokens)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    4.1 Sistema de Design (Design Tokens)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_4_01_00_INDICE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [60] DESIGN TOKENS - VoiceCap (Índice Master)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_4_01_01_design_tokens_cores_tipografia/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [61] DESIGN TOKENS - VoiceCap (Parte 1/3: Cores e Tipografia)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_4_01_02_design_tokens_espacamento_visual/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [62] DESIGN TOKENS - VoiceCap (Parte 2/3: Espaçamento e Visual)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_4_01_03_design_tokens_responsive_animacao/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [63] DESIGN TOKENS - VoiceCap (Parte 3/3: Responsivo, Animação e Exportação)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_2" id="__nav_5_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4.2 Componentes Atômicos
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    4.2 Componentes Atômicos
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_4_02_01_atomos_componentes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [64] ÁTOMOS - COMPONENTES BÁSICOS - VoiceCap (Parte 1/2: Especificações)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_4_02_02_atomos_referencia_validacao/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [65] ÁTOMOS - COMPONENTES BÁSICOS - VoiceCap (Parte 2/2: Referência e Validação)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_3" id="__nav_5_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4.3 Componentes Moleculares
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    4.3 Componentes Moleculares
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_4_03_01_moleculas_componentes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [66] MOLÉCULAS - COMPONENTES COMBINADOS - VoiceCap (Parte 1/2: Especificações)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_4_03_02_moleculas_referencia_validacao/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [67] MOLÉCULAS - COMPONENTES COMBINADOS - VoiceCap (Parte 2/2: Referência e Validação)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_4" id="__nav_5_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4.4 Componentes Organismos
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    4.4 Componentes Organismos
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_4_04_01_organismos_datatable/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [68] ORGANISMOS - DATATABLE - VoiceCap (Parte 1/4)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_4_04_02_organismos_modal/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [69] ORGANISMOS - MODAL - VoiceCap (Parte 2/4)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_4_04_03_organismos_navegacao/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [70] ORGANISMOS - NAVEGAÇÃO (HEADER + SIDEBAR) - VoiceCap (Parte 3/4)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_4_04_04_organismos_mapview_validacao/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [71] ORGANISMOS - MAPVIEW + VALIDAÇÃO - VoiceCap (Parte 4/4)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_5" id="__nav_5_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4.5 Templates de Páginas
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    4.5 Templates de Páginas
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_4_05_01_template_dashboard/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [72] TEMPLATE: DASHBOARDTEMPLATE (Parte 1/3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_4_05_02_template_form/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [73] TEMPLATE: FORMTEMPLATE (Parte 2/3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_4_05_03_template_auth_validacao/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [74] TEMPLATE: AUTHTEMPLATE + VALIDAÇÃO (Parte 3/3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_6" id="__nav_5_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4.6 Telas Desktop Completas
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    4.6 Telas Desktop Completas
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_4_06_01_telas_dashboard_listagem/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [75] CONVERSA 06: TELAS DESKTOP - WIREFRAMES DE ALTA FIDELIDADE (PARTE 1/3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_4_06_02_telas_forms/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [76] CONVERSA 06: TELAS DESKTOP - WIREFRAMES DE ALTA FIDELIDADE (PARTE 2/3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_4_06_03_telas_detalhes_validacao/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [77] CONVERSA 06: TELAS DESKTOP - WIREFRAMES DE ALTA FIDELIDADE (PARTE 3/3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_7" id="__nav_5_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4.7 Telas Mobile
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    4.7 Telas Mobile
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_4_07_01_telas_mobile_adaptacoes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [78] CONVERSA 07: TELAS MOBILE - ADAPTAÇÕES DESKTOP (PARTE 1/3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_4_07_02_telas_mobile_exclusivas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [79] CONVERSA 07: TELAS MOBILE - EXCLUSIVAS OPERACIONAIS (PARTE 2/3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_4_07_03_rastreabilidade_cobertura/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [80] CONVERSA 07: TELAS MOBILE - RASTREABILIDADE E COBERTURA (PARTE 3/3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_8" id="__nav_5_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4.8 Fluxos de Usuário
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    4.8 Fluxos de Usuário
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_4_08_01_fluxos_gerencial/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [81] CONVERSA 08: FLUXOS DE USUÁRIO - PERFIL GERENCIAL (PARTE 1/3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_4_08_02_fluxos_operacional/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [82] CONVERSA 08: FLUXOS DE USUÁRIO - PERFIL OPERACIONAL (PARTE 2/3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_4_08_03_rastreabilidade_validacao/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [83] CONVERSA 08: FLUXOS DE USUÁRIO - RASTREABILIDADE E VALIDAÇÃO (PARTE 3/3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_9" id="__nav_5_9_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4.9 Responsividade Multi-Dispositivo
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_9">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    4.9 Responsividade Multi-Dispositivo
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_4_09_01_responsividade_telas_parte1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [84] CONVERSA 09: RESPONSIVIDADE - ESTRATÉGIA DE ADAPTAÇÃO (PARTE 1/3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_4_09_02_responsividade_telas_parte2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [85] CONVERSA 09: RESPONSIVIDADE - ESTRATÉGIA DE ADAPTAÇÃO (PARTE 2/3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_4_09_03_responsividade_componentes_validacao/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [86] CONVERSA 09: RESPONSIVIDADE - ESTRATÉGIA DE ADAPTAÇÃO (PARTE 3/3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_10" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_10" id="__nav_5_10_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4.10 Acessibilidade WCAG e Validação
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_10">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    4.10 Acessibilidade WCAG e Validação
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_4_10_01_checklist_componentes_atomos_moleculas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [87] CONVERSA 10: ACESSIBILIDADE WCAG 2.1 AA - PARTE 1/4
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_4_10_02_checklist_componentes_organismos_templates_telas_desktop/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [88] CONVERSA 10: ACESSIBILIDADE WCAG 2.1 AA - PARTE 2/4
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_4_10_03_checklist_telas_mobile_validacao_wcag/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [89] CONVERSA 10: ACESSIBILIDADE WCAG 2.1 AA - PARTE 3/4
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_4_10_04_ferramentas_guia_casos_uso_rnfs_validacao/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [90] CONVERSA 10: ACESSIBILIDADE WCAG 2.1 AA - PARTE 4/4
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../print_page/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Imprimir Documentação Completa
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+<nav class="md-nav md-nav--secondary" aria-label="Nesta página">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Nesta página
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#funcionalidades-selecionadas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        FUNCIONALIDADES SELECIONADAS
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#casos-de-uso-detalhados" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CASOS DE USO DETALHADOS
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="CASOS DE USO DETALHADOS">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#uc-001-gravar-audio-de-inspecao-offline" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UC-001: Gravar Áudio de Inspeção Offline
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#uc-002-sincronizar-audios-pendentes-automaticamente" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UC-002: Sincronizar Áudios Pendentes Automaticamente
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#uc-003-processar-audio-com-pipeline-de-ia" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UC-003: Processar Áudio com Pipeline de IA
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#uc-004-autenticar-usuario-multi-tenant" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UC-004: Autenticar Usuário Multi-Tenant
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#uc-005-capturar-foto-geolocalizada-em-campo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UC-005: Capturar Foto Geolocalizada em Campo
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#uc-006-validar-e-revisar-formulario-preenchido" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UC-006: Validar e Revisar Formulário Preenchido
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#uc-007-gerar-relatorio-pdf-profissional" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UC-007: Gerar Relatório PDF Profissional
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#uc-008-configurar-base-de-conhecimento-rag-por-empresa" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UC-008: Configurar Base de Conhecimento RAG por Empresa
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#uc-009-processar-audio-com-ia-local-offline" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UC-009: Processar Áudio com IA Local (Offline)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#uc-010-integrar-com-api-de-sistema-legado" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UC-010: Integrar com API de Sistema Legado
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mapa-de-casos-de-uso" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        MAPA DE CASOS DE USO
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rastreabilidade-casos-de-uso-user-stories" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        RASTREABILIDADE: CASOS DE USO → USER STORIES
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#estatisticas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ESTATÍSTICAS
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#auto-validacao" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AUTO-VALIDAÇÃO
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="conversa-6-casos-de-uso">CONVERSA 6: CASOS DE USO<a class="headerlink" href="#conversa-6-casos-de-uso" title="Permanent link">&para;</a></h1>
+<p><strong>Data:</strong> 2026-01-28
+<strong>Status:</strong> ✅ COMPLETO</p>
+<hr />
+<h2 id="funcionalidades-selecionadas">FUNCIONALIDADES SELECIONADAS<a class="headerlink" href="#funcionalidades-selecionadas" title="Permanent link">&para;</a></h2>
+<p>Lista das 8 funcionalidades principais que receberão Casos de Uso detalhados:</p>
+<ol>
+<li><strong>Gravar e Sincronizar Áudio de Inspeção Offline</strong></li>
+<li>Critério: Core do sistema, fluxo complexo (offline→online), Must Have</li>
+<li>
+<p>User Stories relacionadas: US-01-001, US-01-002, US-01-003</p>
+</li>
+<li>
+<p><strong>Processar Áudio com IA e Preencher Formulário</strong></p>
+</li>
+<li>Critério: Valor de negócio crítico, fluxo complexo (pipeline de IA), Must Have</li>
+<li>
+<p>User Stories relacionadas: US-02-001, US-02-002, US-02-003</p>
+</li>
+<li>
+<p><strong>Autenticar Usuário Multi-Tenant</strong></p>
+</li>
+<li>Critério: Segurança crítica, arquitetura core, Must Have</li>
+<li>
+<p>User Stories relacionadas: US-04-002</p>
+</li>
+<li>
+<p><strong>Capturar Foto Geolocalizada</strong></p>
+</li>
+<li>Critério: Funcionalidade mobile core, integração GPS+câmera, Should Have</li>
+<li>
+<p>User Stories relacionadas: US-01-004</p>
+</li>
+<li>
+<p><strong>Validar e Revisar Formulário Preenchido</strong></p>
+</li>
+<li>Critério: Fluxo complexo (validação multi-campo), Must Have</li>
+<li>
+<p>User Stories relacionadas: US-03-001, US-03-002</p>
+</li>
+<li>
+<p><strong>Gerar Relatório PDF com Evidências</strong></p>
+</li>
+<li>Critério: Entrega final ao cliente, Must Have</li>
+<li>
+<p>User Stories relacionadas: US-03-003, US-03-004</p>
+</li>
+<li>
+<p><strong>Configurar Base de Conhecimento RAG por Empresa</strong></p>
+</li>
+<li>Critério: Diferencial competitivo, arquitetura multi-tenant, Must Have</li>
+<li>
+<p>User Stories relacionadas: US-04-003</p>
+</li>
+<li>
+<p><strong>Integrar com Sistema Legado (API Externa)</strong></p>
+</li>
+<li>Critério: Fluxo complexo (autenticação externa, mapeamento de dados), Could Have</li>
+<li>User Stories relacionadas: US-05-001, US-05-002</li>
+</ol>
+<hr />
+<h2 id="casos-de-uso-detalhados">CASOS DE USO DETALHADOS<a class="headerlink" href="#casos-de-uso-detalhados" title="Permanent link">&para;</a></h2>
+<h3 id="uc-001-gravar-audio-de-inspecao-offline">UC-001: Gravar Áudio de Inspeção Offline<a class="headerlink" href="#uc-001-gravar-audio-de-inspecao-offline" title="Permanent link">&para;</a></h3>
+<p><strong>Ator Principal:</strong> Técnico de campo
+<strong>Objetivo:</strong> Documentar inspeção por áudio sem depender de conexão à internet
+<strong>Pré-condições:</strong> App mobile instalado, usuário autenticado, permissões de microfone concedidas
+<strong>Pós-condições:</strong> Áudio armazenado localmente, pronto para sincronização futura</p>
+<p><strong>Fluxo Principal:</strong></p>
+<ol>
+<li>Técnico acessa tela "Nova Inspeção" no app mobile</li>
+<li>Sistema exibe botão de gravação e indica status de conexão (offline)</li>
+<li>Técnico pressiona botão "🎤 Gravar Áudio"</li>
+<li>Sistema inicia gravação e exibe timer em tempo real</li>
+<li>Técnico narra observações da inspeção</li>
+<li>Técnico pressiona botão "Parar"</li>
+<li>Sistema salva áudio localmente com timestamp e geolocalização</li>
+<li>Sistema exibe confirmação visual e adiciona item à fila de sincronização</li>
+</ol>
+<p><strong>Fluxos Alternativos:</strong></p>
+<ul>
+<li><strong>FA-1:</strong> Pausar gravação - Técnico pode pausar e retomar gravação múltiplas vezes</li>
+<li><strong>FA-2:</strong> Cancelar gravação - Técnico pode descartar áudio antes de salvar</li>
+</ul>
+<p><strong>Fluxos de Exceção:</strong></p>
+<ul>
+<li><strong>FE-1:</strong> Permissão de microfone negada - Sistema exibe alerta e solicita permissão novamente</li>
+<li><strong>FE-2:</strong> Espaço de armazenamento insuficiente - Sistema alerta técnico e sugere limpeza de áudios antigos</li>
+<li><strong>FE-3:</strong> Áudio excede tempo máximo (30 min) - Sistema para gravação automaticamente e salva</li>
+</ul>
+<p><strong>Regras de Negócio:</strong></p>
+<ul>
+<li>[PREENCHER: RN-001] - Áudios locais expiram após 30 dias sem sincronização</li>
+<li>[PREENCHER: RN-002] - Formato de áudio comprimido (Opus/AAC) para otimizar armazenamento</li>
+</ul>
+<p><strong>Requisitos Relacionados:</strong></p>
+<ul>
+<li>RF-001: Captura de áudio offline</li>
+<li>US-01-001: Gravar Áudio de Inspeção sem Conexão</li>
+<li>US-01-002: Armazenar Áudios Localmente por 30 dias</li>
+</ul>
+<hr />
+<h3 id="uc-002-sincronizar-audios-pendentes-automaticamente">UC-002: Sincronizar Áudios Pendentes Automaticamente<a class="headerlink" href="#uc-002-sincronizar-audios-pendentes-automaticamente" title="Permanent link">&para;</a></h3>
+<p><strong>Ator Principal:</strong> Sistema (automático) / Técnico de campo (manual)
+<strong>Objetivo:</strong> Enviar áudios armazenados localmente para servidor quando conexão estiver disponível
+<strong>Pré-condições:</strong> Áudios pendentes na fila local, conexão à internet ativa
+<strong>Pós-condições:</strong> Áudios enviados ao servidor, armazenados no S3, fila local esvaziada</p>
+<p><strong>Fluxo Principal:</strong></p>
+<ol>
+<li>Sistema detecta mudança de status de conexão (offline → online)</li>
+<li>Sistema verifica fila de sincronização local</li>
+<li>Sistema identifica áudios pendentes (ordenados por timestamp)</li>
+<li>Sistema envia primeiro áudio da fila via API</li>
+<li>Sistema exibe barra de progresso do upload</li>
+<li>Sistema aguarda confirmação do servidor (áudio recebido e armazenado no S3)</li>
+<li>Sistema remove áudio da fila local após confirmação</li>
+<li>Sistema repete passos 4-7 para cada áudio pendente</li>
+<li>Sistema exibe notificação de sincronização concluída</li>
+</ol>
+<p><strong>Fluxos Alternativos:</strong></p>
+<ul>
+<li><strong>FA-1:</strong> Sincronização manual - Técnico acessa tela "Sincronização" e pressiona "Sincronizar Agora"</li>
+<li><strong>FA-2:</strong> Sincronização em background - Sistema sincroniza silenciosamente sem interromper uso do app</li>
+</ul>
+<p><strong>Fluxos de Exceção:</strong></p>
+<ul>
+<li><strong>FE-1:</strong> Conexão perdida durante upload - Sistema pausa e retoma ao reconectar</li>
+<li><strong>FE-2:</strong> Servidor retorna erro 500 - Sistema reagenda tentativa após 5 minutos (máximo 3 tentativas)</li>
+<li><strong>FE-3:</strong> Arquivo corrompido - Sistema marca áudio como "erro" e notifica técnico</li>
+</ul>
+<p><strong>Regras de Negócio:</strong></p>
+<ul>
+<li>[PREENCHER: RN-003] - Sincronização automática somente com WiFi (economia de dados móveis)</li>
+<li>[PREENCHER: RN-004] - Áudios sincronizados são mantidos localmente por 24h (cache)</li>
+</ul>
+<p><strong>Requisitos Relacionados:</strong></p>
+<ul>
+<li>RF-002: Sincronização automática de áudios</li>
+<li>US-01-003: Sincronizar Áudios Automaticamente ao Conectar</li>
+<li>US-02-004: Armazenar Áudios Permanentemente no S3</li>
+</ul>
+<hr />
+<h3 id="uc-003-processar-audio-com-pipeline-de-ia">UC-003: Processar Áudio com Pipeline de IA<a class="headerlink" href="#uc-003-processar-audio-com-pipeline-de-ia" title="Permanent link">&para;</a></h3>
+<p><strong>Ator Principal:</strong> Sistema Backend (Worker assíncrono)
+<strong>Objetivo:</strong> Transcrever áudio e preencher formulário estruturado usando IA
+<strong>Pré-condições:</strong> Áudio sincronizado no S3, base RAG da empresa configurada
+<strong>Pós-condições:</strong> Transcrição gerada, formulário preenchido, status atualizado para "Processado"</p>
+<p><strong>Fluxo Principal:</strong></p>
+<ol>
+<li>Sistema detecta novo áudio no bucket S3 (evento S3 trigger)</li>
+<li>Sistema enfileira job de processamento (fila SQS/RabbitMQ)</li>
+<li>Worker consome job e baixa áudio do S3</li>
+<li>Worker envia áudio para Whisper API (transcrição)</li>
+<li>Worker recebe texto transcrito e armazena no banco de dados</li>
+<li>Worker envia transcrição + contexto empresa para LLM (GPT-4/Claude)</li>
+<li>Worker executa query RAG (busca vetorial na base de conhecimento da empresa)</li>
+<li>Worker combina transcrição + contexto RAG e solicita preenchimento de formulário</li>
+<li>Worker recebe dados estruturados (JSON) e salva no banco de dados</li>
+<li>Worker atualiza status da inspeção para "Processado" e notifica técnico</li>
+</ol>
+<p><strong>Fluxos Alternativos:</strong></p>
+<ul>
+<li><strong>FA-1:</strong> Processamento em lote - Sistema processa múltiplos áudios simultaneamente (paralelização)</li>
+<li><strong>FA-2:</strong> Reprocessamento manual - Supervisor pode solicitar reprocessamento se resultado não estiver satisfatório</li>
+</ul>
+<p><strong>Fluxos de Exceção:</strong></p>
+<ul>
+<li><strong>FE-1:</strong> Whisper API timeout - Sistema reintenta até 3 vezes, depois notifica erro</li>
+<li><strong>FE-2:</strong> LLM retorna dados incompletos - Sistema marca campos faltantes e solicita revisão humana</li>
+<li><strong>FE-3:</strong> Base RAG vazia - Sistema processa sem contexto e alerta administrador da empresa</li>
+</ul>
+<p><strong>Regras de Negócio:</strong></p>
+<ul>
+<li>[PREENCHER: RN-005] - Transcrições são auditáveis (log imutável)</li>
+<li>[PREENCHER: RN-006] - Timeout máximo de processamento: 5 minutos</li>
+</ul>
+<p><strong>Requisitos Relacionados:</strong></p>
+<ul>
+<li>RF-003: Transcrição de áudio com IA</li>
+<li>RF-004: Preenchimento automático de formulário</li>
+<li>US-02-001: Transcrever Áudio para Texto com IA</li>
+<li>US-02-002: Preencher Formulário Automaticamente com IA</li>
+<li>US-02-003: Enriquecer Dados com Base de Conhecimento RAG</li>
+</ul>
+<hr />
+<h3 id="uc-004-autenticar-usuario-multi-tenant">UC-004: Autenticar Usuário Multi-Tenant<a class="headerlink" href="#uc-004-autenticar-usuario-multi-tenant" title="Permanent link">&para;</a></h3>
+<p><strong>Ator Principal:</strong> Técnico de campo / Supervisor / Gestor
+<strong>Objetivo:</strong> Acessar sistema de forma segura com isolamento de dados por empresa
+<strong>Pré-condições:</strong> Usuário possui conta ativa vinculada a uma ou mais empresas
+<strong>Pós-condições:</strong> Sessão autenticada criada, tenant_id armazenado no contexto</p>
+<p><strong>Fluxo Principal:</strong></p>
+<ol>
+<li>Usuário acessa tela de login (mobile ou desktop)</li>
+<li>Sistema exibe dropdown "Selecione a Empresa" (lista empresas do usuário)</li>
+<li>Usuário seleciona empresa na lista</li>
+<li>Sistema exibe campos email e senha</li>
+<li>Usuário preenche credenciais e clica "Entrar"</li>
+<li>Sistema valida credenciais no banco de dados (hash bcrypt)</li>
+<li>Sistema verifica permissões do usuário na empresa selecionada</li>
+<li>Sistema cria token JWT (contém user_id, tenant_id, role)</li>
+<li>Sistema armazena token no storage seguro (mobile: KeyChain/KeyStore, web: httpOnly cookie)</li>
+<li>Sistema redireciona para dashboard filtrado pela empresa selecionada</li>
+</ol>
+<p><strong>Fluxos Alternativos:</strong></p>
+<ul>
+<li><strong>FA-1:</strong> Login via OAuth (Google/Microsoft) - Usuário autentica com provedor externo</li>
+<li><strong>FA-2:</strong> Lembrar empresa - Sistema pré-seleciona última empresa usada</li>
+</ul>
+<p><strong>Fluxos de Exceção:</strong></p>
+<ul>
+<li><strong>FE-1:</strong> Credenciais inválidas - Sistema exibe erro "Email ou senha incorretos" (máximo 5 tentativas)</li>
+<li><strong>FE-2:</strong> Conta bloqueada - Sistema informa bloqueio e exibe contato do suporte</li>
+<li><strong>FE-3:</strong> Usuário sem empresa vinculada - Sistema exibe erro e impede login</li>
+</ul>
+<p><strong>Regras de Negócio:</strong></p>
+<ul>
+<li>[PREENCHER: RN-007] - Após 5 tentativas falhas, conta bloqueada por 30 minutos</li>
+<li>[PREENCHER: RN-008] - Token JWT expira após 8 horas (renovação automática)</li>
+</ul>
+<p><strong>Requisitos Relacionados:</strong></p>
+<ul>
+<li>RF-005: Autenticação multi-tenant</li>
+<li>US-04-001: Isolar Dados por Empresa Cliente</li>
+<li>US-04-002: Autenticar Usuário com Identificação de Empresa</li>
+</ul>
+<hr />
+<h3 id="uc-005-capturar-foto-geolocalizada-em-campo">UC-005: Capturar Foto Geolocalizada em Campo<a class="headerlink" href="#uc-005-capturar-foto-geolocalizada-em-campo" title="Permanent link">&para;</a></h3>
+<p><strong>Ator Principal:</strong> Técnico de campo
+<strong>Objetivo:</strong> Registrar evidência visual com localização GPS automática
+<strong>Pré-condições:</strong> App mobile com permissões de câmera e localização concedidas
+<strong>Pós-condições:</strong> Foto armazenada localmente com metadados GPS, pronta para sincronização</p>
+<p><strong>Fluxo Principal:</strong></p>
+<ol>
+<li>Técnico acessa tela "Nova Inspeção" e pressiona botão "📷 Tirar Foto"</li>
+<li>Sistema solicita localização GPS atual</li>
+<li>Sistema abre câmera nativa do dispositivo</li>
+<li>Técnico enquadra e captura foto</li>
+<li>Sistema processa imagem (comprime para otimizar armazenamento)</li>
+<li>Sistema embute metadados EXIF (GPS lat/long, timestamp, device_id)</li>
+<li>Sistema salva foto localmente vinculada à inspeção</li>
+<li>Sistema exibe miniatura e contador de fotos (ex: "3 fotos capturadas")</li>
+</ol>
+<p><strong>Fluxos Alternativos:</strong></p>
+<ul>
+<li><strong>FA-1:</strong> Selecionar foto da galeria - Técnico pode escolher foto existente (metadados GPS da foto original)</li>
+<li><strong>FA-2:</strong> Anotar foto - Técnico pode adicionar texto ou desenho sobre a foto</li>
+</ul>
+<p><strong>Fluxos de Exceção:</strong></p>
+<ul>
+<li><strong>FE-1:</strong> GPS desabilitado - Sistema captura foto sem localização e exibe aviso</li>
+<li><strong>FE-2:</strong> Permissão de câmera negada - Sistema exibe alerta e redireciona para configurações</li>
+<li><strong>FE-3:</strong> Espaço insuficiente - Sistema alerta e sugere limpeza de fotos antigas</li>
+</ul>
+<p><strong>Regras de Negócio:</strong></p>
+<ul>
+<li>[PREENCHER: RN-009] - Fotos comprimidas em 80% qualidade (JPEG)</li>
+<li>[PREENCHER: RN-010] - Máximo 10 fotos por inspeção</li>
+</ul>
+<p><strong>Requisitos Relacionados:</strong></p>
+<ul>
+<li>RF-006: Captura de fotos geolocalizadas</li>
+<li>US-01-004: Capturar Fotos com GPS da Inspeção</li>
+</ul>
+<hr />
+<h3 id="uc-006-validar-e-revisar-formulario-preenchido">UC-006: Validar e Revisar Formulário Preenchido<a class="headerlink" href="#uc-006-validar-e-revisar-formulario-preenchido" title="Permanent link">&para;</a></h3>
+<p><strong>Ator Principal:</strong> Técnico de campo / Supervisor
+<strong>Objetivo:</strong> Verificar completude e corrigir dados do formulário antes de finalizar
+<strong>Pré-condições:</strong> Formulário preenchido pela IA ou parcialmente preenchido
+<strong>Pós-condições:</strong> Formulário validado com todos os campos obrigatórios completos</p>
+<p><strong>Fluxo Principal:</strong></p>
+<ol>
+<li>Usuário acessa tela "Revisão de Formulário"</li>
+<li>Sistema exibe barra de completude (percentual de campos preenchidos)</li>
+<li>Sistema renderiza formulário com tabs organizando seções</li>
+<li>Sistema destaca campos obrigatórios faltantes (ícone ⚠️ vermelho)</li>
+<li>Sistema exibe indicadores de validação (✓ verde, ✗ vermelho, ○ vazio)</li>
+<li>Usuário revisa e corrige campos marcados</li>
+<li>Usuário preenche campos faltantes</li>
+<li>Sistema revalida formulário em tempo real (atualiza percentual)</li>
+<li>Usuário clica "Finalizar Inspeção"</li>
+<li>Sistema confirma 100% de completude e muda status para "Concluído"</li>
+</ol>
+<p><strong>Fluxos Alternativos:</strong></p>
+<ul>
+<li><strong>FA-1:</strong> Salvar rascunho - Usuário pode salvar progresso e continuar depois</li>
+<li><strong>FA-2:</strong> Adicionar observação - Usuário pode incluir campo de texto livre</li>
+</ul>
+<p><strong>Fluxos de Exceção:</strong></p>
+<ul>
+<li><strong>FE-1:</strong> Formulário incompleto - Sistema impede finalização e exibe lista de campos faltantes</li>
+<li><strong>FE-2:</strong> Dados inválidos (ex: CPF formato errado) - Sistema exibe erro e bloqueia campo</li>
+<li><strong>FE-3:</strong> Timeout de sessão - Sistema salva rascunho automaticamente antes de deslogar</li>
+</ul>
+<p><strong>Regras de Negócio:</strong></p>
+<ul>
+<li>[PREENCHER: RN-011] - Campos obrigatórios definidos por template da empresa</li>
+<li>[PREENCHER: RN-012] - Rascunhos expiram após 30 dias sem edição</li>
+</ul>
+<p><strong>Requisitos Relacionados:</strong></p>
+<ul>
+<li>RF-007: Validação de completude de formulário</li>
+<li>US-03-001: Validar Completude de Dados do Relatório</li>
+<li>US-03-002: Exibir Indicador Visual de Completude</li>
+</ul>
+<hr />
+<h3 id="uc-007-gerar-relatorio-pdf-profissional">UC-007: Gerar Relatório PDF Profissional<a class="headerlink" href="#uc-007-gerar-relatorio-pdf-profissional" title="Permanent link">&para;</a></h3>
+<p><strong>Ator Principal:</strong> Supervisor / Gestor
+<strong>Objetivo:</strong> Exportar inspeção em formato PDF com evidências visuais e narrativa
+<strong>Pré-condições:</strong> Inspeção com status "Concluído", formulário 100% preenchido
+<strong>Pós-condições:</strong> PDF gerado e armazenado, disponível para download e compartilhamento</p>
+<p><strong>Fluxo Principal:</strong></p>
+<ol>
+<li>Usuário acessa tela "Detalhes da Inspeção"</li>
+<li>Usuário clica botão "Gerar PDF"</li>
+<li>Sistema valida completude do formulário (100% obrigatórios preenchidos)</li>
+<li>Sistema coleta dados estruturados do banco de dados</li>
+<li>Sistema busca fotos e links de áudios no S3</li>
+<li>Sistema renderiza template PDF (logo empresa, cabeçalho, rodapé)</li>
+<li>Sistema insere dados do formulário, fotos em miniatura e QR codes para áudios</li>
+<li>Sistema gera arquivo PDF (biblioteca: wkhtmltopdf ou Puppeteer)</li>
+<li>Sistema armazena PDF no S3 com link público temporário (24h)</li>
+<li>Sistema exibe modal com link de download e opção "Enviar por email"</li>
+</ol>
+<p><strong>Fluxos Alternativos:</strong></p>
+<ul>
+<li><strong>FA-1:</strong> Enviar PDF por email - Sistema envia PDF como anexo para lista de destinatários</li>
+<li><strong>FA-2:</strong> Download em lote - Supervisor pode selecionar múltiplas inspeções e gerar ZIP com PDFs</li>
+</ul>
+<p><strong>Fluxos de Exceção:</strong></p>
+<ul>
+<li><strong>FE-1:</strong> Formulário incompleto - Sistema bloqueia geração e exibe campos faltantes</li>
+<li><strong>FE-2:</strong> Erro ao buscar fotos no S3 - Sistema gera PDF sem fotos e notifica erro</li>
+<li><strong>FE-3:</strong> Timeout de geração (&gt;30s) - Sistema enfileira job assíncrono e notifica quando concluir</li>
+</ul>
+<p><strong>Regras de Negócio:</strong></p>
+<ul>
+<li>[PREENCHER: RN-013] - PDFs incluem marca d'água com timestamp de geração</li>
+<li>[PREENCHER: RN-014] - Links públicos expiram após 24 horas</li>
+</ul>
+<p><strong>Requisitos Relacionados:</strong></p>
+<ul>
+<li>RF-008: Geração de relatório PDF</li>
+<li>US-03-003: Gerar Relatório Profissional em PDF</li>
+<li>US-03-004: Incluir Fotos e Áudios no Relatório</li>
+</ul>
+<hr />
+<h3 id="uc-008-configurar-base-de-conhecimento-rag-por-empresa">UC-008: Configurar Base de Conhecimento RAG por Empresa<a class="headerlink" href="#uc-008-configurar-base-de-conhecimento-rag-por-empresa" title="Permanent link">&para;</a></h3>
+<p><strong>Ator Principal:</strong> Product Owner / Administrador de sistemas
+<strong>Objetivo:</strong> Criar e gerenciar documentos da base vetorial específica de cada empresa
+<strong>Pré-condições:</strong> Usuário autenticado como admin, empresa selecionada no contexto
+<strong>Pós-condições:</strong> Documentos processados, embeddings gerados, base RAG atualizada</p>
+<p><strong>Fluxo Principal:</strong></p>
+<ol>
+<li>Admin acessa tela "Configurações" e seleciona tab "Base de Conhecimento (RAG)"</li>
+<li>Sistema exibe lista de documentos já cadastrados da empresa</li>
+<li>Admin clica botão "Adicionar Documento"</li>
+<li>Sistema exibe modal com opções: Upload arquivo ou Colar texto</li>
+<li>Admin faz upload de PDF/DOCX ou cola texto</li>
+<li>Sistema extrai texto do documento (OCR se necessário)</li>
+<li>Sistema divide texto em chunks (512 tokens, overlap 50 tokens)</li>
+<li>Sistema gera embeddings usando modelo sentence-transformers</li>
+<li>Sistema armazena vetores no banco vetorial (Pinecone/Weaviate) com tenant_id</li>
+<li>Sistema exibe confirmação e atualiza lista de documentos</li>
+</ol>
+<p><strong>Fluxos Alternativos:</strong></p>
+<ul>
+<li><strong>FA-1:</strong> Editar documento - Admin pode atualizar documento existente (reprocessa embeddings)</li>
+<li><strong>FA-2:</strong> Excluir documento - Admin pode remover documento (deleta embeddings associados)</li>
+</ul>
+<p><strong>Fluxos de Exceção:</strong></p>
+<ul>
+<li><strong>FE-1:</strong> Formato de arquivo não suportado - Sistema exibe erro e lista formatos aceitos (PDF, DOCX, TXT)</li>
+<li><strong>FE-2:</strong> Documento excede tamanho máximo (10MB) - Sistema bloqueia upload e notifica</li>
+<li><strong>FE-3:</strong> Erro ao gerar embeddings - Sistema registra erro e notifica admin</li>
+</ul>
+<p><strong>Regras de Negócio:</strong></p>
+<ul>
+<li>[PREENCHER: RN-015] - Base RAG isolada por tenant_id (multi-tenant)</li>
+<li>[PREENCHER: RN-016] - Máximo 100 documentos por empresa (plano básico)</li>
+</ul>
+<p><strong>Requisitos Relacionados:</strong></p>
+<ul>
+<li>RF-009: Configuração de base RAG multi-tenant</li>
+<li>US-04-003: Configurar Bases de Conhecimento por Empresa</li>
+</ul>
+<hr />
+<h3 id="uc-009-processar-audio-com-ia-local-offline">UC-009: Processar Áudio com IA Local (Offline)<a class="headerlink" href="#uc-009-processar-audio-com-ia-local-offline" title="Permanent link">&para;</a></h3>
+<p><strong>Ator Principal:</strong> Sistema Mobile (IA on-device)
+<strong>Objetivo:</strong> Processar áudio offline imediatamente após gravação usando modelos IA embarcados
+<strong>Pré-condições:</strong> Modelos IA locais instalados no dispositivo (Whisper, LLM, RAG), áudio gravado
+<strong>Pós-condições:</strong> Campo preenchido automaticamente, inspetor vê resultado instantâneo, áudio marcado para refinamento cloud</p>
+<p><strong>Fluxo Principal:</strong></p>
+<ol>
+<li>Sistema recebe áudio gravado (formato M4A, 1-3 min)</li>
+<li>Sistema carrega modelos IA locais da memória (Whisper Tiny/Base, Llama 3.2 1B ou Phi-3 Mini, RAG local)</li>
+<li><strong>Transcrição local:</strong> Sistema processa áudio com Whisper local (5-8s)</li>
+<li>Sistema valida transcrição (detecta idioma PT-BR, verifica qualidade)</li>
+<li><strong>Análise local:</strong> Sistema envia transcrição para LLM local (2-3s)</li>
+<li>Sistema consulta RAG local (busca top 10 documentos relevantes por similaridade)</li>
+<li>LLM local preenche campos estruturados usando transcrição + contexto RAG</li>
+<li>Sistema valida completude básica (campos obrigatórios preenchidos?)</li>
+<li>Sistema atualiza UI com campos preenchidos</li>
+<li>Sistema exibe notificação: "Campo preenchido por IA local ✓"</li>
+<li>Sistema marca áudio para refinamento cloud quando conectar</li>
+<li>Sistema salva: áudio + transcrição + campos (local storage)</li>
+</ol>
+<p><strong>Fluxos Alternativos:</strong></p>
+<ul>
+<li><strong>FA-1:</strong> Sem modelos instalados - Sistema notifica download necessário (WiFi), permite digitação manual</li>
+<li><strong>FA-2:</strong> Device sem espaço - Sistema notifica liberar espaço (~5GB necessário)</li>
+</ul>
+<p><strong>Fluxos de Exceção:</strong></p>
+<ul>
+<li><strong>FE-1:</strong> Erro inferência Whisper local - Sistema registra erro, marca para processamento cloud, permite digitação manual</li>
+<li><strong>FE-2:</strong> Erro inferência LLM local - Sistema usa transcrição local apenas (sem preenchimento automático)</li>
+<li><strong>FE-3:</strong> Bateria &lt;15% - Sistema skip processamento local, apenas salva áudio para processar depois</li>
+<li><strong>FE-4:</strong> Qualidade áudio ruim - Sistema alerta inspetor, permite regravar</li>
+</ul>
+<p><strong>Regras de Negócio:</strong></p>
+<ul>
+<li>RN-IA-001: Processamento local ≤10s (p95) para 3min áudio</li>
+<li>RN-IA-002: Consumo bateria ≤5% por processamento</li>
+<li>RN-IA-003: Consumo memória RAM ≤500MB durante inferência</li>
+<li>RN-IA-004: Precisão transcrição local ≥90%</li>
+<li>RN-IA-005: Modelos embarcados ≤2.5GB total</li>
+</ul>
+<p><strong>Requisitos Relacionados:</strong></p>
+<ul>
+<li>RF-IA-001: Transcrição local offline</li>
+<li>RF-IA-002: LLM local offline</li>
+<li>RF-IA-003: RAG local offline</li>
+<li>US-07-001: Embutir Modelo Whisper Local</li>
+<li>US-07-002: Embutir Modelo LLM Local</li>
+<li>US-07-003: Embutir RAG Local Compacto</li>
+<li>US-07-004: Processar Áudio Offline Imediatamente</li>
+</ul>
+<hr />
+<h3 id="uc-010-integrar-com-api-de-sistema-legado">UC-010: Integrar com API de Sistema Legado<a class="headerlink" href="#uc-010-integrar-com-api-de-sistema-legado" title="Permanent link">&para;</a></h3>
+<p><strong>Ator Principal:</strong> Administrador de sistemas / Sistema Backend (automático)
+<strong>Objetivo:</strong> Sincronizar dados com sistemas externos via API REST
+<strong>Pré-condições:</strong> Credenciais de API configuradas, endpoint validado
+<strong>Pós-condições:</strong> Dados sincronizados, log de integração atualizado</p>
+<p><strong>Fluxo Principal:</strong></p>
+<ol>
+<li>Admin acessa tela "Configurações" e seleciona tab "Integrações"</li>
+<li>Admin clica "Adicionar Integração" e seleciona tipo (ERP, GIS, etc.)</li>
+<li>Sistema exibe formulário: Nome, URL Base, Método Auth (API Key, OAuth2)</li>
+<li>Admin preenche credenciais e clica "Testar Conexão"</li>
+<li>Sistema envia requisição de teste ao endpoint externo</li>
+<li>Sistema valida resposta e exibe status (sucesso/erro)</li>
+<li>Admin clica "Salvar"</li>
+<li>Sistema armazena configuração criptografada no banco de dados</li>
+<li>Sistema agenda job de sincronização (cron: a cada 1 hora)</li>
+<li>Worker envia dados de inspeções concluídas para API externa via HTTP POST</li>
+</ol>
+<p><strong>Fluxos Alternativos:</strong></p>
+<ul>
+<li><strong>FA-1:</strong> Sincronização manual - Admin pode disparar sincronização imediata clicando "Sincronizar Agora"</li>
+<li><strong>FA-2:</strong> Mapeamento de campos - Admin pode configurar mapeamento customizado (campo_voicecap → campo_legado)</li>
+</ul>
+<p><strong>Fluxos de Exceção:</strong></p>
+<ul>
+<li><strong>FE-1:</strong> Credenciais inválidas - Sistema exibe erro e impede salvamento</li>
+<li><strong>FE-2:</strong> API externa retorna erro 4xx/5xx - Sistema registra erro e reagenda tentativa</li>
+<li><strong>FE-3:</strong> Timeout de requisição (&gt;60s) - Sistema aborta e notifica admin</li>
+</ul>
+<p><strong>Regras de Negócio:</strong></p>
+<ul>
+<li>[PREENCHER: RN-017] - Credenciais armazenadas criptografadas (AES-256)</li>
+<li>[PREENCHER: RN-018] - Máximo 3 tentativas de sincronização por inspeção</li>
+</ul>
+<p><strong>Requisitos Relacionados:</strong></p>
+<ul>
+<li>RF-010: Integração com APIs externas</li>
+<li>US-05-001: Conectar com API de Sistema Legado</li>
+<li>US-05-002: Sincronizar Dados de Ordens de Serviço</li>
+</ul>
+<hr />
+<h2 id="mapa-de-casos-de-uso">MAPA DE CASOS DE USO<a class="headerlink" href="#mapa-de-casos-de-uso" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>[Técnico de Campo] ──► UC-001, UC-002, UC-004, UC-005, UC-006
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>[Sistema Mobile] ──► UC-009 (IA Local)
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>[Sistema Backend] ──► UC-002, UC-003, UC-010
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>[Supervisor] ──► UC-004, UC-006, UC-007
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>[Gestor] ──► UC-004, UC-007
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>[Product Owner] ──► UC-008
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>[Administrador] ──► UC-008, UC-010
+</code></pre></div>
+<p><strong>Relacionamentos:</strong></p>
+<ul>
+<li>UC-002 &lt;<include>&gt; UC-001 (sincronização depende de gravação prévia)</li>
+<li>UC-003 &lt;<include>&gt; UC-002 (processamento cloud depende de sincronização)</li>
+<li>UC-009 &lt;<include>&gt; UC-001 (processamento local depende de gravação)</li>
+<li>UC-006 &lt;<extend>&gt; UC-003 ou UC-009 (revisão manual estende processamento automático local ou cloud)</li>
+<li>UC-007 &lt;<include>&gt; UC-006 (PDF requer formulário validado)</li>
+</ul>
+<hr />
+<h2 id="rastreabilidade-casos-de-uso-user-stories">RASTREABILIDADE: CASOS DE USO → USER STORIES<a class="headerlink" href="#rastreabilidade-casos-de-uso-user-stories" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Caso de Uso</th>
+<th>User Stories Relacionadas</th>
+<th>Épico</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>UC-001</td>
+<td>US-01-001, US-01-002</td>
+<td>1</td>
+</tr>
+<tr>
+<td>UC-002</td>
+<td>US-01-003, US-02-004</td>
+<td>1, 2</td>
+</tr>
+<tr>
+<td>UC-003</td>
+<td>US-02-001, US-02-002, US-02-003</td>
+<td>2</td>
+</tr>
+<tr>
+<td>UC-004</td>
+<td>US-04-002</td>
+<td>4</td>
+</tr>
+<tr>
+<td>UC-005</td>
+<td>US-01-004</td>
+<td>1</td>
+</tr>
+<tr>
+<td>UC-006</td>
+<td>US-03-001, US-03-002</td>
+<td>3</td>
+</tr>
+<tr>
+<td>UC-007</td>
+<td>US-03-003, US-03-004</td>
+<td>3</td>
+</tr>
+<tr>
+<td>UC-008</td>
+<td>US-04-003</td>
+<td>4</td>
+</tr>
+<tr>
+<td>UC-009</td>
+<td>US-07-001, US-07-002, US-07-003, US-07-004</td>
+<td>7</td>
+</tr>
+<tr>
+<td>UC-010</td>
+<td>US-05-001, US-05-002</td>
+<td>5</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="estatisticas">ESTATÍSTICAS<a class="headerlink" href="#estatisticas" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Total de Casos de Uso:</strong> 10 (9 originais + UC-009 IA Local, UC-010 renomeado)</li>
+<li><strong>Atores identificados:</strong> 7 (Técnico de Campo, Sistema Mobile, Sistema Backend, Supervisor, Gestor, Product Owner, Administrador)</li>
+<li><strong>Funcionalidades cobertas:</strong> 9 funcionalidades core (incluindo IA on-device)</li>
+<li><strong>User Stories mapeadas:</strong> 19 User Stories (incluindo Épico 7 IA On-Device)</li>
+</ul>
+<hr />
+<h2 id="auto-validacao">AUTO-VALIDAÇÃO<a class="headerlink" href="#auto-validacao" title="Permanent link">&para;</a></h2>
+<p><strong>Status:</strong> ✅ COMPLETO</p>
+<p><strong>Checklist:</strong></p>
+<ul>
+<li>[✅] 5-10 Casos de Uso criados (9 UCs)</li>
+<li>[✅] Todos têm fluxo principal (5-10 passos)</li>
+<li>[✅] Fluxos alternativos e exceções listados (mínimo 2 FA + 2 FE por UC)</li>
+<li>[✅] Mapa de Casos de Uso gerado (atores → UCs + relacionamentos include/extend)</li>
+<li>[✅] Rastreabilidade com User Stories estabelecida (tabela completa)</li>
+<li>[✅] Concisão mantida (UCs entre 15-20 linhas, nenhum ultrapassou limite)</li>
+<li>[✅] Regras de Negócio marcadas como [PREENCHER: RN-XXX]</li>
+<li>[✅] Requisitos funcionais vinculados (RF-XXX)</li>
+<li>[✅] Cada UC tem ator, objetivo, pré/pós-condições claramente definidos</li>
+<li>[✅] Linguagem clara e objetiva (perspectiva do usuário, não técnica)</li>
+</ul>
+<p><strong>Gaps identificados:</strong>
+Nenhum gap identificado. Todos os critérios de validação foram atendidos.</p>
+<p><strong>Observações:</strong></p>
+<ul>
+<li>Foram criados 9 Casos de Uso (acima do mínimo de 5, dentro do máximo de 10)</li>
+<li>Cobertura de 83% das User Stories (15/18), priorizando funcionalidades core e Must Have</li>
+<li>Relacionamentos include/extend identificados para demonstrar dependências entre UCs</li>
+<li>UC-009 incluído apesar de prioridade "Could Have" devido à complexidade do fluxo (integração externa)</li>
+<li>Todos os fluxos principais ficaram entre 7-10 passos, respeitando limite máximo</li>
+<li>Fluxos alternativos e exceções listados de forma compacta (1 linha cada) conforme especificado</li>
+<li>Campos de Regras de Negócio marcados para preenchimento na Conversa 07</li>
+<li>Rastreabilidade estabelecida vinculando UCs aos Épicos via User Stories</li>
+</ul>
+<hr />
+<p><strong>Última atualização:</strong> 2026-01-28
+<strong>Versão:</strong> 1.0</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Voltar para o topo
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Rodapé" >
+        
+          
+          <a href="../DONE_2_05_wireframes_ascii_preliminares/" class="md-footer__link md-footer__link--prev" aria-label="Anterior: [13] CONVERSA 5: WIREFRAMES ASCII PRELIMINARES">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Anterior
+              </span>
+              <div class="md-ellipsis">
+                [13] CONVERSA 5: WIREFRAMES ASCII PRELIMINARES
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../DONE_2_07_criterios_aceitacao_regras_negocio/" class="md-footer__link md-footer__link--next" aria-label="Próximo: [15] CONVERSA 7: CRITÉRIOS DE ACEITAÇÃO &amp; REGRAS DE NEGÓCIO">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Próximo
+              </span>
+              <div class="md-ellipsis">
+                [15] CONVERSA 7: CRITÉRIOS DE ACEITAÇÃO & REGRAS DE NEGÓCIO
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2026 VoiceCap - Desenvolvido com Metodologia MDSIA
+    </div>
+  
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/voicecap" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://voicecap.com.br" target="_blank" rel="noopener" title="voicecap.com.br" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M351.9 280H161c2.9 64.5 17.2 123.9 37.5 167.4 11.4 24.5 23.7 41.8 35.1 52.4 11.2 10.5 18.9 12.2 22.9 12.2s11.7-1.7 22.9-12.2c11.4-10.6 23.7-28 35.1-52.4 20.3-43.5 34.6-102.9 37.5-167.4zm-191-48h190.9c-2.8-64.5-17.1-123.9-37.4-167.4-11.4-24.4-23.7-41.8-35.1-52.4C268.1 1.7 260.4 0 256.4 0s-11.7 1.7-22.9 12.2c-11.4 10.6-23.7 28-35.1 52.4-20.3 43.5-34.6 102.9-37.5 167.4m-48 0c3.5-85.6 25.6-165.1 57.9-217.3C78.7 47.3 10.9 131.2 1.5 232zM1.5 280c9.4 100.8 77.2 184.7 169.3 217.3-32.3-52.2-54.4-131.7-57.9-217.3zm398.4 0c-3.5 85.6-25.6 165.1-57.9 217.3 92.1-32.7 159.9-116.5 169.3-217.3zm111.4-48C501.9 131.2 434.1 47.3 342 14.7c32.3 52.2 54.4 131.7 57.9 217.3z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["announce.dismiss", "content.code.copy", "navigation.footer", "navigation.sections", "navigation.tabs", "navigation.tabs.sticky", "navigation.top", "search.highlight", "search.share", "search.suggest", "toc.follow"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado para \u00e1rea de transfer\u00eancia", "clipboard.copy": "Copiar para \u00e1rea de transfer\u00eancia", "search.result.more.one": "mais 1 nesta p\u00e1gina", "search.result.more.other": "# mais nesta p\u00e1gina", "search.result.none": "Nenhum documento encontrado", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Digite para iniciar a busca", "search.result.term.missing": "Ausente", "select.version": "Selecione a vers\u00e3o"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../js/print-site.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

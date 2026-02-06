@@ -1,0 +1,7523 @@
+
+<!doctype html>
+<html lang="pt" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Documentação técnica completa do sistema VoiceCap - Captura de informações por voz com IA híbrida multi-tenant">
+      
+      
+        <meta name="author" content="Equipe VoiceCap">
+      
+      
+        <link rel="canonical" href="https://voicecap.com.br/DONE_3_05_01_diagrama_er/">
+      
+      
+        <link rel="prev" href="../DONE_3_04_02_fluxos_validacao/">
+      
+      
+        <link rel="next" href="../DONE_3_05_02_scripts_ddl_migrations/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>[34] DIAGRAMA ER (ENTITY-RELATIONSHIP) - VoiceCap - VoiceCap - Documentação Técnica Completa</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CFira+Code:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Fira Code"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../css/print-site.css">
+    
+      <link rel="stylesheet" href="../css/print-site-material.css">
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="blue">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#diagrama-er-entity-relationship-voicecap" class="md-skip">
+          Pular para conteúdo
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabeçalho">
+    <a href=".." title="VoiceCap - Documentação Técnica Completa" class="md-header__button md-logo" aria-label="VoiceCap - Documentação Técnica Completa" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            VoiceCap - Documentação Técnica Completa
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              [34] DIAGRAMA ER (ENTITY-RELATIONSHIP) - VoiceCap
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="blue"  aria-label="Alternar para modo escuro"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Alternar para modo escuro" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="blue"  aria-label="Alternar para modo claro"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Alternar para modo claro" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Buscar" placeholder="Buscar" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Pesquisar">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Compartilhar" aria-label="Compartilhar" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpar" aria-label="Limpar" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando busca
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Abas" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Início
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../DONE_1_01_problem_statement/" class="md-tabs__link">
+          
+  
+  
+  1. Contexto Estratégico do Projeto
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../DONE_2_01_analise_stakeholders_contexto/" class="md-tabs__link">
+          
+  
+  
+  2. Requisitos e Especificações
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../DONE_3_01_00_INDICE_MASTER/" class="md-tabs__link">
+          
+  
+  
+  3. Arquitetura do Sistema
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../DONE_4_01_00_INDICE/" class="md-tabs__link">
+          
+  
+  
+  4. Design de Interface e Interação
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../print_page/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Imprimir Documentação Completa
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navegação" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="VoiceCap - Documentação Técnica Completa" class="md-nav__button md-logo" aria-label="VoiceCap - Documentação Técnica Completa" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    VoiceCap - Documentação Técnica Completa
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Início
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1. Contexto Estratégico do Projeto
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    1. Contexto Estratégico do Projeto
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1" id="__nav_2_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1.1 Descoberta do Problema
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    1.1 Descoberta do Problema
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_1_01_problem_statement/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [1] PROBLEM STATEMENT & ANÁLISE DO PROBLEMA
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_1_02_stakeholders_personas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [2] STAKEHOLDERS & PERSONAS PRIMÁRIAS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_1_03_proposta_valor_bmc/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [3] PROPOSTA DE VALOR & BUSINESS MODEL CANVAS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1.2 Planejamento Estratégico
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    1.2 Planejamento Estratégico
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_1_04_okrs_kpis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [4] OKRs, KPIs E MÉTRICAS DE SUCESSO
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_1_05_restricoes_negocio/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [5] RESTRIÇÕES DE NEGÓCIO (BUDGET/PRAZO/COMPLIANCE)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_1_06_escopo_mvp_futuro/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [6] ESCOPO MVP vs FUTURO
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1.3 Validação de Viabilidade
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    1.3 Validação de Viabilidade
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_1_07_riscos_viabilidade/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [7] RISCOS & ANÁLISE DE VIABILIDADE
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_1_08_documento_final_saidas_camada2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [8] DOCUMENTO FINAL: CONTEXTO ESTRATÉGICO
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2. Requisitos e Especificações
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    2. Requisitos e Especificações
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_1" id="__nav_3_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2.1 Análise de Stakeholders e Backlog
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    2.1 Análise de Stakeholders e Backlog
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_2_01_analise_stakeholders_contexto/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [9] CONVERSA 1: ANÁLISE DE STAKEHOLDERS & CONTEXTO
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_2_02_product_backlog_inicial/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [10] CONVERSA 2: PRODUCT BACKLOG INICIAL
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_2_03_user_stories_parte1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [11] CONVERSA 3: USER STORIES (PARTE 1/2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2.2 Especificação Funcional Completa
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    2.2 Especificação Funcional Completa
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_2_04_user_stories_parte2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [12] CONVERSA 4: USER STORIES (PARTE 2/2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_2_05_wireframes_ascii_preliminares/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [13] CONVERSA 5: WIREFRAMES ASCII PRELIMINARES
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_2_06_casos_de_uso/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [14] CONVERSA 6: CASOS DE USO
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_2_07_criterios_aceitacao_regras_negocio/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [15] CONVERSA 7: CRITÉRIOS DE ACEITAÇÃO & REGRAS DE NEGÓCIO
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_3" id="__nav_3_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2.3 Requisitos Não-Funcionais
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    2.3 Requisitos Não-Funcionais
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_2_08_rnf_performance_escalabilidade/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [16] CONVERSA 8: RNF - PERFORMANCE & ESCALABILIDADE
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_2_09_rnf_seguranca_disponibilidade/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [17] CONVERSA 9: RNF - SEGURANÇA & DISPONIBILIDADE
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_2_10_rnf_usabilidade_compatibilidade/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [18] CONVERSA 10: RNF - USABILIDADE & COMPATIBILIDADE
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_4" id="__nav_3_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2.4 Priorização e Rastreabilidade
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    2.4 Priorização e Rastreabilidade
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_2_11_priorizacao/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [19] PRIORIZAÇÃO DE REQUISITOS (MoSCoW + RICE)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_2_12_estimativas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [20] ESTIMATIVAS DE ESFORÇO (STORY POINTS)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_2_13_matriz_rastreabilidade/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [21] MATRIZ DE RASTREABILIDADE E DOCUMENTO CONSOLIDADO
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3. Arquitetura do Sistema
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    3. Arquitetura do Sistema
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_1" id="__nav_4_1_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3.1 Decisões Arquiteturais
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    3.1 Decisões Arquiteturais
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_3_01_00_INDICE_MASTER/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [22] DECISÃO DE ARQUITETURA VOICECAP - ÍNDICE MASTER
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_3_01_01_analise_contexto/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [23] CONVERSA 1: DECISÃO DE ARQUITETURA - PARTE 1/7
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_3_01_02_padroes_candidatos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [24] CONVERSA 1: DECISÃO DE ARQUITETURA - PARTE 2/7
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_3_01_03_matriz_decisao/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [25] CONVERSA 1: DECISÃO DE ARQUITETURA - PARTE 3/7
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_3_01_04_recomendacao/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [26] CONVERSA 1: DECISÃO DE ARQUITETURA - PARTE 4/7
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_3_01_05_tradeoffs_riscos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [27] CONVERSA 1: DECISÃO DE ARQUITETURA - PARTE 5/7
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_3_01_06_roadmap_principios/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [28] CONVERSA 1: DECISÃO DE ARQUITETURA - PARTE 6/7
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_3_01_07_alternativas_adr/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [29] CONVERSA 1: DECISÃO DE ARQUITETURA - PARTE 7/7
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_2" id="__nav_4_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3.2 Diagramação C4 Model
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    3.2 Diagramação C4 Model
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_3_02_c4_context/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [30] DIAGRAMA C4 NÍVEL 1 (SYSTEM CONTEXT) - VoiceCap
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_3_03_c4_container/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [31] DIAGRAMA C4 NÍVEL 2 (CONTAINER) - VoiceCap
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_3_04_01_c4_component_backend/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [32] DIAGRAMA C4 NÍVEL 3 (COMPONENT - BACKEND) - VoiceCap
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_3_04_02_fluxos_validacao/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [33] DIAGRAMA C4 COMPONENT - FLUXOS E VALIDAÇÃO
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4_3" id="__nav_4_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3.3 Modelagem de Dados
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    3.3 Modelagem de Dados
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [34] DIAGRAMA ER (ENTITY-RELATIONSHIP) - VoiceCap
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [34] DIAGRAMA ER (ENTITY-RELATIONSHIP) - VoiceCap
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+  
+
+<nav class="md-nav md-nav--secondary" aria-label="Nesta página">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Nesta página
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#metadados" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        METADADOS
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-diagrama-er-mermaid" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. DIAGRAMA ER (MERMAID)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-descricao-das-tabelas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. DESCRIÇÃO DAS TABELAS
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. DESCRIÇÃO DAS TABELAS">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tabela-companies" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tabela: companies
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tabela-users" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tabela: users
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tabela-form_templates" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tabela: form_templates
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tabela-inspections" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tabela: inspections
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tabela-audios" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tabela: audios
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tabela-transcriptions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tabela: transcriptions
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tabela-forms" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tabela: forms
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tabela-rag_documents" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tabela: rag_documents
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-relacionamentos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. RELACIONAMENTOS
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. RELACIONAMENTOS">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-relacionamentos-11-um-para-um" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1. Relacionamentos 1:1 (Um para Um)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3.1. Relacionamentos 1:1 (Um para Um)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#audios-transcriptions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AUDIOS ↔ TRANSCRIPTIONS
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#inspections-forms" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        INSPECTIONS ↔ FORMS
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-relacionamentos-1n-um-para-muitos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2. Relacionamentos 1:N (Um para Muitos)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3.2. Relacionamentos 1:N (Um para Muitos)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#companies-users" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        COMPANIES → USERS
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#companies-inspections" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        COMPANIES → INSPECTIONS
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#companies-form_templates" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        COMPANIES → FORM_TEMPLATES
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#companies-rag_documents" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        COMPANIES → RAG_DOCUMENTS
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#users-inspections-inspector" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        USERS → INSPECTIONS (Inspector)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#users-inspections-approver" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        USERS → INSPECTIONS (Approver)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#inspections-audios" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        INSPECTIONS → AUDIOS
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#form_templates-forms" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        FORM_TEMPLATES → FORMS
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-justificativa-de-indices" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. JUSTIFICATIVA DE ÍNDICES
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. JUSTIFICATIVA DE ÍNDICES">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-indices-para-queries-frequentes-baseado-em-casos-de-uso" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1. Índices para Queries Frequentes (baseado em Casos de Uso)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4.1. Índices para Queries Frequentes (baseado em Casos de Uso)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#idx_inspections_company_status" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        idx_inspections_company_status
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#idx_audios_inspection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        idx_audios_inspection
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#idx_audios_status" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        idx_audios_status
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#idx_forms_company_completeness" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        idx_forms_company_completeness
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#idx_users_company_email" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        idx_users_company_email
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-indices-especializados-gin-ivfflat" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2. Índices Especializados (GIN, IVFFLAT)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4.2. Índices Especializados (GIN, IVFFLAT)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#idx_forms_fields-gin-jsonb" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        idx_forms_fields (GIN JSONB)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#idx_rag_documents_embedding-ivfflat-vector" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        idx_rag_documents_embedding (IVFFLAT vector)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-regras-de-negocio-banco-vs-domain" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. REGRAS DE NEGÓCIO: BANCO vs DOMAIN
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. REGRAS DE NEGÓCIO: BANCO vs DOMAIN">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-regras-no-banco-constraints" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.1. ✅ REGRAS NO BANCO (Constraints)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5.1. ✅ REGRAS NO BANCO (Constraints)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-unicidade" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Unicidade
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-enumstipos-validos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Enums/Tipos Válidos
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-valores-positivosranges" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Valores Positivos/Ranges
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-integridade-referencial" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Integridade Referencial
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-isolamento-multi-tenant-rls" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Isolamento Multi-Tenant (RLS)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-regras-no-domain-logica-de-negocio" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.2. ❌ REGRAS NO DOMAIN (Lógica de Negócio)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5.2. ❌ REGRAS NO DOMAIN (Lógica de Negócio)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-completude-de-formulario" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Completude de Formulário
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-validacao-de-pipeline-ia" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Validação de Pipeline IA
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-busca-rag" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Busca RAG
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-status-de-inspecao" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Status de Inspeção
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-validacao" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. VALIDAÇÃO
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. VALIDAÇÃO">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#checklist-de-conformidade" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CHECKLIST DE CONFORMIDADE
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rastreabilidade" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        RASTREABILIDADE
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-auto-validacao" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. AUTO-VALIDAÇÃO
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_3_05_02_scripts_ddl_migrations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [35] SCRIPTS SQL DDL E MIGRATIONS - VoiceCap
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_4" id="__nav_4_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3.4 Estrutura de Código Backend
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    3.4 Estrutura de Código Backend
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_3_06_01_estrutura_pastas_backend/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [36] ESTRUTURA DE PASTAS - BACKEND - VoiceCap (Parte 1/2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_3_06_02_exemplos_codigo_validacao/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [37] ESTRUTURA DE PASTAS - BACKEND - VoiceCap (Parte 2/2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_5" id="__nav_4_5_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3.5 Estrutura de Código Frontend
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    3.5 Estrutura de Código Frontend
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_3_07_01_estrutura_pastas_frontend/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [38] ESTRUTURA DE PASTAS - FRONTEND - VoiceCap (Parte 1/2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_3_07_02_exemplos_codigo_validacao/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [39] ESTRUTURA DE PASTAS - FRONTEND - VoiceCap (Parte 2/2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_6" id="__nav_4_6_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3.6 Dependências e Tecnologias
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    3.6 Dependências e Tecnologias
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_3_08_01_matriz_backend/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [40] MATRIZ DE DEPENDÊNCIAS - BACKEND (Parte 1/3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_3_08_02_matriz_frontend/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [41] MATRIZ DE DEPENDÊNCIAS - FRONTEND (Parte 2/3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_3_08_03_comunicacao_validacao/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [42] COMUNICAÇÃO & VALIDAÇÃO (Parte 3/3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_7" id="__nav_4_7_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3.7 Padrões de Domínio (DDD)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    3.7 Padrões de Domínio (DDD)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_3_09_01_padroes_basicos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [43] PADRÕES DE DOMAIN (DDD) - PARTE 1: PADRÕES BÁSICOS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_3_09_02_padroes_avancados/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [44] PADRÕES DE DOMAIN (DDD) - PARTE 2: PADRÕES AVANÇADOS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_3_09_03_templates_validacao/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [45] PADRÕES DE DOMAIN (DDD) - PARTE 3: TEMPLATES E VALIDAÇÃO
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_8" id="__nav_4_8_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3.8 Especificação de APIs
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    3.8 Especificação de APIs
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_3_10_01_fundamentos_api/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [46] PADRÕES DE API REST - PARTE 1: FUNDAMENTOS API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_3_10_02_controllers_seguranca/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [47] PADRÕES DE API REST - PARTE 2: CONTROLLERS E SEGURANÇA
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_3_10_03_recursos_completos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [48] PADRÕES DE API REST - PARTE 3: RECURSOS COMPLETOS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_9" id="__nav_4_9_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3.9 Estratégia de Testes
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_9">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    3.9 Estratégia de Testes
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_3_11_01_fundamentos_estrategia_testes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [49] ESTRATÉGIA DE TESTES - PARTE 1: FUNDAMENTOS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_3_11_02_exemplos_rnfs_validacao/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [50] ESTRATÉGIA DE TESTES - PARTE 2: EXEMPLOS E VALIDAÇÃO
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_10" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_10" id="__nav_4_10_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3.10 Architecture Decision Records (ADRs)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_10">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    3.10 Architecture Decision Records (ADRs)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_3_12_00_indice/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [51] ÍNDICE DE ADRs - VoiceCap
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_3_12_AUTO_VALIDACAO/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [52] AUTO-VALIDAÇÃO: ADRs VoiceCap
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_3_12_01_adrs_arquitetura/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [53] ADRs DE ARQUITETURA - VoiceCap
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_3_12_02_adrs_dados_backend/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [54] ADRs DE DADOS & BACKEND - VoiceCap
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_3_12_03_adrs_seguranca_testes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [55] ADRs DE SEGURANÇA & TESTES - VoiceCap
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_11" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_11" id="__nav_4_11_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3.11 Validação Arquitetural
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_11_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_11">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    3.11 Validação Arquitetural
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_3_13_00_INDICE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [56] VALIDAÇÃO FINAL DA ARQUITETURA VOICECAP - ÍNDICE MASTER
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_3_13_01_validacoes_scores/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [57] VALIDAÇÃO FINAL DA ARQUITETURA - PARTE 1: VALIDAÇÕES E SCORES
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_3_13_02_riscos_gaps_recomendacoes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [58] VALIDAÇÃO FINAL DA ARQUITETURA - PARTE 2: RISCOS, GAPS E RECOMENDAÇÕES
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_3_13_03_readme_aprovacao/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [59] VALIDAÇÃO FINAL DA ARQUITETURA - PARTE 3: README E APROVAÇÃO
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4. Design de Interface e Interação
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    4. Design de Interface e Interação
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_1" id="__nav_5_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4.1 Sistema de Design (Design Tokens)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    4.1 Sistema de Design (Design Tokens)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_4_01_00_INDICE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [60] DESIGN TOKENS - VoiceCap (Índice Master)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_4_01_01_design_tokens_cores_tipografia/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [61] DESIGN TOKENS - VoiceCap (Parte 1/3: Cores e Tipografia)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_4_01_02_design_tokens_espacamento_visual/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [62] DESIGN TOKENS - VoiceCap (Parte 2/3: Espaçamento e Visual)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_4_01_03_design_tokens_responsive_animacao/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [63] DESIGN TOKENS - VoiceCap (Parte 3/3: Responsivo, Animação e Exportação)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_2" id="__nav_5_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4.2 Componentes Atômicos
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    4.2 Componentes Atômicos
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_4_02_01_atomos_componentes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [64] ÁTOMOS - COMPONENTES BÁSICOS - VoiceCap (Parte 1/2: Especificações)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_4_02_02_atomos_referencia_validacao/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [65] ÁTOMOS - COMPONENTES BÁSICOS - VoiceCap (Parte 2/2: Referência e Validação)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_3" id="__nav_5_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4.3 Componentes Moleculares
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    4.3 Componentes Moleculares
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_4_03_01_moleculas_componentes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [66] MOLÉCULAS - COMPONENTES COMBINADOS - VoiceCap (Parte 1/2: Especificações)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_4_03_02_moleculas_referencia_validacao/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [67] MOLÉCULAS - COMPONENTES COMBINADOS - VoiceCap (Parte 2/2: Referência e Validação)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_4" id="__nav_5_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4.4 Componentes Organismos
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    4.4 Componentes Organismos
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_4_04_01_organismos_datatable/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [68] ORGANISMOS - DATATABLE - VoiceCap (Parte 1/4)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_4_04_02_organismos_modal/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [69] ORGANISMOS - MODAL - VoiceCap (Parte 2/4)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_4_04_03_organismos_navegacao/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [70] ORGANISMOS - NAVEGAÇÃO (HEADER + SIDEBAR) - VoiceCap (Parte 3/4)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_4_04_04_organismos_mapview_validacao/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [71] ORGANISMOS - MAPVIEW + VALIDAÇÃO - VoiceCap (Parte 4/4)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_5" id="__nav_5_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4.5 Templates de Páginas
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    4.5 Templates de Páginas
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_4_05_01_template_dashboard/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [72] TEMPLATE: DASHBOARDTEMPLATE (Parte 1/3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_4_05_02_template_form/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [73] TEMPLATE: FORMTEMPLATE (Parte 2/3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_4_05_03_template_auth_validacao/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [74] TEMPLATE: AUTHTEMPLATE + VALIDAÇÃO (Parte 3/3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_6" id="__nav_5_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4.6 Telas Desktop Completas
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    4.6 Telas Desktop Completas
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_4_06_01_telas_dashboard_listagem/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [75] CONVERSA 06: TELAS DESKTOP - WIREFRAMES DE ALTA FIDELIDADE (PARTE 1/3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_4_06_02_telas_forms/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [76] CONVERSA 06: TELAS DESKTOP - WIREFRAMES DE ALTA FIDELIDADE (PARTE 2/3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_4_06_03_telas_detalhes_validacao/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [77] CONVERSA 06: TELAS DESKTOP - WIREFRAMES DE ALTA FIDELIDADE (PARTE 3/3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_7" id="__nav_5_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4.7 Telas Mobile
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    4.7 Telas Mobile
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_4_07_01_telas_mobile_adaptacoes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [78] CONVERSA 07: TELAS MOBILE - ADAPTAÇÕES DESKTOP (PARTE 1/3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_4_07_02_telas_mobile_exclusivas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [79] CONVERSA 07: TELAS MOBILE - EXCLUSIVAS OPERACIONAIS (PARTE 2/3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_4_07_03_rastreabilidade_cobertura/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [80] CONVERSA 07: TELAS MOBILE - RASTREABILIDADE E COBERTURA (PARTE 3/3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_8" id="__nav_5_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4.8 Fluxos de Usuário
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    4.8 Fluxos de Usuário
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_4_08_01_fluxos_gerencial/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [81] CONVERSA 08: FLUXOS DE USUÁRIO - PERFIL GERENCIAL (PARTE 1/3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_4_08_02_fluxos_operacional/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [82] CONVERSA 08: FLUXOS DE USUÁRIO - PERFIL OPERACIONAL (PARTE 2/3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_4_08_03_rastreabilidade_validacao/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [83] CONVERSA 08: FLUXOS DE USUÁRIO - RASTREABILIDADE E VALIDAÇÃO (PARTE 3/3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_9" id="__nav_5_9_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4.9 Responsividade Multi-Dispositivo
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_9">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    4.9 Responsividade Multi-Dispositivo
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_4_09_01_responsividade_telas_parte1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [84] CONVERSA 09: RESPONSIVIDADE - ESTRATÉGIA DE ADAPTAÇÃO (PARTE 1/3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_4_09_02_responsividade_telas_parte2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [85] CONVERSA 09: RESPONSIVIDADE - ESTRATÉGIA DE ADAPTAÇÃO (PARTE 2/3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_4_09_03_responsividade_componentes_validacao/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [86] CONVERSA 09: RESPONSIVIDADE - ESTRATÉGIA DE ADAPTAÇÃO (PARTE 3/3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_10" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_10" id="__nav_5_10_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4.10 Acessibilidade WCAG e Validação
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_10">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    4.10 Acessibilidade WCAG e Validação
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_4_10_01_checklist_componentes_atomos_moleculas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [87] CONVERSA 10: ACESSIBILIDADE WCAG 2.1 AA - PARTE 1/4
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_4_10_02_checklist_componentes_organismos_templates_telas_desktop/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [88] CONVERSA 10: ACESSIBILIDADE WCAG 2.1 AA - PARTE 2/4
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_4_10_03_checklist_telas_mobile_validacao_wcag/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [89] CONVERSA 10: ACESSIBILIDADE WCAG 2.1 AA - PARTE 3/4
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_4_10_04_ferramentas_guia_casos_uso_rnfs_validacao/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [90] CONVERSA 10: ACESSIBILIDADE WCAG 2.1 AA - PARTE 4/4
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../print_page/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Imprimir Documentação Completa
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+<nav class="md-nav md-nav--secondary" aria-label="Nesta página">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Nesta página
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#metadados" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        METADADOS
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-diagrama-er-mermaid" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. DIAGRAMA ER (MERMAID)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-descricao-das-tabelas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. DESCRIÇÃO DAS TABELAS
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. DESCRIÇÃO DAS TABELAS">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tabela-companies" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tabela: companies
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tabela-users" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tabela: users
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tabela-form_templates" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tabela: form_templates
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tabela-inspections" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tabela: inspections
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tabela-audios" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tabela: audios
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tabela-transcriptions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tabela: transcriptions
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tabela-forms" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tabela: forms
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tabela-rag_documents" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tabela: rag_documents
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-relacionamentos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. RELACIONAMENTOS
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. RELACIONAMENTOS">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-relacionamentos-11-um-para-um" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1. Relacionamentos 1:1 (Um para Um)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3.1. Relacionamentos 1:1 (Um para Um)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#audios-transcriptions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AUDIOS ↔ TRANSCRIPTIONS
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#inspections-forms" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        INSPECTIONS ↔ FORMS
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-relacionamentos-1n-um-para-muitos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2. Relacionamentos 1:N (Um para Muitos)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3.2. Relacionamentos 1:N (Um para Muitos)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#companies-users" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        COMPANIES → USERS
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#companies-inspections" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        COMPANIES → INSPECTIONS
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#companies-form_templates" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        COMPANIES → FORM_TEMPLATES
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#companies-rag_documents" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        COMPANIES → RAG_DOCUMENTS
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#users-inspections-inspector" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        USERS → INSPECTIONS (Inspector)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#users-inspections-approver" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        USERS → INSPECTIONS (Approver)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#inspections-audios" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        INSPECTIONS → AUDIOS
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#form_templates-forms" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        FORM_TEMPLATES → FORMS
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-justificativa-de-indices" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. JUSTIFICATIVA DE ÍNDICES
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. JUSTIFICATIVA DE ÍNDICES">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-indices-para-queries-frequentes-baseado-em-casos-de-uso" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1. Índices para Queries Frequentes (baseado em Casos de Uso)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4.1. Índices para Queries Frequentes (baseado em Casos de Uso)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#idx_inspections_company_status" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        idx_inspections_company_status
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#idx_audios_inspection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        idx_audios_inspection
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#idx_audios_status" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        idx_audios_status
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#idx_forms_company_completeness" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        idx_forms_company_completeness
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#idx_users_company_email" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        idx_users_company_email
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-indices-especializados-gin-ivfflat" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2. Índices Especializados (GIN, IVFFLAT)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4.2. Índices Especializados (GIN, IVFFLAT)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#idx_forms_fields-gin-jsonb" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        idx_forms_fields (GIN JSONB)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#idx_rag_documents_embedding-ivfflat-vector" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        idx_rag_documents_embedding (IVFFLAT vector)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-regras-de-negocio-banco-vs-domain" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. REGRAS DE NEGÓCIO: BANCO vs DOMAIN
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. REGRAS DE NEGÓCIO: BANCO vs DOMAIN">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-regras-no-banco-constraints" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.1. ✅ REGRAS NO BANCO (Constraints)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5.1. ✅ REGRAS NO BANCO (Constraints)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-unicidade" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Unicidade
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-enumstipos-validos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Enums/Tipos Válidos
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-valores-positivosranges" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Valores Positivos/Ranges
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-integridade-referencial" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Integridade Referencial
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-isolamento-multi-tenant-rls" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Isolamento Multi-Tenant (RLS)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-regras-no-domain-logica-de-negocio" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.2. ❌ REGRAS NO DOMAIN (Lógica de Negócio)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5.2. ❌ REGRAS NO DOMAIN (Lógica de Negócio)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-completude-de-formulario" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Completude de Formulário
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-validacao-de-pipeline-ia" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Validação de Pipeline IA
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-busca-rag" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Busca RAG
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-status-de-inspecao" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Status de Inspeção
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-validacao" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. VALIDAÇÃO
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. VALIDAÇÃO">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#checklist-de-conformidade" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CHECKLIST DE CONFORMIDADE
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rastreabilidade" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        RASTREABILIDADE
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-auto-validacao" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. AUTO-VALIDAÇÃO
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="diagrama-er-entity-relationship-voicecap">DIAGRAMA ER (ENTITY-RELATIONSHIP) - VoiceCap<a class="headerlink" href="#diagrama-er-entity-relationship-voicecap" title="Permanent link">&para;</a></h1>
+<h2 id="metadados">METADADOS<a class="headerlink" href="#metadados" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Camada:</strong> 3 - Arquitetura</li>
+<li><strong>Conversa:</strong> 05 (Parte 1/2)</li>
+<li><strong>Banco de Dados:</strong> PostgreSQL 15.4 + pgvector 0.5</li>
+<li><strong>Multi-Tenant:</strong> Row-Level Security (RLS)</li>
+<li><strong>Migrations:</strong> Supabase Migrations</li>
+<li><strong>Data de Criação:</strong> 2026-02-01</li>
+</ul>
+<hr />
+<h2 id="1-diagrama-er-mermaid">1. DIAGRAMA ER (MERMAID)<a class="headerlink" href="#1-diagrama-er-mermaid" title="Permanent link">&para;</a></h2>
+<pre class="mermaid"><code>erDiagram
+    COMPANIES ||--o{ USERS : has
+    COMPANIES ||--o{ INSPECTIONS : has
+    COMPANIES ||--o{ FORM_TEMPLATES : has
+    COMPANIES ||--o{ RAG_DOCUMENTS : has
+
+    USERS ||--o{ INSPECTIONS : creates
+    USERS ||--o{ INSPECTIONS : approves
+
+    INSPECTIONS ||--o{ AUDIOS : contains
+    INSPECTIONS ||--|| FORMS : generates
+
+    AUDIOS ||--|| TRANSCRIPTIONS : produces
+
+    FORM_TEMPLATES ||--o{ FORMS : based_on
+
+    COMPANIES {
+        uuid id PK
+        varchar name
+        varchar cnpj UK
+        boolean is_active
+        timestamp created_at
+        timestamp updated_at
+    }
+
+    USERS {
+        uuid id PK
+        uuid company_id FK
+        varchar name
+        varchar email
+        varchar password_hash
+        varchar role
+        boolean is_active
+        timestamp created_at
+        timestamp updated_at
+    }
+
+    INSPECTIONS {
+        uuid id PK
+        uuid company_id FK
+        uuid inspector_id FK
+        uuid approved_by_id FK "nullable"
+        varchar status
+        timestamp approved_at
+        jsonb metadata
+        timestamp created_at
+        timestamp updated_at
+    }
+
+    AUDIOS {
+        uuid id PK
+        uuid inspection_id FK
+        varchar file_url
+        integer duration
+        varchar status
+        timestamp created_at
+    }
+
+    TRANSCRIPTIONS {
+        uuid id PK
+        uuid audio_id FK "UNIQUE"
+        text text
+        decimal confidence
+        varchar source
+        timestamp created_at
+        timestamp updated_at
+    }
+
+    FORMS {
+        uuid id PK
+        uuid company_id FK
+        uuid inspection_id FK "UNIQUE"
+        uuid template_id FK "nullable"
+        jsonb fields
+        integer completeness
+        timestamp created_at
+        timestamp updated_at
+    }
+
+    FORM_TEMPLATES {
+        uuid id PK
+        uuid company_id FK
+        varchar name
+        jsonb schema
+        boolean is_active
+        timestamp created_at
+        timestamp updated_at
+    }
+
+    RAG_DOCUMENTS {
+        uuid id PK
+        uuid company_id FK
+        varchar title
+        text content
+        vector embedding
+        jsonb metadata
+        timestamp created_at
+    }</code></pre>
+<hr />
+<h2 id="2-descricao-das-tabelas">2. DESCRIÇÃO DAS TABELAS<a class="headerlink" href="#2-descricao-das-tabelas" title="Permanent link">&para;</a></h2>
+<h3 id="tabela-companies">Tabela: companies<a class="headerlink" href="#tabela-companies" title="Permanent link">&para;</a></h3>
+<p><strong>Descrição:</strong> Armazena empresas clientes multi-tenant. Cada empresa é um tenant isolado com seus próprios usuários, inspeções, formulários e base RAG.</p>
+<p><strong>Colunas:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Coluna</th>
+<th>Tipo</th>
+<th>Constraint</th>
+<th>Descrição</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>id</code></td>
+<td>UUID</td>
+<td>PK, DEFAULT gen_random_uuid()</td>
+<td>Identificador único da empresa</td>
+</tr>
+<tr>
+<td><code>name</code></td>
+<td>VARCHAR(200)</td>
+<td>NOT NULL</td>
+<td>Nome/razão social da empresa</td>
+</tr>
+<tr>
+<td><code>cnpj</code></td>
+<td>VARCHAR(14)</td>
+<td>UNIQUE, NOT NULL</td>
+<td>CNPJ único (sem máscara)</td>
+</tr>
+<tr>
+<td><code>is_active</code></td>
+<td>BOOLEAN</td>
+<td>NOT NULL, DEFAULT TRUE</td>
+<td>Status ativo/inativo da empresa</td>
+</tr>
+<tr>
+<td><code>created_at</code></td>
+<td>TIMESTAMP WITH TIME ZONE</td>
+<td>NOT NULL, DEFAULT NOW()</td>
+<td>Data de criação do registro</td>
+</tr>
+<tr>
+<td><code>updated_at</code></td>
+<td>TIMESTAMP WITH TIME ZONE</td>
+<td>NOT NULL, DEFAULT NOW()</td>
+<td>Data de última atualização</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Constraints:</strong>
+- <strong>PK:</strong> <code>id</code>
+- <strong>UNIQUE:</strong> <code>cnpj</code> (garante unicidade de CNPJ entre empresas)
+- <strong>CHECK:</strong> Nenhum necessário (validações complexas no Domain)</p>
+<p><strong>Índices:</strong>
+- <code>idx_companies_cnpj</code> ON (cnpj) - Query: busca por CNPJ em autenticação/cadastro
+- <code>idx_companies_is_active</code> ON (is_active) - Query: listar empresas ativas</p>
+<p><strong>RLS:</strong> Não aplicável (tabela base multi-tenant, sem isolamento próprio)</p>
+<p><strong>Justificativa de design:</strong>
+- CNPJ sem máscara (VARCHAR(14)) para uniformidade e índice eficiente
+- <code>updated_at</code> permite auditoria de alterações cadastrais
+- Não há soft-delete (is_active serve para desativação temporária)</p>
+<hr />
+<h3 id="tabela-users">Tabela: users<a class="headerlink" href="#tabela-users" title="Permanent link">&para;</a></h3>
+<p><strong>Descrição:</strong> Armazena usuários do sistema (técnicos, supervisores, gestores, admins) vinculados a empresas. Suporta perfis diferentes (INSPECTOR, SUPERVISOR, ADMIN) com permissões distintas.</p>
+<p><strong>Colunas:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Coluna</th>
+<th>Tipo</th>
+<th>Constraint</th>
+<th>Descrição</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>id</code></td>
+<td>UUID</td>
+<td>PK, DEFAULT gen_random_uuid()</td>
+<td>Identificador único do usuário</td>
+</tr>
+<tr>
+<td><code>company_id</code></td>
+<td>UUID</td>
+<td>FK, NOT NULL</td>
+<td>Empresa do usuário (multi-tenant)</td>
+</tr>
+<tr>
+<td><code>name</code></td>
+<td>VARCHAR(200)</td>
+<td>NOT NULL</td>
+<td>Nome completo do usuário</td>
+</tr>
+<tr>
+<td><code>email</code></td>
+<td>VARCHAR(100)</td>
+<td>NOT NULL</td>
+<td>Email para login</td>
+</tr>
+<tr>
+<td><code>password_hash</code></td>
+<td>VARCHAR(255)</td>
+<td>NOT NULL</td>
+<td>Hash da senha (bcrypt)</td>
+</tr>
+<tr>
+<td><code>role</code></td>
+<td>VARCHAR(20)</td>
+<td>NOT NULL</td>
+<td>Perfil do usuário</td>
+</tr>
+<tr>
+<td><code>is_active</code></td>
+<td>BOOLEAN</td>
+<td>NOT NULL, DEFAULT TRUE</td>
+<td>Status ativo/inativo do usuário</td>
+</tr>
+<tr>
+<td><code>created_at</code></td>
+<td>TIMESTAMP WITH TIME ZONE</td>
+<td>NOT NULL, DEFAULT NOW()</td>
+<td>Data de criação do registro</td>
+</tr>
+<tr>
+<td><code>updated_at</code></td>
+<td>TIMESTAMP WITH TIME ZONE</td>
+<td>NOT NULL, DEFAULT NOW()</td>
+<td>Data de última atualização</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Constraints:</strong>
+- <strong>PK:</strong> <code>id</code>
+- <strong>FK:</strong> <code>company_id</code> REFERENCES companies(id) ON DELETE RESTRICT
+- <strong>UNIQUE:</strong> <code>(email, company_id)</code> - Email único por empresa (mesmo email em empresas diferentes é permitido)
+- <strong>CHECK:</strong> <code>role IN ('ADMIN', 'SUPERVISOR', 'INSPECTOR')</code> - Valida perfis válidos</p>
+<p><strong>Índices:</strong>
+- <code>idx_users_company_email</code> ON (company_id, email) - Query: autenticação (login por email + empresa)
+- <code>idx_users_company_role</code> ON (company_id, role) - Query: listar usuários por perfil</p>
+<p><strong>RLS:</strong> Habilitado - Isolamento por <code>company_id</code></p>
+<p><strong>Justificativa de design:</strong>
+- Email + company_id UNIQUE permite mesmo usuário em múltiplas empresas (consultores externos)
+- Role como VARCHAR permite extensão fácil de perfis futuros
+- Password_hash (bcrypt) com VARCHAR(255) suporta custos variáveis</p>
+<hr />
+<h3 id="tabela-form_templates">Tabela: form_templates<a class="headerlink" href="#tabela-form_templates" title="Permanent link">&para;</a></h3>
+<p><strong>Descrição:</strong> Armazena templates de formulários customizados por empresa. Cada empresa define seus próprios campos e validações em formato JSONB dinâmico.</p>
+<p><strong>Colunas:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Coluna</th>
+<th>Tipo</th>
+<th>Constraint</th>
+<th>Descrição</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>id</code></td>
+<td>UUID</td>
+<td>PK, DEFAULT gen_random_uuid()</td>
+<td>Identificador único do template</td>
+</tr>
+<tr>
+<td><code>company_id</code></td>
+<td>UUID</td>
+<td>FK, NOT NULL</td>
+<td>Empresa dona do template</td>
+</tr>
+<tr>
+<td><code>name</code></td>
+<td>VARCHAR(200)</td>
+<td>NOT NULL</td>
+<td>Nome descritivo do template</td>
+</tr>
+<tr>
+<td><code>schema</code></td>
+<td>JSONB</td>
+<td>NOT NULL</td>
+<td>Schema JSON com campos e validações</td>
+</tr>
+<tr>
+<td><code>is_active</code></td>
+<td>BOOLEAN</td>
+<td>NOT NULL, DEFAULT TRUE</td>
+<td>Template ativo/inativo</td>
+</tr>
+<tr>
+<td><code>created_at</code></td>
+<td>TIMESTAMP WITH TIME ZONE</td>
+<td>NOT NULL, DEFAULT NOW()</td>
+<td>Data de criação do registro</td>
+</tr>
+<tr>
+<td><code>updated_at</code></td>
+<td>TIMESTAMP WITH TIME ZONE</td>
+<td>NOT NULL, DEFAULT NOW()</td>
+<td>Data de última atualização</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Constraints:</strong>
+- <strong>PK:</strong> <code>id</code>
+- <strong>FK:</strong> <code>company_id</code> REFERENCES companies(id) ON DELETE CASCADE
+- <strong>UNIQUE:</strong> Nenhum (mesma empresa pode ter templates com nomes iguais se quiser)</p>
+<p><strong>Índices:</strong>
+- <code>idx_form_templates_company_active</code> ON (company_id, is_active) - Query: listar templates ativos de uma empresa
+- <code>idx_form_templates_schema</code> USING GIN (schema) - Query: busca em campos do schema JSONB</p>
+<p><strong>RLS:</strong> Habilitado - Isolamento por <code>company_id</code></p>
+<p><strong>Justificativa de design:</strong>
+- JSONB permite estrutura dinâmica (cada empresa define campos customizados)
+- Índice GIN permite queries eficientes em campos do schema
+- ON DELETE CASCADE: se empresa deletada, templates também (dados vazios sem empresa)</p>
+<hr />
+<h3 id="tabela-inspections">Tabela: inspections<a class="headerlink" href="#tabela-inspections" title="Permanent link">&para;</a></h3>
+<p><strong>Descrição:</strong> Armazena inspeções criadas por técnicos de campo. Cada inspeção agrupa áudios, fotos, transcrições e formulário final. Rastreabilidade completa (inspetor criador + aprovador supervisor).</p>
+<p><strong>Colunas:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Coluna</th>
+<th>Tipo</th>
+<th>Constraint</th>
+<th>Descrição</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>id</code></td>
+<td>UUID</td>
+<td>PK, DEFAULT gen_random_uuid()</td>
+<td>Identificador único da inspeção</td>
+</tr>
+<tr>
+<td><code>company_id</code></td>
+<td>UUID</td>
+<td>FK, NOT NULL</td>
+<td>Empresa dona da inspeção</td>
+</tr>
+<tr>
+<td><code>inspector_id</code></td>
+<td>UUID</td>
+<td>FK, NOT NULL</td>
+<td>Técnico que criou a inspeção</td>
+</tr>
+<tr>
+<td><code>approved_by_id</code></td>
+<td>UUID</td>
+<td>FK, NULL</td>
+<td>Supervisor que aprovou (nullable)</td>
+</tr>
+<tr>
+<td><code>status</code></td>
+<td>VARCHAR(20)</td>
+<td>NOT NULL</td>
+<td>Status atual da inspeção</td>
+</tr>
+<tr>
+<td><code>approved_at</code></td>
+<td>TIMESTAMP WITH TIME ZONE</td>
+<td>NULL</td>
+<td>Data/hora de aprovação (nullable)</td>
+</tr>
+<tr>
+<td><code>metadata</code></td>
+<td>JSONB</td>
+<td>NULL</td>
+<td>Metadados adicionais (GPS, device_id, etc)</td>
+</tr>
+<tr>
+<td><code>created_at</code></td>
+<td>TIMESTAMP WITH TIME ZONE</td>
+<td>NOT NULL, DEFAULT NOW()</td>
+<td>Data de criação do registro</td>
+</tr>
+<tr>
+<td><code>updated_at</code></td>
+<td>TIMESTAMP WITH TIME ZONE</td>
+<td>NOT NULL, DEFAULT NOW()</td>
+<td>Data de última atualização</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Constraints:</strong>
+- <strong>PK:</strong> <code>id</code>
+- <strong>FK:</strong> <code>company_id</code> REFERENCES companies(id) ON DELETE RESTRICT
+- <strong>FK:</strong> <code>inspector_id</code> REFERENCES users(id) ON DELETE RESTRICT
+- <strong>FK:</strong> <code>approved_by_id</code> REFERENCES users(id) ON DELETE SET NULL
+- <strong>CHECK:</strong> <code>status IN ('DRAFT', 'PROCESSING', 'COMPLETED', 'FAILED', 'APPROVED')</code> - Estados válidos</p>
+<p><strong>Índices:</strong>
+- <code>idx_inspections_company_status</code> ON (company_id, status) - Query: dashboard filtrado por status
+- <code>idx_inspections_inspector</code> ON (inspector_id) - Query: inspeções de um técnico específico
+- <code>idx_inspections_created_at</code> ON (created_at DESC) - Query: listar inspeções recentes</p>
+<p><strong>RLS:</strong> Habilitado - Isolamento por <code>company_id</code></p>
+<p><strong>Justificativa de design:</strong>
+- Rastreabilidade: inspector_id (quem criou) + approved_by_id (quem aprovou)
+- approved_by_id nullable: inspeções não aprovadas ainda não têm aprovador
+- ON DELETE RESTRICT em inspector_id: não pode deletar técnico com inspeções existentes
+- ON DELETE SET NULL em approved_by_id: se aprovador deletado, inspeção mantém histórico</p>
+<hr />
+<h3 id="tabela-audios">Tabela: audios<a class="headerlink" href="#tabela-audios" title="Permanent link">&para;</a></h3>
+<p><strong>Descrição:</strong> Armazena áudios gravados pelos técnicos durante inspeções. Suporta múltiplos áudios por inspeção (limite de 5 no Domain). Referências a arquivos no Supabase Storage.</p>
+<p><strong>Colunas:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Coluna</th>
+<th>Tipo</th>
+<th>Constraint</th>
+<th>Descrição</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>id</code></td>
+<td>UUID</td>
+<td>PK, DEFAULT gen_random_uuid()</td>
+<td>Identificador único do áudio</td>
+</tr>
+<tr>
+<td><code>inspection_id</code></td>
+<td>UUID</td>
+<td>FK, NOT NULL</td>
+<td>Inspeção dona do áudio</td>
+</tr>
+<tr>
+<td><code>file_url</code></td>
+<td>VARCHAR(500)</td>
+<td>NOT NULL</td>
+<td>URL do arquivo no Supabase Storage</td>
+</tr>
+<tr>
+<td><code>duration</code></td>
+<td>INTEGER</td>
+<td>NOT NULL</td>
+<td>Duração em segundos</td>
+</tr>
+<tr>
+<td><code>status</code></td>
+<td>VARCHAR(20)</td>
+<td>NOT NULL</td>
+<td>Status do processamento</td>
+</tr>
+<tr>
+<td><code>created_at</code></td>
+<td>TIMESTAMP WITH TIME ZONE</td>
+<td>NOT NULL, DEFAULT NOW()</td>
+<td>Data de criação do registro</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Constraints:</strong>
+- <strong>PK:</strong> <code>id</code>
+- <strong>FK:</strong> <code>inspection_id</code> REFERENCES inspections(id) ON DELETE CASCADE
+- <strong>CHECK:</strong> <code>duration &gt;= 1 AND duration &lt;= 1800</code> - Áudios entre 1s e 30min
+- <strong>CHECK:</strong> <code>status IN ('PENDING', 'TRANSCRIBING', 'COMPLETED', 'FAILED')</code> - Estados válidos</p>
+<p><strong>Índices:</strong>
+- <code>idx_audios_inspection</code> ON (inspection_id) - Query: listar áudios de uma inspeção
+- <code>idx_audios_status</code> ON (status) - Query: worker buscar áudios pendentes de processamento</p>
+<p><strong>RLS:</strong> Aplicado via inspection_id (isolamento transitivo por company_id)</p>
+<p><strong>Justificativa de design:</strong>
+- Duration em INTEGER (segundos) facilita cálculos e validações
+- CHECK duration limita tamanho (evita uploads infinitos/erros)
+- ON DELETE CASCADE: se inspeção deletada, áudios também (cascata completa)
+- file_url: referência a Supabase Storage (não armazenamos binário no PostgreSQL)</p>
+<hr />
+<h3 id="tabela-transcriptions">Tabela: transcriptions<a class="headerlink" href="#tabela-transcriptions" title="Permanent link">&para;</a></h3>
+<p><strong>Descrição:</strong> Armazena transcrições de áudios geradas por IA (Whisper). Relacionamento 1:1 com áudios (cada áudio tem uma transcrição, que pode ser refinada mas mantém 1 registro).</p>
+<p><strong>Colunas:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Coluna</th>
+<th>Tipo</th>
+<th>Constraint</th>
+<th>Descrição</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>id</code></td>
+<td>UUID</td>
+<td>PK, DEFAULT gen_random_uuid()</td>
+<td>Identificador único da transcrição</td>
+</tr>
+<tr>
+<td><code>audio_id</code></td>
+<td>UUID</td>
+<td>FK UNIQUE, NOT NULL</td>
+<td>Áudio transcrito (relação 1:1)</td>
+</tr>
+<tr>
+<td><code>text</code></td>
+<td>TEXT</td>
+<td>NOT NULL</td>
+<td>Texto transcrito completo</td>
+</tr>
+<tr>
+<td><code>confidence</code></td>
+<td>DECIMAL(3,2)</td>
+<td>NULL</td>
+<td>Confiança da transcrição (0.00 a 1.00)</td>
+</tr>
+<tr>
+<td><code>source</code></td>
+<td>VARCHAR(30)</td>
+<td>NOT NULL</td>
+<td>Fonte da transcrição</td>
+</tr>
+<tr>
+<td><code>created_at</code></td>
+<td>TIMESTAMP WITH TIME ZONE</td>
+<td>NOT NULL, DEFAULT NOW()</td>
+<td>Data de criação do registro</td>
+</tr>
+<tr>
+<td><code>updated_at</code></td>
+<td>TIMESTAMP WITH TIME ZONE</td>
+<td>NOT NULL, DEFAULT NOW()</td>
+<td>Data de última atualização (refinamento)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Constraints:</strong>
+- <strong>PK:</strong> <code>id</code>
+- <strong>FK:</strong> <code>audio_id</code> REFERENCES audios(id) ON DELETE CASCADE
+- <strong>UNIQUE:</strong> <code>audio_id</code> - Garante relacionamento 1:1 (um áudio = uma transcrição)
+- <strong>CHECK:</strong> <code>confidence IS NULL OR (confidence &gt;= 0 AND confidence &lt;= 1)</code> - Valida range se preenchido
+- <strong>CHECK:</strong> <code>source IN ('LOCAL_WHISPER', 'GROQ_WHISPER', 'OPENAI_WHISPER', 'AZURE_WHISPER')</code> - Providers válidos</p>
+<p><strong>Índices:</strong>
+- <code>idx_transcriptions_audio</code> ON (audio_id) - Query: buscar transcrição de um áudio específico</p>
+<p><strong>RLS:</strong> Aplicado via audio_id → inspection_id (isolamento transitivo por company_id)</p>
+<p><strong>Justificativa de design:</strong>
+- audio_id UNIQUE garante 1:1 (fundamental para integridade)
+- confidence nullable: nem todos providers retornam confiança
+- source rastreia qual provider gerou (importante para A/B testing)
+- updated_at permite rastrear refinamentos (local → cloud)</p>
+<hr />
+<h3 id="tabela-forms">Tabela: forms<a class="headerlink" href="#tabela-forms" title="Permanent link">&para;</a></h3>
+<p><strong>Descrição:</strong> Armazena formulários preenchidos automaticamente pela IA ou manualmente pelo técnico. Relacionamento 1:1 com inspeções (cada inspeção = um formulário final). Campos dinâmicos em JSONB.</p>
+<p><strong>Colunas:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Coluna</th>
+<th>Tipo</th>
+<th>Constraint</th>
+<th>Descrição</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>id</code></td>
+<td>UUID</td>
+<td>PK, DEFAULT gen_random_uuid()</td>
+<td>Identificador único do formulário</td>
+</tr>
+<tr>
+<td><code>company_id</code></td>
+<td>UUID</td>
+<td>FK, NOT NULL</td>
+<td>Empresa dona do formulário</td>
+</tr>
+<tr>
+<td><code>inspection_id</code></td>
+<td>UUID</td>
+<td>FK UNIQUE, NOT NULL</td>
+<td>Inspeção dona (relação 1:1)</td>
+</tr>
+<tr>
+<td><code>template_id</code></td>
+<td>UUID</td>
+<td>FK, NULL</td>
+<td>Template usado (nullable se custom)</td>
+</tr>
+<tr>
+<td><code>fields</code></td>
+<td>JSONB</td>
+<td>NOT NULL</td>
+<td>Campos preenchidos (estrutura dinâmica)</td>
+</tr>
+<tr>
+<td><code>completeness</code></td>
+<td>INTEGER</td>
+<td>NOT NULL</td>
+<td>Percentual de completude (0-100)</td>
+</tr>
+<tr>
+<td><code>created_at</code></td>
+<td>TIMESTAMP WITH TIME ZONE</td>
+<td>NOT NULL, DEFAULT NOW()</td>
+<td>Data de criação do registro</td>
+</tr>
+<tr>
+<td><code>updated_at</code></td>
+<td>TIMESTAMP WITH TIME ZONE</td>
+<td>NOT NULL, DEFAULT NOW()</td>
+<td>Data de última atualização</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Constraints:</strong>
+- <strong>PK:</strong> <code>id</code>
+- <strong>FK:</strong> <code>company_id</code> REFERENCES companies(id) ON DELETE RESTRICT
+- <strong>FK:</strong> <code>inspection_id</code> REFERENCES inspections(id) ON DELETE CASCADE
+- <strong>FK:</strong> <code>template_id</code> REFERENCES form_templates(id) ON DELETE SET NULL
+- <strong>UNIQUE:</strong> <code>inspection_id</code> - Garante relacionamento 1:1 (uma inspeção = um formulário)
+- <strong>CHECK:</strong> <code>completeness &gt;= 0 AND completeness &lt;= 100</code> - Valida percentual</p>
+<p><strong>Índices:</strong>
+- <code>idx_forms_company_completeness</code> ON (company_id, completeness) - Query: dashboard de formulários incompletos
+- <code>idx_forms_inspection</code> ON (inspection_id) - Query: buscar formulário de uma inspeção
+- <code>idx_forms_fields</code> USING GIN (fields) - Query: busca em campos dinâmicos JSONB</p>
+<p><strong>RLS:</strong> Habilitado - Isolamento por <code>company_id</code></p>
+<p><strong>Justificativa de design:</strong>
+- inspection_id UNIQUE garante 1:1 (cada inspeção = um formulário)
+- template_id nullable: permite formulários custom sem template
+- ON DELETE SET NULL em template_id: se template deletado, formulário mantém dados
+- Índice GIN em fields: permite queries eficientes em campos dinâmicos
+- completeness calculado no Domain, armazenado no banco para queries rápidas</p>
+<hr />
+<h3 id="tabela-rag_documents">Tabela: rag_documents<a class="headerlink" href="#tabela-rag_documents" title="Permanent link">&para;</a></h3>
+<p><strong>Descrição:</strong> Armazena base de conhecimento vetorizada (RAG) específica de cada empresa. Documentos são divididos em chunks, vetorizados e armazenados com embeddings para busca semântica.</p>
+<p><strong>Colunas:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Coluna</th>
+<th>Tipo</th>
+<th>Constraint</th>
+<th>Descrição</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>id</code></td>
+<td>UUID</td>
+<td>PK, DEFAULT gen_random_uuid()</td>
+<td>Identificador único do documento</td>
+</tr>
+<tr>
+<td><code>company_id</code></td>
+<td>UUID</td>
+<td>FK, NOT NULL</td>
+<td>Empresa dona do documento</td>
+</tr>
+<tr>
+<td><code>title</code></td>
+<td>VARCHAR(500)</td>
+<td>NOT NULL</td>
+<td>Título do documento/chunk</td>
+</tr>
+<tr>
+<td><code>content</code></td>
+<td>TEXT</td>
+<td>NOT NULL</td>
+<td>Conteúdo textual completo</td>
+</tr>
+<tr>
+<td><code>embedding</code></td>
+<td>VECTOR(1536)</td>
+<td>NOT NULL</td>
+<td>Embedding vetorial (OpenAI ada-002)</td>
+</tr>
+<tr>
+<td><code>metadata</code></td>
+<td>JSONB</td>
+<td>NULL</td>
+<td>Metadados (source, chunk_index, page, etc)</td>
+</tr>
+<tr>
+<td><code>created_at</code></td>
+<td>TIMESTAMP WITH TIME ZONE</td>
+<td>NOT NULL, DEFAULT NOW()</td>
+<td>Data de criação do registro</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Constraints:</strong>
+- <strong>PK:</strong> <code>id</code>
+- <strong>FK:</strong> <code>company_id</code> REFERENCES companies(id) ON DELETE CASCADE</p>
+<p><strong>Índices:</strong>
+- <code>idx_rag_documents_company</code> ON (company_id) - Query: listar documentos de uma empresa
+- <code>idx_rag_documents_embedding</code> USING ivfflat (embedding vector_cosine_ops) WITH (lists = 100) - Query: busca vetorial semântica (pgvector)</p>
+<p><strong>RLS:</strong> Habilitado - Isolamento por <code>company_id</code></p>
+<p><strong>Justificativa de design:</strong>
+- VECTOR(1536): dimensão do OpenAI text-embedding-ada-002 (padrão mercado)
+- Índice IVFFLAT: otimiza busca vetorial (5-10x mais rápido que scan completo)
+- lists = 100: configuração inicial (ajustar conforme volume cresce)
+- ON DELETE CASCADE: se empresa deletada, base RAG também
+- Isolamento multi-tenant crítico: empresa A não pode acessar RAG empresa B</p>
+<hr />
+<h2 id="3-relacionamentos">3. RELACIONAMENTOS<a class="headerlink" href="#3-relacionamentos" title="Permanent link">&para;</a></h2>
+<h3 id="31-relacionamentos-11-um-para-um">3.1. Relacionamentos 1:1 (Um para Um)<a class="headerlink" href="#31-relacionamentos-11-um-para-um" title="Permanent link">&para;</a></h3>
+<h4 id="audios-transcriptions">AUDIOS ↔ TRANSCRIPTIONS<a class="headerlink" href="#audios-transcriptions" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>Cardinalidade:</strong> Um áudio produz uma transcrição</li>
+<li><strong>Implementação:</strong> FK <code>audio_id</code> em <code>transcriptions</code> com constraint UNIQUE</li>
+<li><strong>Deleção:</strong> ON DELETE CASCADE (deletar áudio deleta transcrição)</li>
+<li><strong>Justificativa:</strong> Transcrição não existe sem áudio. Refinamentos atualizam mesmo registro (updated_at).</li>
+</ul>
+<h4 id="inspections-forms">INSPECTIONS ↔ FORMS<a class="headerlink" href="#inspections-forms" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>Cardinalidade:</strong> Uma inspeção gera um formulário preenchido</li>
+<li><strong>Implementação:</strong> FK <code>inspection_id</code> em <code>forms</code> com constraint UNIQUE</li>
+<li><strong>Deleção:</strong> ON DELETE CASCADE (deletar inspeção deleta formulário)</li>
+<li><strong>Justificativa:</strong> Formulário não existe sem inspeção. Cada inspeção = um formulário consolidado.</li>
+</ul>
+<hr />
+<h3 id="32-relacionamentos-1n-um-para-muitos">3.2. Relacionamentos 1:N (Um para Muitos)<a class="headerlink" href="#32-relacionamentos-1n-um-para-muitos" title="Permanent link">&para;</a></h3>
+<h4 id="companies-users">COMPANIES → USERS<a class="headerlink" href="#companies-users" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>Cardinalidade:</strong> Uma empresa tem vários usuários</li>
+<li><strong>Implementação:</strong> FK <code>company_id</code> em <code>users</code></li>
+<li><strong>Deleção:</strong> ON DELETE RESTRICT (não pode deletar empresa se há usuários)</li>
+<li><strong>Justificativa:</strong> Usuários pertencem a empresa. Impede deleção acidental de empresa com usuários ativos.</li>
+</ul>
+<h4 id="companies-inspections">COMPANIES → INSPECTIONS<a class="headerlink" href="#companies-inspections" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>Cardinalidade:</strong> Uma empresa tem várias inspeções</li>
+<li><strong>Implementação:</strong> FK <code>company_id</code> em <code>inspections</code></li>
+<li><strong>Deleção:</strong> ON DELETE RESTRICT (não pode deletar empresa se há inspeções)</li>
+<li><strong>Justificativa:</strong> Inspeções são dados críticos. Impede perda de histórico de inspeções.</li>
+</ul>
+<h4 id="companies-form_templates">COMPANIES → FORM_TEMPLATES<a class="headerlink" href="#companies-form_templates" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>Cardinalidade:</strong> Uma empresa tem vários templates de formulário</li>
+<li><strong>Implementação:</strong> FK <code>company_id</code> em <code>form_templates</code></li>
+<li><strong>Deleção:</strong> ON DELETE CASCADE (deletar empresa deleta templates)</li>
+<li><strong>Justificativa:</strong> Templates pertencem exclusivamente a empresa. Sem empresa, templates não têm propósito.</li>
+</ul>
+<h4 id="companies-rag_documents">COMPANIES → RAG_DOCUMENTS<a class="headerlink" href="#companies-rag_documents" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>Cardinalidade:</strong> Uma empresa tem vários documentos RAG</li>
+<li><strong>Implementação:</strong> FK <code>company_id</code> em <code>rag_documents</code></li>
+<li><strong>Deleção:</strong> ON DELETE CASCADE (deletar empresa deleta documentos RAG)</li>
+<li><strong>Justificativa:</strong> Base RAG é específica da empresa. Sem empresa, documentos RAG não têm propósito.</li>
+</ul>
+<h4 id="users-inspections-inspector">USERS → INSPECTIONS (Inspector)<a class="headerlink" href="#users-inspections-inspector" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>Cardinalidade:</strong> Um usuário (técnico) cria várias inspeções</li>
+<li><strong>Implementação:</strong> FK <code>inspector_id</code> em <code>inspections</code></li>
+<li><strong>Deleção:</strong> ON DELETE RESTRICT (não pode deletar usuário se há inspeções)</li>
+<li><strong>Justificativa:</strong> Rastreabilidade crítica: quem criou cada inspeção. Impede perda de auditoria.</li>
+</ul>
+<h4 id="users-inspections-approver">USERS → INSPECTIONS (Approver)<a class="headerlink" href="#users-inspections-approver" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>Cardinalidade:</strong> Um usuário (supervisor) aprova várias inspeções</li>
+<li><strong>Implementação:</strong> FK <code>approved_by_id</code> em <code>inspections</code> (nullable)</li>
+<li><strong>Deleção:</strong> ON DELETE SET NULL (deletar aprovador anula FK)</li>
+<li><strong>Justificativa:</strong> Se aprovador deletado, inspeção mantém histórico mas perde referência.</li>
+</ul>
+<h4 id="inspections-audios">INSPECTIONS → AUDIOS<a class="headerlink" href="#inspections-audios" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>Cardinalidade:</strong> Uma inspeção contém vários áudios (máximo 5 - regra Domain)</li>
+<li><strong>Implementação:</strong> FK <code>inspection_id</code> em <code>audios</code></li>
+<li><strong>Deleção:</strong> ON DELETE CASCADE (deletar inspeção deleta áudios)</li>
+<li><strong>Justificativa:</strong> Áudios pertencem exclusivamente a inspeção. Cascata completa de deleção.</li>
+</ul>
+<h4 id="form_templates-forms">FORM_TEMPLATES → FORMS<a class="headerlink" href="#form_templates-forms" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>Cardinalidade:</strong> Um template é usado por vários formulários</li>
+<li><strong>Implementação:</strong> FK <code>template_id</code> em <code>forms</code> (nullable)</li>
+<li><strong>Deleção:</strong> ON DELETE SET NULL (deletar template anula FK em formulários)</li>
+<li><strong>Justificativa:</strong> Formulários mantêm dados mesmo se template deletado. Histórico preservado.</li>
+</ul>
+<hr />
+<h2 id="4-justificativa-de-indices">4. JUSTIFICATIVA DE ÍNDICES<a class="headerlink" href="#4-justificativa-de-indices" title="Permanent link">&para;</a></h2>
+<h3 id="41-indices-para-queries-frequentes-baseado-em-casos-de-uso">4.1. Índices para Queries Frequentes (baseado em Casos de Uso)<a class="headerlink" href="#41-indices-para-queries-frequentes-baseado-em-casos-de-uso" title="Permanent link">&para;</a></h3>
+<h4 id="idx_inspections_company_status">idx_inspections_company_status<a class="headerlink" href="#idx_inspections_company_status" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>Query:</strong> <code>SELECT * FROM inspections WHERE company_id = $1 AND status = 'PROCESSING'</code></li>
+<li><strong>Caso de Uso:</strong> UC-003 (Processar Áudio) + Dashboard principal</li>
+<li><strong>Uso:</strong> Listar inspeções pendentes, em processamento ou completas</li>
+<li><strong>Frequência:</strong> Alta (centenas de vezes/dia por empresa)</li>
+<li><strong>Impacto:</strong> Scan completo 200-500ms → Índice 5-15ms (30-50x mais rápido)</li>
+</ul>
+<h4 id="idx_audios_inspection">idx_audios_inspection<a class="headerlink" href="#idx_audios_inspection" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>Query:</strong> <code>SELECT * FROM audios WHERE inspection_id = $1</code></li>
+<li><strong>Caso de Uso:</strong> UC-001 (Gravar Áudio) + UC-006 (Validar Formulário)</li>
+<li><strong>Uso:</strong> Listar todos áudios de uma inspeção específica</li>
+<li><strong>Frequência:</strong> Alta (toda visualização de inspeção)</li>
+<li><strong>Impacto:</strong> Scan 50-100ms → Índice 2-5ms (20x mais rápido)</li>
+</ul>
+<h4 id="idx_audios_status">idx_audios_status<a class="headerlink" href="#idx_audios_status" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>Query:</strong> <code>SELECT * FROM audios WHERE status = 'PENDING' LIMIT 10</code></li>
+<li><strong>Caso de Uso:</strong> UC-003 (Worker processar áudios)</li>
+<li><strong>Uso:</strong> Worker backend buscar próximos áudios pendentes de processamento</li>
+<li><strong>Frequência:</strong> Muito alta (polling a cada 5s)</li>
+<li><strong>Impacto:</strong> Critical path - sem índice, worker fica lento e inspeções travam</li>
+</ul>
+<h4 id="idx_forms_company_completeness">idx_forms_company_completeness<a class="headerlink" href="#idx_forms_company_completeness" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>Query:</strong> <code>SELECT * FROM forms WHERE company_id = $1 AND completeness &lt; 100 ORDER BY created_at DESC</code></li>
+<li><strong>Caso de Uso:</strong> UC-006 (Validar Formulário) + Dashboard supervisor</li>
+<li><strong>Uso:</strong> Listar formulários incompletos para revisão</li>
+<li><strong>Frequência:</strong> Alta (supervisores checam várias vezes/dia)</li>
+<li><strong>Impacto:</strong> Permite dashboard de "formulários pendentes" em tempo real</li>
+</ul>
+<h4 id="idx_users_company_email">idx_users_company_email<a class="headerlink" href="#idx_users_company_email" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>Query:</strong> <code>SELECT * FROM users WHERE company_id = $1 AND email = $2</code></li>
+<li><strong>Caso de Uso:</strong> UC-004 (Autenticar Usuário)</li>
+<li><strong>Uso:</strong> Login de usuário (todo acesso ao sistema)</li>
+<li><strong>Frequência:</strong> Muito alta (todo login = 1 query)</li>
+<li><strong>Impacto:</strong> Critical path - sem índice, login fica lento (ruim para UX)</li>
+</ul>
+<h3 id="42-indices-especializados-gin-ivfflat">4.2. Índices Especializados (GIN, IVFFLAT)<a class="headerlink" href="#42-indices-especializados-gin-ivfflat" title="Permanent link">&para;</a></h3>
+<h4 id="idx_forms_fields-gin-jsonb">idx_forms_fields (GIN JSONB)<a class="headerlink" href="#idx_forms_fields-gin-jsonb" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>Query:</strong> <code>SELECT * FROM forms WHERE fields @&gt; '{"field_name": "value"}'</code> ou <code>fields ? 'key'</code></li>
+<li><strong>Caso de Uso:</strong> Busca avançada em campos dinâmicos</li>
+<li><strong>Uso:</strong> Supervisor buscar inspeções por campo específico (ex: "equipamento = Gerador 123")</li>
+<li><strong>Frequência:</strong> Média (busca avançada conforme necessário)</li>
+<li><strong>Impacto:</strong> GIN permite queries eficientes em JSONB (10-20x mais rápido que scan)</li>
+</ul>
+<h4 id="idx_rag_documents_embedding-ivfflat-vector">idx_rag_documents_embedding (IVFFLAT vector)<a class="headerlink" href="#idx_rag_documents_embedding-ivfflat-vector" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>Query:</strong> Busca vetorial de documentos similares usando pgvector</li>
+<li><strong>Caso de Uso:</strong> UC-003 (Pipeline IA RAG)</li>
+<li><strong>Uso:</strong> Buscar top-K documentos relevantes para transcrição (similaridade coseno)</li>
+<li><strong>Frequência:</strong> Muito alta (todo processamento de áudio = 1 busca RAG)</li>
+<li><strong>Impacto:</strong> IVFFLAT: 50-150ms vs Scan completo: 500-1000ms (5-10x mais rápido)</li>
+<li><strong>Configuração:</strong> lists = 100 (ajustar conforme volume: 1K docs = 50 lists, 10K docs = 100 lists, 100K docs = 200 lists)</li>
+</ul>
+<hr />
+<h2 id="5-regras-de-negocio-banco-vs-domain">5. REGRAS DE NEGÓCIO: BANCO vs DOMAIN<a class="headerlink" href="#5-regras-de-negocio-banco-vs-domain" title="Permanent link">&para;</a></h2>
+<h3 id="51-regras-no-banco-constraints">5.1. ✅ REGRAS NO BANCO (Constraints)<a class="headerlink" href="#51-regras-no-banco-constraints" title="Permanent link">&para;</a></h3>
+<p><strong>Por que no banco:</strong>
+- Garantem integridade referencial mesmo se acessado fora da aplicação
+- Validações simples e objetivas são eficientes no banco
+- Performance: validação no banco é instantânea</p>
+<p><strong>Exemplos implementados:</strong></p>
+<h4 id="1-unicidade">1. Unicidade<a class="headerlink" href="#1-unicidade" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1">-- Email único por empresa (multi-tenant)</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="k">CONSTRAINT</span><span class="w"> </span><span class="n">uk_users_email_company</span><span class="w"> </span><span class="k">UNIQUE</span><span class="w"> </span><span class="p">(</span><span class="n">email</span><span class="p">,</span><span class="w"> </span><span class="n">company_id</span><span class="p">)</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="c1">-- CNPJ único global</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="k">CONSTRAINT</span><span class="w"> </span><span class="n">uk_companies_cnpj</span><span class="w"> </span><span class="k">UNIQUE</span><span class="w"> </span><span class="p">(</span><span class="n">cnpj</span><span class="p">)</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="c1">-- Relacionamentos 1:1</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="k">CONSTRAINT</span><span class="w"> </span><span class="n">uk_transcriptions_audio_id</span><span class="w"> </span><span class="k">UNIQUE</span><span class="w"> </span><span class="p">(</span><span class="n">audio_id</span><span class="p">)</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="k">CONSTRAINT</span><span class="w"> </span><span class="n">uk_forms_inspection_id</span><span class="w"> </span><span class="k">UNIQUE</span><span class="w"> </span><span class="p">(</span><span class="n">inspection_id</span><span class="p">)</span>
+</code></pre></div>
+<p><strong>Justificativa:</strong> Banco garante unicidade atomicamente (race conditions eliminadas).</p>
+<h4 id="2-enumstipos-validos">2. Enums/Tipos Válidos<a class="headerlink" href="#2-enumstipos-validos" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1">-- Status válidos de inspeção</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="k">CONSTRAINT</span><span class="w"> </span><span class="n">chk_inspections_status</span><span class="w"> </span><span class="k">CHECK</span><span class="w"> </span><span class="p">(</span><span class="n">status</span><span class="w"> </span><span class="k">IN</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;DRAFT&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;PROCESSING&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;COMPLETED&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;FAILED&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;APPROVED&#39;</span><span class="p">))</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="c1">-- Perfis válidos de usuário</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="k">CONSTRAINT</span><span class="w"> </span><span class="n">chk_users_role</span><span class="w"> </span><span class="k">CHECK</span><span class="w"> </span><span class="p">(</span><span class="k">role</span><span class="w"> </span><span class="k">IN</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;ADMIN&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;SUPERVISOR&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;INSPECTOR&#39;</span><span class="p">))</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="c1">-- Providers de transcrição válidos</span>
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="k">CONSTRAINT</span><span class="w"> </span><span class="n">chk_transcriptions_source</span><span class="w"> </span><span class="k">CHECK</span><span class="w"> </span><span class="p">(</span><span class="k">source</span><span class="w"> </span><span class="k">IN</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;LOCAL_WHISPER&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;GROQ_WHISPER&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;OPENAI_WHISPER&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;AZURE_WHISPER&#39;</span><span class="p">))</span>
+</code></pre></div>
+<p><strong>Justificativa:</strong> Previne dados inválidos mesmo se aplicação tiver bug.</p>
+<h4 id="3-valores-positivosranges">3. Valores Positivos/Ranges<a class="headerlink" href="#3-valores-positivosranges" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1">-- Duração de áudio (1s a 30min)</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="k">CONSTRAINT</span><span class="w"> </span><span class="n">chk_audios_duration</span><span class="w"> </span><span class="k">CHECK</span><span class="w"> </span><span class="p">(</span><span class="n">duration</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="n">duration</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mi">1800</span><span class="p">)</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="c1">-- Confiança de transcrição (0 a 1)</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="k">CONSTRAINT</span><span class="w"> </span><span class="n">chk_transcriptions_confidence</span><span class="w"> </span><span class="k">CHECK</span><span class="w"> </span><span class="p">(</span><span class="n">confidence</span><span class="w"> </span><span class="k">IS</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">OR</span><span class="w"> </span><span class="p">(</span><span class="n">confidence</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="n">confidence</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mi">1</span><span class="p">))</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="c1">-- Completude de formulário (0% a 100%)</span>
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="k">CONSTRAINT</span><span class="w"> </span><span class="n">chk_forms_completeness</span><span class="w"> </span><span class="k">CHECK</span><span class="w"> </span><span class="p">(</span><span class="n">completeness</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="n">completeness</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mi">100</span><span class="p">)</span>
+</code></pre></div>
+<p><strong>Justificativa:</strong> Validações matemáticas simples são eficientes no banco.</p>
+<h4 id="4-integridade-referencial">4. Integridade Referencial<a class="headerlink" href="#4-integridade-referencial" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="c1">-- Empresa não pode ser deletada se tem usuários</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="k">CONSTRAINT</span><span class="w"> </span><span class="n">fk_users_company</span><span class="w"> </span><span class="k">FOREIGN</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="n">company_id</span><span class="p">)</span><span class="w"> </span><span class="k">REFERENCES</span><span class="w"> </span><span class="n">companies</span><span class="p">(</span><span class="n">id</span><span class="p">)</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="k">DELETE</span><span class="w"> </span><span class="k">RESTRICT</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="c1">-- Deletar inspeção deleta áudios em cascata</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="k">CONSTRAINT</span><span class="w"> </span><span class="n">fk_audios_inspection</span><span class="w"> </span><span class="k">FOREIGN</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="n">inspection_id</span><span class="p">)</span><span class="w"> </span><span class="k">REFERENCES</span><span class="w"> </span><span class="n">inspections</span><span class="p">(</span><span class="n">id</span><span class="p">)</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="k">DELETE</span><span class="w"> </span><span class="k">CASCADE</span>
+</code></pre></div>
+<p><strong>Justificativa:</strong> Banco garante consistência de relacionamentos automaticamente.</p>
+<h4 id="5-isolamento-multi-tenant-rls">5. Isolamento Multi-Tenant (RLS)<a class="headerlink" href="#5-isolamento-multi-tenant-rls" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="c1">-- Policy automática de isolamento por empresa</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="k">CREATE</span><span class="w"> </span><span class="n">POLICY</span><span class="w"> </span><span class="n">tenant_isolation_users</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">users</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">    </span><span class="k">FOR</span><span class="w"> </span><span class="k">ALL</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="w">    </span><span class="k">USING</span><span class="w"> </span><span class="p">(</span><span class="n">company_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">current_setting</span><span class="p">(</span><span class="s1">&#39;app.current_company_id&#39;</span><span class="p">)::</span><span class="n">UUID</span><span class="p">);</span>
+</code></pre></div>
+<p><strong>Justificativa:</strong> RLS garante isolamento de dados no nível do banco (segurança crítica).</p>
+<hr />
+<h3 id="52-regras-no-domain-logica-de-negocio">5.2. ❌ REGRAS NO DOMAIN (Lógica de Negócio)<a class="headerlink" href="#52-regras-no-domain-logica-de-negocio" title="Permanent link">&para;</a></h3>
+<p><strong>Por que NÃO no banco:</strong>
+- Lógica complexa é difícil de testar em SQL
+- Regras que envolvem múltiplas tabelas são complexas em triggers
+- Cálculos complexos são mais legíveis em código
+- Regras que mudam frequentemente não devem estar no banco (portabilidade)</p>
+<p><strong>Exemplos que DEVEM estar no Domain:</strong></p>
+<h4 id="1-completude-de-formulario">1. Completude de Formulário<a class="headerlink" href="#1-completude-de-formulario" title="Permanent link">&para;</a></h4>
+<ul>
+<li>❌ <strong>NÃO:</strong> Trigger SQL calculando percentual de campos preenchidos</li>
+<li>✅ <strong>SIM:</strong> <code>Form.calculateCompleteness()</code> method no Domain
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c1">// Domain Entity</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="kd">class</span><span class="w"> </span><span class="nx">Form</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w">  </span><span class="nx">calculateCompleteness</span><span class="p">()</span><span class="o">:</span><span class="w"> </span><span class="kt">number</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">required</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">getRequiredFields</span><span class="p">();</span>
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">filled</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">getFilledFields</span><span class="p">();</span>
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nb">Math</span><span class="p">.</span><span class="nx">round</span><span class="p">((</span><span class="nx">filled</span><span class="p">.</span><span class="nx">length</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="nx">required</span><span class="p">.</span><span class="nx">length</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">100</span><span class="p">);</span>
+<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="w">  </span><span class="p">}</span>
+<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="p">}</span>
+</code></pre></div></li>
+</ul>
+<p><strong>Justificativa:</strong> Lógica envolve schema dinâmico JSONB, template, regras customizadas. Complexo demais para SQL.</p>
+<h4 id="2-validacao-de-pipeline-ia">2. Validação de Pipeline IA<a class="headerlink" href="#2-validacao-de-pipeline-ia" title="Permanent link">&para;</a></h4>
+<ul>
+<li>❌ <strong>NÃO:</strong> Trigger impedindo criar Form se Transcription não existe</li>
+<li>✅ <strong>SIM:</strong> <code>ProcessAudioUseCase</code> validando pré-condições
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="c1">// Application Use Case</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="k">async</span><span class="w"> </span><span class="nx">execute</span><span class="p">(</span><span class="nx">audioId</span><span class="o">:</span><span class="w"> </span><span class="kt">UUID</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">transcription</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">transcriptionRepo</span><span class="p">.</span><span class="nx">findByAudioId</span><span class="p">(</span><span class="nx">audioId</span><span class="p">);</span>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="nx">transcription</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="w">    </span><span class="k">throw</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">DomainException</span><span class="p">(</span><span class="s1">&#39;Áudio deve ser transcrito antes de gerar formulário&#39;</span><span class="p">);</span>
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="w">  </span><span class="p">}</span>
+<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="w">  </span><span class="c1">// ... continuar processamento</span>
+<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="p">}</span>
+</code></pre></div></li>
+</ul>
+<p><strong>Justificativa:</strong> Lógica de fluxo de negócio deve estar na Application Layer, não no banco.</p>
+<h4 id="3-busca-rag">3. Busca RAG<a class="headerlink" href="#3-busca-rag" title="Permanent link">&para;</a></h4>
+<ul>
+<li>❌ <strong>NÃO:</strong> Stored procedure executando busca vetorial + ranking</li>
+<li>✅ <strong>SIM:</strong> <code>RAGService</code> no Domain
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="c1">// Domain Service</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="kd">class</span><span class="w"> </span><span class="nx">RAGService</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="w">  </span><span class="k">async</span><span class="w"> </span><span class="nx">findRelevantDocuments</span><span class="p">(</span><span class="nx">query</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">,</span><span class="w"> </span><span class="nx">limit</span><span class="o">:</span><span class="w"> </span><span class="kt">number</span><span class="p">)</span><span class="o">:</span><span class="w"> </span><span class="nb">Promise</span><span class="o">&lt;</span><span class="nx">RAGDocument</span><span class="p">[]</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">embedding</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">embeddingService</span><span class="p">.</span><span class="nx">generate</span><span class="p">(</span><span class="nx">query</span><span class="p">);</span>
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">ragRepo</span><span class="p">.</span><span class="nx">findSimilar</span><span class="p">(</span><span class="nx">embedding</span><span class="p">,</span><span class="w"> </span><span class="nx">limit</span><span class="p">);</span>
+<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="w">  </span><span class="p">}</span>
+<a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="p">}</span>
+</code></pre></div></li>
+</ul>
+<p><strong>Justificativa:</strong> Lógica envolve geração de embedding, ranking, filtering. Melhor em código testável.</p>
+<h4 id="4-status-de-inspecao">4. Status de Inspeção<a class="headerlink" href="#4-status-de-inspecao" title="Permanent link">&para;</a></h4>
+<ul>
+<li>❌ <strong>NÃO:</strong> Trigger mudando status baseado em completude de formulário</li>
+<li>✅ <strong>SIM:</strong> <code>CompleteInspectionUseCase</code> validando regras
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="c1">// Application Use Case</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="k">async</span><span class="w"> </span><span class="nx">execute</span><span class="p">(</span><span class="nx">inspectionId</span><span class="o">:</span><span class="w"> </span><span class="kt">UUID</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">form</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">formRepo</span><span class="p">.</span><span class="nx">findByInspectionId</span><span class="p">(</span><span class="nx">inspectionId</span><span class="p">);</span>
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">form</span><span class="p">.</span><span class="nx">completeness</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mf">100</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="w">    </span><span class="k">throw</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">DomainException</span><span class="p">(</span><span class="s1">&#39;Formulário deve estar 100% completo para concluir inspeção&#39;</span><span class="p">);</span>
+<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="w">  </span><span class="p">}</span>
+<a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="w">  </span><span class="k">await</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">inspectionRepo</span><span class="p">.</span><span class="nx">updateStatus</span><span class="p">(</span><span class="nx">inspectionId</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;COMPLETED&#39;</span><span class="p">);</span>
+<a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a><span class="p">}</span>
+</code></pre></div></li>
+</ul>
+<p><strong>Justificativa:</strong> Regra de negócio deve estar explícita no Use Case, não escondida em trigger.</p>
+<hr />
+<h2 id="6-validacao">6. VALIDAÇÃO<a class="headerlink" href="#6-validacao" title="Permanent link">&para;</a></h2>
+<h3 id="checklist-de-conformidade">CHECKLIST DE CONFORMIDADE<a class="headerlink" href="#checklist-de-conformidade" title="Permanent link">&para;</a></h3>
+<ul>
+<li>[✅] Todas as 8 entidades da Conversa 4 estão representadas como tabelas</li>
+<li>[✅] Todas as tabelas seguem convenção snake_case plural</li>
+<li>[✅] Todas as colunas têm tipos de dados PostgreSQL 15 apropriados</li>
+<li>[✅] Todas as colunas têm constraints apropriados (NOT NULL, DEFAULT)</li>
+<li>[✅] Todas as tabelas têm chave primária (PK) UUID definida</li>
+<li>[✅] Todos os 10 relacionamentos da Conversa 4 estão mapeados para FKs</li>
+<li>[✅] Relacionamentos 1:1 usam FK com UNIQUE</li>
+<li>[✅] Relacionamentos 1:N usam FK na tabela "N"</li>
+<li>[✅] UNIQUE constraints estão definidos (email+company_id, CNPJ, 1:1)</li>
+<li>[✅] CHECK constraints estão definidos para enums, valores positivos, durações</li>
+<li>[✅] Índices estão justificados com casos de uso</li>
+<li>[✅] Índices vetoriais IVFFLAT criados para colunas VECTOR</li>
+<li>[✅] Diagrama Mermaid ER está completo e correto</li>
+<li>[✅] Regras de negócio no banco vs Domain estão documentadas</li>
+<li>[✅] Tecnologia de banco de dados é PostgreSQL 15 + pgvector (Supabase)</li>
+</ul>
+<h3 id="rastreabilidade">RASTREABILIDADE<a class="headerlink" href="#rastreabilidade" title="Permanent link">&para;</a></h3>
+<p><strong>Conversa 4 (Entities) → Conversa 5 (Tabelas):</strong></p>
+<table>
+<thead>
+<tr>
+<th>Entity Domain</th>
+<th>Tabela PostgreSQL</th>
+<th>Atributos Mapeados</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Company</td>
+<td>companies</td>
+<td>id, name, cnpj, is_active</td>
+</tr>
+<tr>
+<td>User</td>
+<td>users</td>
+<td>id, company_id, name, email, password_hash, role</td>
+</tr>
+<tr>
+<td>Inspection</td>
+<td>inspections</td>
+<td>id, company_id, inspector_id, approved_by_id, status, approved_at, metadata</td>
+</tr>
+<tr>
+<td>Audio</td>
+<td>audios</td>
+<td>id, inspection_id, file_url, duration, status</td>
+</tr>
+<tr>
+<td>Transcription</td>
+<td>transcriptions</td>
+<td>id, audio_id, text, confidence, source</td>
+</tr>
+<tr>
+<td>FormTemplate</td>
+<td>form_templates</td>
+<td>id, company_id, name, schema, is_active</td>
+</tr>
+<tr>
+<td>Form</td>
+<td>forms</td>
+<td>id, company_id, inspection_id, template_id, fields, completeness</td>
+</tr>
+<tr>
+<td>RAGDocument</td>
+<td>rag_documents</td>
+<td>id, company_id, title, content, embedding, metadata</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Relacionamentos C4 → SQL:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Relacionamento Domain</th>
+<th>Implementação SQL</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Company 1:N User</td>
+<td>FK users.company_id → companies.id</td>
+</tr>
+<tr>
+<td>Company 1:N Inspection</td>
+<td>FK inspections.company_id → companies.id</td>
+</tr>
+<tr>
+<td>Company 1:N FormTemplate</td>
+<td>FK form_templates.company_id → companies.id</td>
+</tr>
+<tr>
+<td>Company 1:N RAGDocument</td>
+<td>FK rag_documents.company_id → companies.id</td>
+</tr>
+<tr>
+<td>User 1:N Inspection (Inspector)</td>
+<td>FK inspections.inspector_id → users.id</td>
+</tr>
+<tr>
+<td>User 1:N Inspection (Approver)</td>
+<td>FK inspections.approved_by_id → users.id</td>
+</tr>
+<tr>
+<td>Inspection 1:N Audio</td>
+<td>FK audios.inspection_id → inspections.id</td>
+</tr>
+<tr>
+<td>Audio 1:1 Transcription</td>
+<td>FK transcriptions.audio_id UNIQUE → audios.id</td>
+</tr>
+<tr>
+<td>Inspection 1:1 Form</td>
+<td>FK forms.inspection_id UNIQUE → inspections.id</td>
+</tr>
+<tr>
+<td>FormTemplate 1:N Form</td>
+<td>FK forms.template_id → form_templates.id</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="7-auto-validacao">7. AUTO-VALIDAÇÃO<a class="headerlink" href="#7-auto-validacao" title="Permanent link">&para;</a></h2>
+<p><strong>Status:</strong> ✅ COMPLETO</p>
+<p><strong>Critérios atendidos:</strong> 15/15 (100%)</p>
+<p><strong>Gaps identificados:</strong> Nenhum</p>
+<p><strong>Recomendações:</strong></p>
+<ol>
+<li>
+<p><strong>Particionamento futuro:</strong> Considerar particionamento de tabelas <code>audios</code> e <code>transcriptions</code> se volume crescer &gt;10M registros (particionamento por created_at mensal)</p>
+</li>
+<li>
+<p><strong>Índices adicionais:</strong> Avaliar índices adicionais após análise de queries reais em produção (EXPLAIN ANALYZE em queries lentas)</p>
+</li>
+<li>
+<p><strong>IVFFLAT lists:</strong> Revisar configuração <code>lists = 100</code> conforme crescimento da base RAG (1K docs = 50 lists, 10K docs = 100 lists, 100K docs = 200 lists)</p>
+</li>
+<li>
+<p><strong>Auditoria:</strong> Considerar tabela <code>audit_logs</code> futura para rastreabilidade completa de alterações críticas (quem alterou, quando, o que)</p>
+</li>
+</ol>
+<hr />
+<p><strong>Última atualização:</strong> 2026-02-01<br />
+<strong>Versão:</strong> 1.0<br />
+<strong>Arquivo:</strong> 1/2 (Modelo Conceitual)</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Voltar para o topo
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Rodapé" >
+        
+          
+          <a href="../DONE_3_04_02_fluxos_validacao/" class="md-footer__link md-footer__link--prev" aria-label="Anterior: [33] DIAGRAMA C4 COMPONENT - FLUXOS E VALIDAÇÃO">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Anterior
+              </span>
+              <div class="md-ellipsis">
+                [33] DIAGRAMA C4 COMPONENT - FLUXOS E VALIDAÇÃO
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../DONE_3_05_02_scripts_ddl_migrations/" class="md-footer__link md-footer__link--next" aria-label="Próximo: [35] SCRIPTS SQL DDL E MIGRATIONS - VoiceCap">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Próximo
+              </span>
+              <div class="md-ellipsis">
+                [35] SCRIPTS SQL DDL E MIGRATIONS - VoiceCap
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2026 VoiceCap - Desenvolvido com Metodologia MDSIA
+    </div>
+  
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/voicecap" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://voicecap.com.br" target="_blank" rel="noopener" title="voicecap.com.br" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M351.9 280H161c2.9 64.5 17.2 123.9 37.5 167.4 11.4 24.5 23.7 41.8 35.1 52.4 11.2 10.5 18.9 12.2 22.9 12.2s11.7-1.7 22.9-12.2c11.4-10.6 23.7-28 35.1-52.4 20.3-43.5 34.6-102.9 37.5-167.4zm-191-48h190.9c-2.8-64.5-17.1-123.9-37.4-167.4-11.4-24.4-23.7-41.8-35.1-52.4C268.1 1.7 260.4 0 256.4 0s-11.7 1.7-22.9 12.2c-11.4 10.6-23.7 28-35.1 52.4-20.3 43.5-34.6 102.9-37.5 167.4m-48 0c3.5-85.6 25.6-165.1 57.9-217.3C78.7 47.3 10.9 131.2 1.5 232zM1.5 280c9.4 100.8 77.2 184.7 169.3 217.3-32.3-52.2-54.4-131.7-57.9-217.3zm398.4 0c-3.5 85.6-25.6 165.1-57.9 217.3 92.1-32.7 159.9-116.5 169.3-217.3zm111.4-48C501.9 131.2 434.1 47.3 342 14.7c32.3 52.2 54.4 131.7 57.9 217.3z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["announce.dismiss", "content.code.copy", "navigation.footer", "navigation.sections", "navigation.tabs", "navigation.tabs.sticky", "navigation.top", "search.highlight", "search.share", "search.suggest", "toc.follow"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado para \u00e1rea de transfer\u00eancia", "clipboard.copy": "Copiar para \u00e1rea de transfer\u00eancia", "search.result.more.one": "mais 1 nesta p\u00e1gina", "search.result.more.other": "# mais nesta p\u00e1gina", "search.result.none": "Nenhum documento encontrado", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Digite para iniciar a busca", "search.result.term.missing": "Ausente", "select.version": "Selecione a vers\u00e3o"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../js/print-site.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

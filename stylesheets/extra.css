@@ -1,0 +1,96 @@
+
+/* Estilo customizado VoiceCap */
+
+@media print {
+    @page {
+        margin: 20mm;
+        @bottom-right {
+            content: "Página " counter(page);
+        }
+        @bottom-left {
+            content: "VoiceCap - Documentação Técnica";
+        }
+        @top-right {
+            content: "Confidencial";
+            font-size: 9pt;
+            color: #666;
+        }
+    }
+
+    h1 { page-break-before: always; }
+    h1:first-child { page-break-before: avoid; }
+    h2, h3 { page-break-after: avoid; }
+    pre, table, figure { page-break-inside: avoid; }
+}
+
+/* Identidade visual VoiceCap */
+:root {
+    --voicecap-primary: #5e72e4;
+    --voicecap-secondary: #11cdef;
+    --voicecap-success: #2dce89;
+    --voicecap-warning: #fb6340;
+}
+
+.md-header {
+    background: linear-gradient(135deg, var(--voicecap-primary) 0%, var(--voicecap-secondary) 100%);
+}
+
+.md-typeset h1 {
+    color: var(--voicecap-primary);
+    font-weight: 700;
+    border-bottom: 3px solid var(--voicecap-primary);
+    padding-bottom: 0.5em;
+}
+
+.md-typeset h2 {
+    color: var(--voicecap-secondary);
+    font-weight: 600;
+}
+
+.md-typeset .admonition.note {
+    border-left-color: var(--voicecap-primary);
+}
+
+.md-typeset .admonition.tip {
+    border-left-color: var(--voicecap-success);
+}
+
+.md-typeset .admonition.warning {
+    border-left-color: var(--voicecap-warning);
+}
+
+/* Melhorias de legibilidade */
+.md-content {
+    font-size: 1.05em;
+    line-height: 1.75;
+}
+
+.md-typeset code {
+    background-color: #f8f9fa;
+    padding: 0.15em 0.5em;
+    border-radius: 4px;
+    font-size: 0.9em;
+}
+
+.md-typeset table {
+    border: 1px solid #dee2e6;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+/* Rodapé de navegação */
+.md-footer__link {
+    font-weight: 500;
+    padding: 1em;
+}
+
+/* Badges customizados */
+.badge {
+    display: inline-block;
+    padding: 0.25em 0.6em;
+    font-size: 0.85em;
+    font-weight: 600;
+    border-radius: 3px;
+}
+
+.badge-mvp { background-color: var(--voicecap-success); color: white; }
+.badge-future { background-color: var(--voicecap-warning); color: white; }

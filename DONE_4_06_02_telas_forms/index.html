@@ -1,0 +1,7503 @@
+
+<!doctype html>
+<html lang="pt" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Documentação técnica completa do sistema VoiceCap - Captura de informações por voz com IA híbrida multi-tenant">
+      
+      
+        <meta name="author" content="Equipe VoiceCap">
+      
+      
+        <link rel="canonical" href="https://voicecap.com.br/DONE_4_06_02_telas_forms/">
+      
+      
+        <link rel="prev" href="../DONE_4_06_01_telas_dashboard_listagem/">
+      
+      
+        <link rel="next" href="../DONE_4_06_03_telas_detalhes_validacao/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>[76] CONVERSA 06: TELAS DESKTOP - WIREFRAMES DE ALTA FIDELIDADE (PARTE 2/3) - VoiceCap - Documentação Técnica Completa</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CFira+Code:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Fira Code"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../css/print-site.css">
+    
+      <link rel="stylesheet" href="../css/print-site-material.css">
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="blue">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#conversa-06-telas-desktop-wireframes-de-alta-fidelidade-parte-23" class="md-skip">
+          Pular para conteúdo
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabeçalho">
+    <a href=".." title="VoiceCap - Documentação Técnica Completa" class="md-header__button md-logo" aria-label="VoiceCap - Documentação Técnica Completa" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            VoiceCap - Documentação Técnica Completa
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              [76] CONVERSA 06: TELAS DESKTOP - WIREFRAMES DE ALTA FIDELIDADE (PARTE 2/3)
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="blue"  aria-label="Alternar para modo escuro"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Alternar para modo escuro" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="blue"  aria-label="Alternar para modo claro"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Alternar para modo claro" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Buscar" placeholder="Buscar" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Pesquisar">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Compartilhar" aria-label="Compartilhar" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpar" aria-label="Limpar" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando busca
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Abas" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Início
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../DONE_1_01_problem_statement/" class="md-tabs__link">
+          
+  
+  
+  1. Contexto Estratégico do Projeto
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../DONE_2_01_analise_stakeholders_contexto/" class="md-tabs__link">
+          
+  
+  
+  2. Requisitos e Especificações
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../DONE_3_01_00_INDICE_MASTER/" class="md-tabs__link">
+          
+  
+  
+  3. Arquitetura do Sistema
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../DONE_4_01_00_INDICE/" class="md-tabs__link">
+          
+  
+  
+  4. Design de Interface e Interação
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../print_page/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Imprimir Documentação Completa
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navegação" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="VoiceCap - Documentação Técnica Completa" class="md-nav__button md-logo" aria-label="VoiceCap - Documentação Técnica Completa" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    VoiceCap - Documentação Técnica Completa
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Início
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1. Contexto Estratégico do Projeto
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    1. Contexto Estratégico do Projeto
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1" id="__nav_2_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1.1 Descoberta do Problema
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    1.1 Descoberta do Problema
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_1_01_problem_statement/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [1] PROBLEM STATEMENT & ANÁLISE DO PROBLEMA
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_1_02_stakeholders_personas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [2] STAKEHOLDERS & PERSONAS PRIMÁRIAS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_1_03_proposta_valor_bmc/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [3] PROPOSTA DE VALOR & BUSINESS MODEL CANVAS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1.2 Planejamento Estratégico
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    1.2 Planejamento Estratégico
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_1_04_okrs_kpis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [4] OKRs, KPIs E MÉTRICAS DE SUCESSO
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_1_05_restricoes_negocio/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [5] RESTRIÇÕES DE NEGÓCIO (BUDGET/PRAZO/COMPLIANCE)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_1_06_escopo_mvp_futuro/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [6] ESCOPO MVP vs FUTURO
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1.3 Validação de Viabilidade
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    1.3 Validação de Viabilidade
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_1_07_riscos_viabilidade/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [7] RISCOS & ANÁLISE DE VIABILIDADE
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_1_08_documento_final_saidas_camada2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [8] DOCUMENTO FINAL: CONTEXTO ESTRATÉGICO
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2. Requisitos e Especificações
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    2. Requisitos e Especificações
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_1" id="__nav_3_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2.1 Análise de Stakeholders e Backlog
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    2.1 Análise de Stakeholders e Backlog
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_2_01_analise_stakeholders_contexto/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [9] CONVERSA 1: ANÁLISE DE STAKEHOLDERS & CONTEXTO
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_2_02_product_backlog_inicial/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [10] CONVERSA 2: PRODUCT BACKLOG INICIAL
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_2_03_user_stories_parte1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [11] CONVERSA 3: USER STORIES (PARTE 1/2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2.2 Especificação Funcional Completa
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    2.2 Especificação Funcional Completa
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_2_04_user_stories_parte2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [12] CONVERSA 4: USER STORIES (PARTE 2/2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_2_05_wireframes_ascii_preliminares/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [13] CONVERSA 5: WIREFRAMES ASCII PRELIMINARES
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_2_06_casos_de_uso/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [14] CONVERSA 6: CASOS DE USO
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_2_07_criterios_aceitacao_regras_negocio/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [15] CONVERSA 7: CRITÉRIOS DE ACEITAÇÃO & REGRAS DE NEGÓCIO
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_3" id="__nav_3_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2.3 Requisitos Não-Funcionais
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    2.3 Requisitos Não-Funcionais
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_2_08_rnf_performance_escalabilidade/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [16] CONVERSA 8: RNF - PERFORMANCE & ESCALABILIDADE
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_2_09_rnf_seguranca_disponibilidade/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [17] CONVERSA 9: RNF - SEGURANÇA & DISPONIBILIDADE
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_2_10_rnf_usabilidade_compatibilidade/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [18] CONVERSA 10: RNF - USABILIDADE & COMPATIBILIDADE
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_4" id="__nav_3_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2.4 Priorização e Rastreabilidade
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    2.4 Priorização e Rastreabilidade
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_2_11_priorizacao/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [19] PRIORIZAÇÃO DE REQUISITOS (MoSCoW + RICE)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_2_12_estimativas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [20] ESTIMATIVAS DE ESFORÇO (STORY POINTS)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_2_13_matriz_rastreabilidade/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [21] MATRIZ DE RASTREABILIDADE E DOCUMENTO CONSOLIDADO
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3. Arquitetura do Sistema
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    3. Arquitetura do Sistema
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_1" id="__nav_4_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3.1 Decisões Arquiteturais
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    3.1 Decisões Arquiteturais
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_3_01_00_INDICE_MASTER/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [22] DECISÃO DE ARQUITETURA VOICECAP - ÍNDICE MASTER
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_3_01_01_analise_contexto/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [23] CONVERSA 1: DECISÃO DE ARQUITETURA - PARTE 1/7
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_3_01_02_padroes_candidatos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [24] CONVERSA 1: DECISÃO DE ARQUITETURA - PARTE 2/7
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_3_01_03_matriz_decisao/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [25] CONVERSA 1: DECISÃO DE ARQUITETURA - PARTE 3/7
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_3_01_04_recomendacao/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [26] CONVERSA 1: DECISÃO DE ARQUITETURA - PARTE 4/7
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_3_01_05_tradeoffs_riscos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [27] CONVERSA 1: DECISÃO DE ARQUITETURA - PARTE 5/7
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_3_01_06_roadmap_principios/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [28] CONVERSA 1: DECISÃO DE ARQUITETURA - PARTE 6/7
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_3_01_07_alternativas_adr/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [29] CONVERSA 1: DECISÃO DE ARQUITETURA - PARTE 7/7
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_2" id="__nav_4_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3.2 Diagramação C4 Model
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    3.2 Diagramação C4 Model
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_3_02_c4_context/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [30] DIAGRAMA C4 NÍVEL 1 (SYSTEM CONTEXT) - VoiceCap
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_3_03_c4_container/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [31] DIAGRAMA C4 NÍVEL 2 (CONTAINER) - VoiceCap
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_3_04_01_c4_component_backend/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [32] DIAGRAMA C4 NÍVEL 3 (COMPONENT - BACKEND) - VoiceCap
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_3_04_02_fluxos_validacao/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [33] DIAGRAMA C4 COMPONENT - FLUXOS E VALIDAÇÃO
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_3" id="__nav_4_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3.3 Modelagem de Dados
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    3.3 Modelagem de Dados
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_3_05_01_diagrama_er/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [34] DIAGRAMA ER (ENTITY-RELATIONSHIP) - VoiceCap
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_3_05_02_scripts_ddl_migrations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [35] SCRIPTS SQL DDL E MIGRATIONS - VoiceCap
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_4" id="__nav_4_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3.4 Estrutura de Código Backend
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    3.4 Estrutura de Código Backend
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_3_06_01_estrutura_pastas_backend/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [36] ESTRUTURA DE PASTAS - BACKEND - VoiceCap (Parte 1/2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_3_06_02_exemplos_codigo_validacao/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [37] ESTRUTURA DE PASTAS - BACKEND - VoiceCap (Parte 2/2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_5" id="__nav_4_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3.5 Estrutura de Código Frontend
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    3.5 Estrutura de Código Frontend
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_3_07_01_estrutura_pastas_frontend/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [38] ESTRUTURA DE PASTAS - FRONTEND - VoiceCap (Parte 1/2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_3_07_02_exemplos_codigo_validacao/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [39] ESTRUTURA DE PASTAS - FRONTEND - VoiceCap (Parte 2/2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_6" id="__nav_4_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3.6 Dependências e Tecnologias
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    3.6 Dependências e Tecnologias
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_3_08_01_matriz_backend/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [40] MATRIZ DE DEPENDÊNCIAS - BACKEND (Parte 1/3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_3_08_02_matriz_frontend/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [41] MATRIZ DE DEPENDÊNCIAS - FRONTEND (Parte 2/3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_3_08_03_comunicacao_validacao/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [42] COMUNICAÇÃO & VALIDAÇÃO (Parte 3/3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_7" id="__nav_4_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3.7 Padrões de Domínio (DDD)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    3.7 Padrões de Domínio (DDD)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_3_09_01_padroes_basicos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [43] PADRÕES DE DOMAIN (DDD) - PARTE 1: PADRÕES BÁSICOS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_3_09_02_padroes_avancados/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [44] PADRÕES DE DOMAIN (DDD) - PARTE 2: PADRÕES AVANÇADOS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_3_09_03_templates_validacao/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [45] PADRÕES DE DOMAIN (DDD) - PARTE 3: TEMPLATES E VALIDAÇÃO
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_8" id="__nav_4_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3.8 Especificação de APIs
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    3.8 Especificação de APIs
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_3_10_01_fundamentos_api/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [46] PADRÕES DE API REST - PARTE 1: FUNDAMENTOS API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_3_10_02_controllers_seguranca/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [47] PADRÕES DE API REST - PARTE 2: CONTROLLERS E SEGURANÇA
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_3_10_03_recursos_completos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [48] PADRÕES DE API REST - PARTE 3: RECURSOS COMPLETOS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_9" id="__nav_4_9_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3.9 Estratégia de Testes
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_9">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    3.9 Estratégia de Testes
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_3_11_01_fundamentos_estrategia_testes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [49] ESTRATÉGIA DE TESTES - PARTE 1: FUNDAMENTOS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_3_11_02_exemplos_rnfs_validacao/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [50] ESTRATÉGIA DE TESTES - PARTE 2: EXEMPLOS E VALIDAÇÃO
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_10" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_10" id="__nav_4_10_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3.10 Architecture Decision Records (ADRs)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_10">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    3.10 Architecture Decision Records (ADRs)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_3_12_00_indice/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [51] ÍNDICE DE ADRs - VoiceCap
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_3_12_AUTO_VALIDACAO/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [52] AUTO-VALIDAÇÃO: ADRs VoiceCap
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_3_12_01_adrs_arquitetura/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [53] ADRs DE ARQUITETURA - VoiceCap
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_3_12_02_adrs_dados_backend/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [54] ADRs DE DADOS & BACKEND - VoiceCap
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_3_12_03_adrs_seguranca_testes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [55] ADRs DE SEGURANÇA & TESTES - VoiceCap
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_11" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_11" id="__nav_4_11_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3.11 Validação Arquitetural
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_11_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_11">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    3.11 Validação Arquitetural
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_3_13_00_INDICE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [56] VALIDAÇÃO FINAL DA ARQUITETURA VOICECAP - ÍNDICE MASTER
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_3_13_01_validacoes_scores/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [57] VALIDAÇÃO FINAL DA ARQUITETURA - PARTE 1: VALIDAÇÕES E SCORES
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_3_13_02_riscos_gaps_recomendacoes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [58] VALIDAÇÃO FINAL DA ARQUITETURA - PARTE 2: RISCOS, GAPS E RECOMENDAÇÕES
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_3_13_03_readme_aprovacao/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [59] VALIDAÇÃO FINAL DA ARQUITETURA - PARTE 3: README E APROVAÇÃO
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4. Design de Interface e Interação
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    4. Design de Interface e Interação
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_1" id="__nav_5_1_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4.1 Sistema de Design (Design Tokens)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    4.1 Sistema de Design (Design Tokens)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_4_01_00_INDICE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [60] DESIGN TOKENS - VoiceCap (Índice Master)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_4_01_01_design_tokens_cores_tipografia/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [61] DESIGN TOKENS - VoiceCap (Parte 1/3: Cores e Tipografia)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_4_01_02_design_tokens_espacamento_visual/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [62] DESIGN TOKENS - VoiceCap (Parte 2/3: Espaçamento e Visual)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_4_01_03_design_tokens_responsive_animacao/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [63] DESIGN TOKENS - VoiceCap (Parte 3/3: Responsivo, Animação e Exportação)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_2" id="__nav_5_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4.2 Componentes Atômicos
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    4.2 Componentes Atômicos
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_4_02_01_atomos_componentes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [64] ÁTOMOS - COMPONENTES BÁSICOS - VoiceCap (Parte 1/2: Especificações)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_4_02_02_atomos_referencia_validacao/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [65] ÁTOMOS - COMPONENTES BÁSICOS - VoiceCap (Parte 2/2: Referência e Validação)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_3" id="__nav_5_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4.3 Componentes Moleculares
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    4.3 Componentes Moleculares
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_4_03_01_moleculas_componentes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [66] MOLÉCULAS - COMPONENTES COMBINADOS - VoiceCap (Parte 1/2: Especificações)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_4_03_02_moleculas_referencia_validacao/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [67] MOLÉCULAS - COMPONENTES COMBINADOS - VoiceCap (Parte 2/2: Referência e Validação)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_4" id="__nav_5_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4.4 Componentes Organismos
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    4.4 Componentes Organismos
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_4_04_01_organismos_datatable/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [68] ORGANISMOS - DATATABLE - VoiceCap (Parte 1/4)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_4_04_02_organismos_modal/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [69] ORGANISMOS - MODAL - VoiceCap (Parte 2/4)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_4_04_03_organismos_navegacao/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [70] ORGANISMOS - NAVEGAÇÃO (HEADER + SIDEBAR) - VoiceCap (Parte 3/4)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_4_04_04_organismos_mapview_validacao/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [71] ORGANISMOS - MAPVIEW + VALIDAÇÃO - VoiceCap (Parte 4/4)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_5" id="__nav_5_5_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4.5 Templates de Páginas
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    4.5 Templates de Páginas
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_4_05_01_template_dashboard/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [72] TEMPLATE: DASHBOARDTEMPLATE (Parte 1/3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_4_05_02_template_form/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [73] TEMPLATE: FORMTEMPLATE (Parte 2/3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_4_05_03_template_auth_validacao/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [74] TEMPLATE: AUTHTEMPLATE + VALIDAÇÃO (Parte 3/3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_6" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_5_6" id="__nav_5_6_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4.6 Telas Desktop Completas
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_6_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    4.6 Telas Desktop Completas
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_4_06_01_telas_dashboard_listagem/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [75] CONVERSA 06: TELAS DESKTOP - WIREFRAMES DE ALTA FIDELIDADE (PARTE 1/3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [76] CONVERSA 06: TELAS DESKTOP - WIREFRAMES DE ALTA FIDELIDADE (PARTE 2/3)
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [76] CONVERSA 06: TELAS DESKTOP - WIREFRAMES DE ALTA FIDELIDADE (PARTE 2/3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+  
+
+<nav class="md-nav md-nav--secondary" aria-label="Nesta página">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Nesta página
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#metadados" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        METADADOS
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#indice-de-telas-parte-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ÍNDICE DE TELAS (PARTE 2)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tela-3-criar-nova-inspecao" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        TELA 3: CRIAR NOVA INSPEÇÃO
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="TELA 3: CRIAR NOVA INSPEÇÃO">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-user-stories-implementadas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1 User Stories Implementadas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-wireframe-ascii-desktop" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2 Wireframe ASCII (Desktop)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-componentes-usados" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3 Componentes Usados
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3.3 Componentes Usados">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#template" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Template
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#organismos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Organismos
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#moleculas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Moléculas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#atomos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Átomos
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#34-estados-da-tela" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.4 Estados da Tela
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3.4 Estados da Tela">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#loading" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Loading
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#error" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Error
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#empty" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Empty
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#35-interacoes-do-usuario" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.5 Interações do Usuário
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#36-responsividade-desktop" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.6 Responsividade (Desktop)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3.6 Responsividade (Desktop)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#19201080-desktop-grande" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1920×1080 (Desktop Grande)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1366768-laptop-padrao" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1366×768 (Laptop Padrão)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1024768-tablet-landscape" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1024×768 (Tablet Landscape)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#37-notas-de-implementacao" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.7 Notas de Implementação
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3.7 Notas de Implementação">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tecnologias-especificas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tecnologias Específicas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#otimizacoes-de-performance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Otimizações de Performance
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#integracoes-com-backend" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Integrações com Backend
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#acessibilidade-especifica" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Acessibilidade Específica
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tela-4-editar-inspecao-existente" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        TELA 4: EDITAR INSPEÇÃO EXISTENTE
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="TELA 4: EDITAR INSPEÇÃO EXISTENTE">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-user-stories-implementadas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1 User Stories Implementadas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-wireframe-ascii-desktop" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2 Wireframe ASCII (Desktop)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43-componentes-usados" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.3 Componentes Usados
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4.3 Componentes Usados">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#template_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Template
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#organismos_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Organismos
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#moleculas_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Moléculas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#atomos_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Átomos
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#44-estados-da-tela" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.4 Estados da Tela
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4.4 Estados da Tela">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#loading_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Loading
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#error_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Error
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#empty_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Empty
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#45-interacoes-do-usuario" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.5 Interações do Usuário
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#46-responsividade-desktop" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.6 Responsividade (Desktop)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4.6 Responsividade (Desktop)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#19201080-desktop-grande_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1920×1080 (Desktop Grande)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1366768-laptop-padrao_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1366×768 (Laptop Padrão)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1024768-tablet-landscape_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1024×768 (Tablet Landscape)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#47-notas-de-implementacao" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.7 Notas de Implementação
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4.7 Notas de Implementação">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tecnologias-especificas_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tecnologias Específicas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#otimizacoes-de-performance_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Otimizações de Performance
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#integracoes-com-backend_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Integrações com Backend
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#acessibilidade-especifica_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Acessibilidade Específica
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#resumo-da-parte-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        RESUMO DA PARTE 2
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="RESUMO DA PARTE 2">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#telas-desktop-criadas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Telas Desktop Criadas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#componentes-reutilizados" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Componentes Reutilizados
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#diferenciais-entre-telas-3-e-4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Diferenciais entre Telas 3 e 4
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#proximos-passos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Próximos Passos
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_4_06_03_telas_detalhes_validacao/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [77] CONVERSA 06: TELAS DESKTOP - WIREFRAMES DE ALTA FIDELIDADE (PARTE 3/3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_7" id="__nav_5_7_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4.7 Telas Mobile
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    4.7 Telas Mobile
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_4_07_01_telas_mobile_adaptacoes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [78] CONVERSA 07: TELAS MOBILE - ADAPTAÇÕES DESKTOP (PARTE 1/3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_4_07_02_telas_mobile_exclusivas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [79] CONVERSA 07: TELAS MOBILE - EXCLUSIVAS OPERACIONAIS (PARTE 2/3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_4_07_03_rastreabilidade_cobertura/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [80] CONVERSA 07: TELAS MOBILE - RASTREABILIDADE E COBERTURA (PARTE 3/3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_8" id="__nav_5_8_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4.8 Fluxos de Usuário
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    4.8 Fluxos de Usuário
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_4_08_01_fluxos_gerencial/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [81] CONVERSA 08: FLUXOS DE USUÁRIO - PERFIL GERENCIAL (PARTE 1/3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_4_08_02_fluxos_operacional/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [82] CONVERSA 08: FLUXOS DE USUÁRIO - PERFIL OPERACIONAL (PARTE 2/3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_4_08_03_rastreabilidade_validacao/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [83] CONVERSA 08: FLUXOS DE USUÁRIO - RASTREABILIDADE E VALIDAÇÃO (PARTE 3/3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_9" id="__nav_5_9_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4.9 Responsividade Multi-Dispositivo
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_9">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    4.9 Responsividade Multi-Dispositivo
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_4_09_01_responsividade_telas_parte1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [84] CONVERSA 09: RESPONSIVIDADE - ESTRATÉGIA DE ADAPTAÇÃO (PARTE 1/3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_4_09_02_responsividade_telas_parte2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [85] CONVERSA 09: RESPONSIVIDADE - ESTRATÉGIA DE ADAPTAÇÃO (PARTE 2/3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_4_09_03_responsividade_componentes_validacao/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [86] CONVERSA 09: RESPONSIVIDADE - ESTRATÉGIA DE ADAPTAÇÃO (PARTE 3/3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_10" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_10" id="__nav_5_10_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4.10 Acessibilidade WCAG e Validação
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_10">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    4.10 Acessibilidade WCAG e Validação
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_4_10_01_checklist_componentes_atomos_moleculas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [87] CONVERSA 10: ACESSIBILIDADE WCAG 2.1 AA - PARTE 1/4
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_4_10_02_checklist_componentes_organismos_templates_telas_desktop/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [88] CONVERSA 10: ACESSIBILIDADE WCAG 2.1 AA - PARTE 2/4
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_4_10_03_checklist_telas_mobile_validacao_wcag/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [89] CONVERSA 10: ACESSIBILIDADE WCAG 2.1 AA - PARTE 3/4
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_4_10_04_ferramentas_guia_casos_uso_rnfs_validacao/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [90] CONVERSA 10: ACESSIBILIDADE WCAG 2.1 AA - PARTE 4/4
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../print_page/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Imprimir Documentação Completa
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+<nav class="md-nav md-nav--secondary" aria-label="Nesta página">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Nesta página
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#metadados" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        METADADOS
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#indice-de-telas-parte-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ÍNDICE DE TELAS (PARTE 2)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tela-3-criar-nova-inspecao" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        TELA 3: CRIAR NOVA INSPEÇÃO
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="TELA 3: CRIAR NOVA INSPEÇÃO">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-user-stories-implementadas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1 User Stories Implementadas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-wireframe-ascii-desktop" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2 Wireframe ASCII (Desktop)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-componentes-usados" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3 Componentes Usados
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3.3 Componentes Usados">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#template" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Template
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#organismos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Organismos
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#moleculas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Moléculas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#atomos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Átomos
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#34-estados-da-tela" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.4 Estados da Tela
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3.4 Estados da Tela">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#loading" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Loading
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#error" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Error
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#empty" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Empty
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#35-interacoes-do-usuario" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.5 Interações do Usuário
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#36-responsividade-desktop" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.6 Responsividade (Desktop)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3.6 Responsividade (Desktop)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#19201080-desktop-grande" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1920×1080 (Desktop Grande)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1366768-laptop-padrao" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1366×768 (Laptop Padrão)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1024768-tablet-landscape" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1024×768 (Tablet Landscape)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#37-notas-de-implementacao" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.7 Notas de Implementação
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3.7 Notas de Implementação">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tecnologias-especificas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tecnologias Específicas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#otimizacoes-de-performance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Otimizações de Performance
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#integracoes-com-backend" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Integrações com Backend
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#acessibilidade-especifica" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Acessibilidade Específica
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tela-4-editar-inspecao-existente" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        TELA 4: EDITAR INSPEÇÃO EXISTENTE
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="TELA 4: EDITAR INSPEÇÃO EXISTENTE">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-user-stories-implementadas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1 User Stories Implementadas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-wireframe-ascii-desktop" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2 Wireframe ASCII (Desktop)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43-componentes-usados" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.3 Componentes Usados
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4.3 Componentes Usados">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#template_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Template
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#organismos_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Organismos
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#moleculas_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Moléculas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#atomos_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Átomos
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#44-estados-da-tela" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.4 Estados da Tela
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4.4 Estados da Tela">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#loading_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Loading
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#error_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Error
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#empty_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Empty
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#45-interacoes-do-usuario" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.5 Interações do Usuário
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#46-responsividade-desktop" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.6 Responsividade (Desktop)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4.6 Responsividade (Desktop)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#19201080-desktop-grande_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1920×1080 (Desktop Grande)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1366768-laptop-padrao_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1366×768 (Laptop Padrão)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1024768-tablet-landscape_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1024×768 (Tablet Landscape)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#47-notas-de-implementacao" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.7 Notas de Implementação
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4.7 Notas de Implementação">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tecnologias-especificas_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tecnologias Específicas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#otimizacoes-de-performance_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Otimizações de Performance
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#integracoes-com-backend_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Integrações com Backend
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#acessibilidade-especifica_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Acessibilidade Específica
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#resumo-da-parte-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        RESUMO DA PARTE 2
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="RESUMO DA PARTE 2">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#telas-desktop-criadas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Telas Desktop Criadas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#componentes-reutilizados" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Componentes Reutilizados
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#diferenciais-entre-telas-3-e-4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Diferenciais entre Telas 3 e 4
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#proximos-passos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Próximos Passos
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="conversa-06-telas-desktop-wireframes-de-alta-fidelidade-parte-23">CONVERSA 06: TELAS DESKTOP - WIREFRAMES DE ALTA FIDELIDADE (PARTE 2/3)<a class="headerlink" href="#conversa-06-telas-desktop-wireframes-de-alta-fidelidade-parte-23" title="Permanent link">&para;</a></h1>
+<h2 id="metadados">METADADOS<a class="headerlink" href="#metadados" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Data de Criação: 2026-02-03</li>
+<li>Versão: 1.0</li>
+<li>Status: ✅ COMPLETO</li>
+<li>Arquivo: 2/3 (Formulários)</li>
+<li>Dependências: DONE<em>4_05</em>_ (Templates), DONE<em>4_04</em>_ (Organismos), DONE<em>4_03</em>_ (Moléculas), DONE<em>4_02</em>_ (Átomos)</li>
+</ul>
+<hr />
+<h2 id="indice-de-telas-parte-2">ÍNDICE DE TELAS (PARTE 2)<a class="headerlink" href="#indice-de-telas-parte-2" title="Permanent link">&para;</a></h2>
+<ol>
+<li><a href="#tela-3-criar-nova-inspeção">Criar Nova Inspeção</a> - Implementa US-01-001, US-02-001, US-02-002, US-02-003</li>
+<li><a href="#tela-4-editar-inspeção-existente">Editar Inspeção Existente</a> - Implementa US-03-001, US-02-002, US-02-003</li>
+</ol>
+<p><strong>Total nesta parte:</strong> 2 telas desktop especificadas</p>
+<hr />
+<h2 id="tela-3-criar-nova-inspecao">TELA 3: CRIAR NOVA INSPEÇÃO<a class="headerlink" href="#tela-3-criar-nova-inspecao" title="Permanent link">&para;</a></h2>
+<h3 id="31-user-stories-implementadas">3.1 User Stories Implementadas<a class="headerlink" href="#31-user-stories-implementadas" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>US-01-001:</strong> Gravar Áudio de Inspeção sem Conexão</li>
+<li>
+<p><em>Como técnico de campo em área sem internet, quero gravar áudio descrevendo a inspeção no app mobile, para documentar observações rapidamente sem digitar.</em></p>
+</li>
+<li>
+<p><strong>US-02-001:</strong> Transcrever Áudio para Texto com IA</p>
+</li>
+<li>
+<p><em>Como sistema backend, quero transcrever áudios automaticamente usando Whisper API, para converter narrativa falada em texto processável.</em></p>
+</li>
+<li>
+<p><strong>US-02-002:</strong> Preencher Formulário Automaticamente com IA</p>
+</li>
+<li>
+<p><em>Como técnico de campo, quero que sistema preencha formulário automaticamente após transcrição, para eliminar trabalho manual de digitação.</em></p>
+</li>
+<li>
+<p><strong>US-02-003:</strong> Enriquecer Dados com Base de Conhecimento RAG</p>
+</li>
+<li><em>Como sistema de processamento, quero consultar base vetorizada específica da empresa, para preencher campos usando contexto e histórico.</em></li>
+</ul>
+<h3 id="32-wireframe-ascii-desktop">3.2 Wireframe ASCII (Desktop)<a class="headerlink" href="#32-wireframe-ascii-desktop" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>┌────────────────────────────────────────────────────────────────────────────────────┐
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>│ Header (64px, fixed top)                                                           │
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>│ [Logo VoiceCap] Dashboard  Inspeções  Relatórios  [🔍 Buscar...] 🔔³ João Silva▼  │
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>├────────────────────────────────────────────────────────────────────────────────────┤
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>│                                                                                    │
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>│                  ┌───────────────────────────────────────────────────┐            │
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>│                  │ Breadcrumb: Home &gt; Inspeções &gt; Criar              │            │
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>│                  ├───────────────────────────────────────────────────┤            │
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>│                  │ Heading1: Criar Nova Inspeção                     │            │
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>│                  ├───────────────────────────────────────────────────┤            │
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>│                  │                                                   │            │
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>│                  │ ┌───────────────────────────────────────────────┐│            │
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>│                  │ │ Card: Gravação de Áudio (opcional)            ││            │
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>│                  │ │ ┌───────────────────────────────────────────┐ ││            │
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>│                  │ │ │ 🎤 Grave áudio para preenchimento auto    │ ││            │
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>│                  │ │ │ [🔴 GRAVAR ÁUDIO] [📁 Upload Áudio]       │ ││            │
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>│                  │ │ │ Status: Aguardando gravação...            │ ││            │
+<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>│                  │ │ └───────────────────────────────────────────┘ ││            │
+<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>│                  │ └───────────────────────────────────────────────┘│            │
+<a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>│                  │                                  spacing.lg (24px)│            │
+<a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>│                  │ FormField: Tipo de Inspeção *                     │            │
+<a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>│                  │ [Preventiva ▼]                                    │            │
+<a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a>│                  │   Options: Preventiva, Corretiva, Emergencial    │            │
+<a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a>│                  │                                  spacing.md (16px)│            │
+<a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a>│                  │ FormField: Objeto Inspecionado *                  │            │
+<a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a>│                  │ [Poste de Concreto ▼]                             │            │
+<a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a>│                  │   Options: Poste, Transformador, Linha, Medidor   │            │
+<a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a>│                  │                                  spacing.md (16px)│            │
+<a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a>│                  │ FormField: Localização *                          │            │
+<a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a>│                  │ [_____________________________________]            │            │
+<a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a>│                  │ Hint: Endereço ou coordenadas GPS                 │            │
+<a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a>│                  │                                  spacing.md (16px)│            │
+<a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a>│                  │ FormField: Severidade *                           │            │
+<a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a>│                  │ [○ Baixa  ○ Média  ● Alta  ○ Crítica]            │            │
+<a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a>│                  │                                  spacing.md (16px)│            │
+<a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a>│                  │ FormField: Descrição do Problema *                │            │
+<a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a>│                  │ [_____________________________________]            │            │
+<a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a>│                  │ [_____________________________________]            │            │
+<a id="__codelineno-0-39" name="__codelineno-0-39" href="#__codelineno-0-39"></a>│                  │ [_____________________________________]            │            │
+<a id="__codelineno-0-40" name="__codelineno-0-40" href="#__codelineno-0-40"></a>│                  │ [_____________________________________]            │            │
+<a id="__codelineno-0-41" name="__codelineno-0-41" href="#__codelineno-0-41"></a>│                  │ Hint: Descreva os problemas identificados (máx 500│            │
+<a id="__codelineno-0-42" name="__codelineno-0-42" href="#__codelineno-0-42"></a>│                  │ caracteres) - 450/500 caracteres                  │            │
+<a id="__codelineno-0-43" name="__codelineno-0-43" href="#__codelineno-0-43"></a>│                  │                                  spacing.md (16px)│            │
+<a id="__codelineno-0-44" name="__codelineno-0-44" href="#__codelineno-0-44"></a>│                  │ FormField: Ações Recomendadas                     │            │
+<a id="__codelineno-0-45" name="__codelineno-0-45" href="#__codelineno-0-45"></a>│                  │ [_____________________________________]            │            │
+<a id="__codelineno-0-46" name="__codelineno-0-46" href="#__codelineno-0-46"></a>│                  │ [_____________________________________]            │            │
+<a id="__codelineno-0-47" name="__codelineno-0-47" href="#__codelineno-0-47"></a>│                  │ [_____________________________________]            │            │
+<a id="__codelineno-0-48" name="__codelineno-0-48" href="#__codelineno-0-48"></a>│                  │ Hint: Sugestões de correção (opcional)            │            │
+<a id="__codelineno-0-49" name="__codelineno-0-49" href="#__codelineno-0-49"></a>│                  │                                  spacing.md (16px)│            │
+<a id="__codelineno-0-50" name="__codelineno-0-50" href="#__codelineno-0-50"></a>│                  │ FormField: Fotos                                  │            │
+<a id="__codelineno-0-51" name="__codelineno-0-51" href="#__codelineno-0-51"></a>│                  │ ┌──────────┐ ┌──────────┐ ┌──────────┐           │            │
+<a id="__codelineno-0-52" name="__codelineno-0-52" href="#__codelineno-0-52"></a>│                  │ │ [+ Add]  │ │[Foto 1]  │ │[Foto 2]  │           │            │
+<a id="__codelineno-0-53" name="__codelineno-0-53" href="#__codelineno-0-53"></a>│                  │ │  Foto    │ │  × Remov │ │  × Remov │           │            │
+<a id="__codelineno-0-54" name="__codelineno-0-54" href="#__codelineno-0-54"></a>│                  │ └──────────┘ └──────────┘ └──────────┘           │            │
+<a id="__codelineno-0-55" name="__codelineno-0-55" href="#__codelineno-0-55"></a>│                  │ Hint: Até 10 fotos, 5MB cada (JPEG, PNG)         │            │
+<a id="__codelineno-0-56" name="__codelineno-0-56" href="#__codelineno-0-56"></a>│                  │                                  spacing.md (16px)│            │
+<a id="__codelineno-0-57" name="__codelineno-0-57" href="#__codelineno-0-57"></a>│                  │ FormField: Técnico Responsável *                  │            │
+<a id="__codelineno-0-58" name="__codelineno-0-58" href="#__codelineno-0-58"></a>│                  │ [João Silva (você) ▼]                             │            │
+<a id="__codelineno-0-59" name="__codelineno-0-59" href="#__codelineno-0-59"></a>│                  │   Auto-preenchido com usuário logado              │            │
+<a id="__codelineno-0-60" name="__codelineno-0-60" href="#__codelineno-0-60"></a>│                  │                                  spacing.md (16px)│            │
+<a id="__codelineno-0-61" name="__codelineno-0-61" href="#__codelineno-0-61"></a>│                  │ FormField: Equipamentos Afetados                  │            │
+<a id="__codelineno-0-62" name="__codelineno-0-62" href="#__codelineno-0-62"></a>│                  │ [___________________] [+ Adicionar Equipamento]   │            │
+<a id="__codelineno-0-63" name="__codelineno-0-63" href="#__codelineno-0-63"></a>│                  │ • Transformador T-4523 (associado)                │            │
+<a id="__codelineno-0-64" name="__codelineno-0-64" href="#__codelineno-0-64"></a>│                  │ • Medidor M-8821 (associado)                      │            │
+<a id="__codelineno-0-65" name="__codelineno-0-65" href="#__codelineno-0-65"></a>│                  │                                                   │            │
+<a id="__codelineno-0-66" name="__codelineno-0-66" href="#__codelineno-0-66"></a>│                  │                                  spacing.xxl (48px│            │
+<a id="__codelineno-0-67" name="__codelineno-0-67" href="#__codelineno-0-67"></a>│                  └───────────────────────────────────────────────────┘            │
+<a id="__codelineno-0-68" name="__codelineno-0-68" href="#__codelineno-0-68"></a>│                                                                                    │
+<a id="__codelineno-0-69" name="__codelineno-0-69" href="#__codelineno-0-69"></a>├────────────────────────────────────────────────────────────────────────────────────┤
+<a id="__codelineno-0-70" name="__codelineno-0-70" href="#__codelineno-0-70"></a>│ Footer (fixed bottom, 72px height, shadow-lg, background white, z-index 999)      │
+<a id="__codelineno-0-71" name="__codelineno-0-71" href="#__codelineno-0-71"></a>│ [Cancelar]                                        [💾 Salvar Rascunho] [Criar]    │
+<a id="__codelineno-0-72" name="__codelineno-0-72" href="#__codelineno-0-72"></a>└────────────────────────────────────────────────────────────────────────────────────┘
+<a id="__codelineno-0-73" name="__codelineno-0-73" href="#__codelineno-0-73"></a>  ↑                                                                              ↑
+<a id="__codelineno-0-74" name="__codelineno-0-74" href="#__codelineno-0-74"></a>  Outline Button                                               Primary Button (green)
+<a id="__codelineno-0-75" name="__codelineno-0-75" href="#__codelineno-0-75"></a>  hover: gray.50                                              Loading: spinner branco
+</code></pre></div>
+<p><strong>Estado após 1+ áudios gravados:</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>│                  │ ┌───────────────────────────────────────────────┐│            │
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>│                  │ │ Card: Gravações de Áudio (opcional)           ││            │
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>│                  │ │ ┌───────────────────────────────────────────┐ ││            │
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>│                  │ │ │ 🎤 Áudios gravados: 2                     │ ││            │
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>│                  │ │ │ • Áudio 1 (02:35) [▶️] [🗑️]              │ ││            │
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>│                  │ │ │ • Áudio 2 (01:15) [▶️] [🗑️]              │ ││            │
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>│                  │ │ │ [🔴 GRAVAR ÁUDIO 3/5] [📁 Upload]         │ ││            │
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>│                  │ │ └───────────────────────────────────────────┘ ││            │
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>│                  │ └───────────────────────────────────────────────┘│            │
+</code></pre></div>
+<p><strong>Dimensões:</strong></p>
+<ul>
+<li>Form Container: max-width 800px, centered, margin auto</li>
+<li>Padding interno: spacing.lg (24px)</li>
+<li>Espaçamento entre campos: spacing.md (16px)</li>
+<li>Footer height: 72px, padding spacing.md (16px) horizontal</li>
+<li>Card de Gravação: width 100%, padding spacing.md (16px)</li>
+<li>Botões de foto: 120×120px cada, spacing.sm (8px) entre eles</li>
+</ul>
+<h3 id="33-componentes-usados">3.3 Componentes Usados<a class="headerlink" href="#33-componentes-usados" title="Permanent link">&para;</a></h3>
+<h4 id="template">Template<a class="headerlink" href="#template" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>FormTemplate</strong> - Layout com Header + Form centralizado (max-width 800px) + Footer fixed</li>
+</ul>
+<h4 id="organismos">Organismos<a class="headerlink" href="#organismos" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>Header</strong> - Navegação global (sem Sidebar nesta tela)</li>
+</ul>
+<h4 id="moleculas">Moléculas<a class="headerlink" href="#moleculas" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>Card</strong> (variante: elevated) - Card de Gravação de Áudio</li>
+<li><strong>FormField</strong> - 9 campos de formulário:</li>
+<li>Select: Tipo de Inspeção (required)</li>
+<li>Select: Objeto Inspecionado (required)</li>
+<li>Input text: Localização (required)</li>
+<li>Radio group: Severidade (required)</li>
+<li>Textarea: Descrição do Problema (required, maxLength: 500)</li>
+<li>Textarea: Ações Recomendadas (optional)</li>
+<li>File upload: Fotos (multiple, max 10)</li>
+<li>Select: Técnico Responsável (required, auto-filled)</li>
+<li>Input text + List: Equipamentos Afetados (optional)</li>
+</ul>
+<h4 id="atomos">Átomos<a class="headerlink" href="#atomos" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>Button</strong> (variantes: primary, secondary, outline, danger)</li>
+<li>Primary: "Criar" (submit button, verde #25D366)</li>
+<li>Secondary: "💾 Salvar Rascunho" (salva sem validar obrigatórios)</li>
+<li>Outline: "Cancelar" (volta para listagem com confirmação se houver dados)</li>
+<li>Danger: "🔴 Iniciar Gravação" (estado gravando, transforma em "⏹️ Parar")</li>
+<li>Secondary: "📁 Upload Áudio" (abre file picker)</li>
+<li><strong>Input</strong> - Campos de texto (Localização, Equipamentos)</li>
+<li><strong>Icon</strong> - Ícones diversos (🎤, 📁, ×, +)</li>
+<li><strong>Badge</strong> - Contador de caracteres (450/500)</li>
+</ul>
+<h3 id="34-estados-da-tela">3.4 Estados da Tela<a class="headerlink" href="#34-estados-da-tela" title="Permanent link">&para;</a></h3>
+<h4 id="loading">Loading<a class="headerlink" href="#loading" title="Permanent link">&para;</a></h4>
+<p><strong>Cenário 1: Loading inicial (carregar dados de selects)</strong></p>
+<p><strong>Comportamento:</strong></p>
+<ul>
+<li>Header carrega imediatamente</li>
+<li>Form mostra skeleton apenas nos selects (Tipo, Objeto, Técnico):</li>
+<li>Retângulo cinza animado no lugar do dropdown</li>
+<li>Demais campos carregam vazios (sem loading)</li>
+<li>Card de Gravação carrega imediatamente</li>
+<li>Footer carrega imediatamente com botões disabled</li>
+</ul>
+<p><strong>Tempo estimado:</strong> 300-500ms (carregar options dos dropdowns do backend)</p>
+<p><strong>Cenário 2: Processando áudio (após gravação/upload) - INCREMENTAL</strong></p>
+<p><strong>Comportamento:</strong></p>
+<ul>
+<li>Card de Gravação mostra:</li>
+<li>Spinner azul rotativo (32×32px)</li>
+<li>Texto: "Processando Áudio N... (Transcrição + Mesclagem incremental)"</li>
+<li>Progress bar: 0% → 60% (transcrição) → 100% (mesclagem contextual)</li>
+<li>Tempo estimado: "~15s por áudio (incremental) vs ~50s para todos (batch)"</li>
+<li>Campos do form permanecem editáveis (não bloqueia UI)</li>
+<li>Footer com botões habilitados (pode salvar antes de processar)</li>
+<li>Após conclusão:</li>
+<li>Toast verde de sucesso: "✅ Áudio N processado! Campos atualizados (economia 60-70% tokens)."</li>
+<li>Campos novos/atualizados com animação suave (fade-in)</li>
+<li>Highlight amarelo nos campos alterados (auto-remove após 3s)</li>
+</ul>
+<p><strong>Tempo estimado:</strong> ~15s por áudio (transcrição incremental) vs 40-55s batch (economia 35-43%)</p>
+<p><strong>Cenário 3: Salvando inspeção (após clicar "Criar")</strong></p>
+<p><strong>Comportamento:</strong></p>
+<ul>
+<li>Botão "Criar" muda para loading state:</li>
+<li>Spinner branco rotativo</li>
+<li>Texto: "Criando..."</li>
+<li>Cursor: wait</li>
+<li>Disabled: true</li>
+<li>Demais botões do footer disabled</li>
+<li>Form fields ficam readonly</li>
+<li>Após conclusão:</li>
+<li>Toast verde: "✅ Inspeção #1234 criada com sucesso!"</li>
+<li>Redireciona para tela de Detalhes da Inspeção (<code>/inspecoes/1234</code>)</li>
+</ul>
+<p><strong>Tempo estimado:</strong> 1-3s (upload de fotos + save no banco)</p>
+<h4 id="error">Error<a class="headerlink" href="#error" title="Permanent link">&para;</a></h4>
+<p><strong>Cenário 1: Erro de validação (campos obrigatórios faltando)</strong></p>
+<p><strong>Comportamento:</strong></p>
+<ul>
+<li>Ao clicar em "Criar", se houver campos obrigatórios vazios:</li>
+<li>Scroll automático para o primeiro campo com erro</li>
+<li>Campos com erro mostram:<ul>
+<li>Border vermelho (error.500)</li>
+<li>Background vermelho claro (error.50)</li>
+<li>ErrorMessage abaixo: "Campo obrigatório"</li>
+</ul>
+</li>
+<li>Toast amarelo no topo: "⚠️ Preencha todos os campos obrigatórios"</li>
+<li>Focus no primeiro campo com erro</li>
+</ul>
+<p><strong>Cenário 2: Erro ao processar áudio</strong></p>
+<p><strong>Comportamento:</strong></p>
+<ul>
+<li>Card de Gravação mostra:</li>
+<li>Ícone ⚠️ (vermelho, 48×48px)</li>
+<li>Texto: "Erro ao processar áudio. Possíveis causas:"</li>
+<li>Lista:<ul>
+<li>Áudio muito curto (&lt;5s) ou longo (&gt;10min)</li>
+<li>Ruído excessivo ou inaudível</li>
+<li>Formato não suportado</li>
+</ul>
+</li>
+<li>Buttons:<ul>
+<li>"🔄 Tentar novamente" (reprocessa o mesmo áudio)</li>
+<li>"🗑️ Descartar áudio" (remove e permite nova gravação)</li>
+<li>"✏️ Preencher manualmente" (fecha card e permite edição manual)</li>
+</ul>
+</li>
+</ul>
+<p><strong>Cenário 3: Erro ao salvar inspeção</strong></p>
+<p><strong>Comportamento:</strong></p>
+<ul>
+<li>Toast vermelho no topo: "❌ Erro ao criar inspeção. Tente novamente."</li>
+<li>Botão "Criar" volta ao estado normal (não disabled)</li>
+<li>Dados do form preservados</li>
+<li>Se houver erro de rede: opção "💾 Salvar localmente" (offline mode)</li>
+</ul>
+<p><strong>Ações disponíveis:</strong></p>
+<ul>
+<li>Corrigir validações e resubmeter</li>
+<li>Tentar novamente processar áudio</li>
+<li>Descartar áudio e preencher manualmente</li>
+<li>Salvar como rascunho (não valida obrigatórios)</li>
+<li>Cancelar (com confirmação se houver dados)</li>
+</ul>
+<h4 id="empty">Empty<a class="headerlink" href="#empty" title="Permanent link">&para;</a></h4>
+<p><strong>Estado inicial (não aplicável para form de criação)</strong></p>
+<p>Esta tela não tem estado "empty" típico, pois é um form em branco por design. O estado inicial é:</p>
+<ul>
+<li>Todos os campos vazios (exceto "Técnico Responsável" auto-preenchido)</li>
+<li>Card de Gravação em estado "Aguardando gravação"</li>
+<li>Nenhuma foto adicionada</li>
+<li>Nenhum equipamento associado</li>
+</ul>
+<h3 id="35-interacoes-do-usuario">3.5 Interações do Usuário<a class="headerlink" href="#35-interacoes-do-usuario" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>Clicar em "🔴 GRAVAR ÁUDIO" (ou "🔴 GRAVAR ÁUDIO N/5")</strong> →</li>
+<li><strong>Label dinâmica:</strong> Muda conforme quantidade de áudios existentes (0 áudios: "GRAVAR ÁUDIO", 1 áudio: "GRAVAR ÁUDIO 2/5", etc.)</li>
+<li>Solicita permissão de microfone (se não concedida)</li>
+<li>Botão muda para "⏹️ PARAR" (cor vermelha pulsante)</li>
+<li>Contador de tempo aparece: "00:05 / 10:00 (máx)"</li>
+<li>Waveform visual animado em tempo real</li>
+<li>Ao clicar "⏹️ PARAR":<ul>
+<li>Salva áudio N no array</li>
+<li>Adiciona áudio à lista: "Áudio N (02:35)" com botões [▶️] [🗑️]</li>
+<li>Label do botão atualiza para próximo número: "🔴 GRAVAR ÁUDIO N+1/5"</li>
+<li>Se houver múltiplos áudios, inicia processamento de <strong>todos os áudios</strong> com mesclagem inteligente</li>
+</ul>
+</li>
+</ol>
+<p>1.5. <strong>Clicar em "🗑️" ao lado de áudio específico</strong> →</p>
+<ul>
+<li>Modal de confirmação: "Excluir Áudio N? Isso pode afetar campos preenchidos automaticamente."</li>
+<li>Botões: [Cancelar] [Sim, excluir]</li>
+<li>Se confirmar:</li>
+<li>Remove áudio do array</li>
+<li>Lista atualiza</li>
+<li>Campos preenchidos permanecem (não reverte)</li>
+<li>Label do botão atualiza</li>
+</ul>
+<p>1.6. <strong>Clicar em "▶️" ao lado de áudio específico</strong> →</p>
+<ul>
+<li>Abre modal player com waveform do áudio</li>
+<li>Controles: play/pause, timeline, volume</li>
+<li>
+<p>Botões: [Fechar] [Excluir este áudio]</p>
+</li>
+<li>
+<p><strong>Clicar em "📁 Upload Áudio"</strong> →</p>
+</li>
+<li>Abre file picker (formatos: .mp3, .wav, .m4a, .ogg)</li>
+<li>Validação: máx 50MB, máx 10min de duração</li>
+<li>
+<p>Após selecionar: inicia processamento automático</p>
+</li>
+<li>
+<p><strong>Preencher campo "Tipo de Inspeção"</strong> →</p>
+</li>
+<li>Dropdown abre com 3 opções (Preventiva, Corretiva, Emergencial)</li>
+<li>
+<p>Selecionar opção: dropdown fecha, valor atualizado, error (se existir) removido</p>
+</li>
+<li>
+<p><strong>Preencher campo "Severidade"</strong> →</p>
+</li>
+<li>Radio buttons mutuamente exclusivos</li>
+<li>Visual: círculo preenchido quando selecionado, outline quando não</li>
+<li>
+<p>Cores: Baixa (verde), Média (amarelo), Alta (laranja), Crítica (vermelho)</p>
+</li>
+<li>
+<p><strong>Digitar em "Descrição do Problema"</strong> →</p>
+</li>
+<li>Contador de caracteres atualiza em tempo real: "450/500 caracteres"</li>
+<li>Ao atingir 500: bloqueia input, badge fica vermelho, mensagem "Limite atingido"</li>
+<li>
+<p>Auto-resize do textarea conforme usuário digita (max-height: 200px)</p>
+</li>
+<li>
+<p><strong>Clicar em "[+ Add Foto]"</strong> →</p>
+</li>
+<li>Abre file picker (formatos: .jpg, .jpeg, .png)</li>
+<li>Validação: máx 5MB cada, máx 10 fotos total</li>
+<li>Após upload: thumbnail 120×120px aparece ao lado do botão</li>
+<li>Preview: hover mostra preview maior (300×300px) em tooltip</li>
+<li>
+<p>Clicar "× Remover": remove foto com confirmação</p>
+</li>
+<li>
+<p><strong>Clicar em "[+ Adicionar Equipamento]"</strong> →</p>
+</li>
+<li>Abre modal de busca de equipamentos:<ul>
+<li>SearchBar com autocomplete</li>
+<li>Lista de equipamentos disponíveis (filtrados por localização)</li>
+<li>Button "Adicionar" ao lado de cada equipamento</li>
+</ul>
+</li>
+<li>Ao adicionar: equipamento aparece na lista com bullet "•"</li>
+<li>
+<p>Clicar no equipamento na lista: remove com confirmação</p>
+</li>
+<li>
+<p><strong>Clicar em "Cancelar"</strong> →</p>
+</li>
+<li>Se houver dados preenchidos: abre modal de confirmação:<ul>
+<li>"Descartar alterações?"</li>
+<li>"Você tem alterações não salvas. Deseja salvar como rascunho antes de sair?"</li>
+<li>Buttons: "Descartar", "Salvar Rascunho", "Continuar Editando"</li>
+</ul>
+</li>
+<li>
+<p>Se não houver dados: navega direto para listagem</p>
+</li>
+<li>
+<p><strong>Clicar em "💾 Salvar Rascunho"</strong> →</p>
+</li>
+<li>Salva inspeção com status "rascunho" (não valida campos obrigatórios)</li>
+<li>Toast verde: "✅ Rascunho salvo! Você pode continuar depois."</li>
+<li>
+<p>Navega para listagem ou permanece na tela (opção do usuário)</p>
+</li>
+<li>
+<p><strong>Clicar em "Criar"</strong> →</p>
+<ul>
+<li>Valida todos os campos obrigatórios (*)</li>
+<li>Se válido:</li>
+<li>Loading state (botão "Criando...")</li>
+<li>Upload de fotos em paralelo (progress bar se &gt;3 fotos)</li>
+<li>Salva no banco</li>
+<li>Toast de sucesso</li>
+<li>Redireciona para <code>/inspecoes/{id}</code> (detalhes)</li>
+<li>Se inválido:</li>
+<li>Scroll para primeiro erro</li>
+<li>Mostra mensagens de erro</li>
+<li>Toast de aviso</li>
+</ul>
+</li>
+<li>
+<p><strong>Processar áudio com sucesso</strong> →</p>
+<ul>
+<li>Campos preenchidos automaticamente:</li>
+<li>Tipo de Inspeção: inferido pelo contexto do áudio</li>
+<li>Objeto Inspecionado: detectado via NLP</li>
+<li>Localização: extraída se mencionada no áudio</li>
+<li>Severidade: classificada pela IA (baixa/média/alta/crítica)</li>
+<li>Descrição: transcrição completa do áudio</li>
+<li>Ações Recomendadas: sugeridas pela IA baseado em RAG</li>
+<li>Highlight amarelo nos campos preenchidos (fade-out após 3s)</li>
+<li>Usuário pode editar qualquer campo preenchido</li>
+</ul>
+</li>
+<li>
+<p><strong>Hover em campo preenchido por IA</strong> →</p>
+<ul>
+<li>Tooltip aparece: "✨ Preenchido automaticamente pela IA"</li>
+<li>Ícone de estrela (✨) ao lado do label</li>
+</ul>
+</li>
+<li>
+<p><strong>Pressionar Enter em campo de texto</strong> →</p>
+<ul>
+<li>Move foco para próximo campo (não submete form)</li>
+<li>Se estiver no último campo: foca no botão "Criar"</li>
+</ul>
+</li>
+<li>
+<p><strong>Pressionar Ctrl+S (atalho de teclado)</strong> →</p>
+<ul>
+<li>Aciona ação "Salvar Rascunho"</li>
+</ul>
+</li>
+<li>
+<p><strong>Sair da tela (voltar navegador, fechar aba)</strong> →</p>
+<ul>
+<li>Browser exibe confirmação nativa: "Você tem alterações não salvas"</li>
+<li>Implementado via <code>beforeunload</code> event</li>
+</ul>
+</li>
+</ul>
+<h3 id="36-responsividade-desktop">3.6 Responsividade (Desktop)<a class="headerlink" href="#36-responsividade-desktop" title="Permanent link">&para;</a></h3>
+<h4 id="19201080-desktop-grande">1920×1080 (Desktop Grande)<a class="headerlink" href="#19201080-desktop-grande" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Form container: max-width 800px, centered</li>
+<li>Card de Gravação: width 100% do container (768px efetivos)</li>
+<li>Footer: botões alinhados à direita, espaçamento generoso (spacing.lg entre botões)</li>
+<li>Fotos: 3 thumbnails por linha (120×120px cada)</li>
+</ul>
+<h4 id="1366768-laptop-padrao">1366×768 (Laptop Padrão)<a class="headerlink" href="#1366768-laptop-padrao" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Form container: max-width 700px, centered</li>
+<li>Card de Gravação: width 100%</li>
+<li>Footer: botões mantém tamanho, espaçamento reduzido (spacing.md)</li>
+<li>Fotos: 3 thumbnails por linha (110×110px cada)</li>
+<li>Font-size dos labels reduzida (fontSize.base → fontSize.sm em alguns casos)</li>
+</ul>
+<h4 id="1024768-tablet-landscape">1024×768 (Tablet Landscape)<a class="headerlink" href="#1024768-tablet-landscape" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Form container: max-width 90%, padding lateral spacing.md</li>
+<li>Card de Gravação: padding interno reduzido (spacing.sm)</li>
+<li>Footer:</li>
+<li>Não fixed, posição relative</li>
+<li>Botões empilham verticalmente (width 100% cada)</li>
+<li>Ordem: "Criar" (topo), "Salvar Rascunho", "Cancelar" (base)</li>
+<li>Fotos: 2 thumbnails por linha (100×100px cada)</li>
+<li>Radio buttons de Severidade: empilham verticalmente (1 por linha)</li>
+</ul>
+<h3 id="37-notas-de-implementacao">3.7 Notas de Implementação<a class="headerlink" href="#37-notas-de-implementacao" title="Permanent link">&para;</a></h3>
+<h4 id="tecnologias-especificas">Tecnologias Específicas<a class="headerlink" href="#tecnologias-especificas" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>React Hook Form:</strong> Gerenciamento de estado do formulário, validação</li>
+<li><strong>Zod:</strong> Schema de validação TypeScript-first</li>
+<li><strong>OpenAI Whisper API:</strong> Transcrição de áudio (modelo: whisper-1)</li>
+<li><strong>OpenAI GPT-4:</strong> Análise do texto transcrito + preenchimento de campos</li>
+<li><strong>Pinecone ou similar:</strong> Vector database para RAG (base de conhecimento da empresa)</li>
+<li><strong>MediaRecorder API:</strong> Gravação de áudio no navegador</li>
+<li><strong>AWS S3:</strong> Upload de fotos e áudios (multipart upload para arquivos &gt;5MB)</li>
+</ul>
+<h4 id="otimizacoes-de-performance">Otimizações de Performance<a class="headerlink" href="#otimizacoes-de-performance" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>Upload paralelo de fotos:</strong> Usar <code>Promise.all()</code> para upload simultâneo (máx 3 paralelos)</li>
+<li><strong>Compressão de imagens:</strong> Client-side compression antes de upload (max 1920px width, quality 85%)</li>
+<li><strong>Debounce no contador de caracteres:</strong> Atualizar a cada 100ms (não a cada keystroke)</li>
+<li><strong>Lazy load do card de Gravação:</strong> Carregar MediaRecorder apenas quando usuário interage</li>
+<li><strong>Prefetch de options dos selects:</strong> Carregar dados dos dropdowns na home (antes de acessar tela)</li>
+</ul>
+<h4 id="integracoes-com-backend">Integrações com Backend<a class="headerlink" href="#integracoes-com-backend" title="Permanent link">&para;</a></h4>
+<p><strong>Endpoints necessários:</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nx">GET</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="nx">api</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="nx">inspections</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="nx">form</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nx">data</span><span class="p">;</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="c1">// Retorna: { types: string[], objects: string[], technicians: User[] }</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="nx">POST</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="nx">api</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="nx">inspections</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="nx">audio</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="nx">process</span><span class="p">;</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="c1">// Body: FormData com audio file</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="c1">// Retorna: { transcription: string, analysis: { type, object, location, severity, description, actions } }</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="nx">POST</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="nx">api</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="nx">inspections</span><span class="p">;</span>
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="c1">// Body: { type, object, location, severity, description, actions, photos: string[], technician, equipment: string[], audioUrl?: string }</span>
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="c1">// Retorna: { id: string, createdAt: Date }</span>
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>
+<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="nx">POST</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="nx">api</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="nx">inspections</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="nx">draft</span><span class="p">;</span>
+<a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a><span class="c1">// Body: Partial&lt;Inspection&gt;</span>
+<a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a><span class="c1">// Retorna: { id: string, status: &#39;draft&#39; }</span>
+<a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a>
+<a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a><span class="nx">POST</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="nx">api</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="nx">storage</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="nx">upload</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="nx">photo</span><span class="p">;</span>
+<a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a><span class="c1">// Body: FormData com image file</span>
+<a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a><span class="c1">// Retorna: { url: string, thumbnailUrl: string }</span>
+<a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a>
+<a id="__codelineno-2-20" name="__codelineno-2-20" href="#__codelineno-2-20"></a><span class="nx">POST</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="nx">api</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="nx">storage</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="nx">upload</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="nx">audio</span><span class="p">;</span>
+<a id="__codelineno-2-21" name="__codelineno-2-21" href="#__codelineno-2-21"></a><span class="c1">// Body: FormData com audio file</span>
+<a id="__codelineno-2-22" name="__codelineno-2-22" href="#__codelineno-2-22"></a><span class="c1">// Retorna: { url: string, duration: number, size: number }</span>
+</code></pre></div>
+<p><strong>Fluxo de processamento incremental (otimizado):</strong></p>
+<ol>
+<li>Frontend → Backend: Upload de Áudio 1 (background, não bloqueia UI)</li>
+<li>Backend → Whisper API: Transcreve APENAS Áudio 1 (10-15s)</li>
+<li>Backend → Cache: Armazena transcrição1 (Redis, TTL 24h)</li>
+<li>Backend → GPT-4: Análise usando contexto conversacional:
+   Mensagem 1: "Áudio 1: [transcrição1]"
+   GPT-4: Preenche formulário inicial</li>
+<li>Frontend: Preenche campos com animação</li>
+</ol>
+<p>[Técnico grava Áudio 2 complementar]</p>
+<ol>
+<li>Frontend → Backend: Upload de Áudio 2 (background)</li>
+<li>Backend → Whisper API: Transcreve APENAS Áudio 2 (10-15s, NÃO retranscreve Áudio 1)</li>
+<li>Backend → Cache: Armazena transcrição2</li>
+<li>Backend → GPT-4: Mescla usando CONTEXTO conversacional:
+   Mensagem 2: "Áudio 2 complementar: [transcrição2]" ← NÃO reenvia transcrição1
+   GPT-4: Atualiza formulário (conhece contexto anterior)</li>
+<li>Frontend: Atualiza campos alterados</li>
+</ol>
+<p>[Técnico grava Áudio 3]</p>
+<ol>
+<li>Repete processo (transcreve APENAS Áudio 3, LLM usa contexto)</li>
+</ol>
+<p><strong>Economia:</strong> 35-43% mais rápido, 60-70% menos tokens LLM</p>
+<p><strong>Validações backend obrigatórias:</strong></p>
+<ul>
+<li>Formato de áudio: mp3, wav, m4a, ogg (reject outros formatos)</li>
+<li>Tamanho de áudio: máx 50MB</li>
+<li>Duração de áudio: máx 10min</li>
+<li>Formato de imagem: jpg, jpeg, png (reject outros formatos)</li>
+<li>Tamanho de imagem: máx 5MB cada</li>
+<li>Quantidade de fotos: máx 10 por inspeção</li>
+</ul>
+<h4 id="acessibilidade-especifica">Acessibilidade Específica<a class="headerlink" href="#acessibilidade-especifica" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>Labels obrigatórios:</strong> Todos os FormField têm label explícito (não apenas placeholder)</li>
+<li><strong>Erro anunciado:</strong> Screen reader anuncia "Erro: Campo obrigatório" ao focar em campo com erro</li>
+<li><strong>Gravação acessível:</strong> Botão "Iniciar Gravação" com <code>aria-label="Iniciar gravação de áudio, pressione Enter"</code></li>
+<li><strong>Upload acessível:</strong> Input file oculto, botão personalizado com label descritivo</li>
+<li><strong>Radio group:</strong> <code>role="radiogroup"</code>, <code>aria-labelledby</code> apontando para label "Severidade"</li>
+<li><strong>Textarea com contador:</strong> <code>aria-describedby</code> apontando para contador "450 de 500 caracteres"</li>
+<li><strong>Footer fixed:</strong> Não sobrepõe conteúdo importante, sempre há padding-bottom no form</li>
+<li><strong>Focus management:</strong> Ao salvar com sucesso, anunciar "Inspeção criada, redirecionando para detalhes"</li>
+</ul>
+<hr />
+<h2 id="tela-4-editar-inspecao-existente">TELA 4: EDITAR INSPEÇÃO EXISTENTE<a class="headerlink" href="#tela-4-editar-inspecao-existente" title="Permanent link">&para;</a></h2>
+<h3 id="41-user-stories-implementadas">4.1 User Stories Implementadas<a class="headerlink" href="#41-user-stories-implementadas" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>US-03-001:</strong> Validar Completude de Dados do Relatório</li>
+<li>
+<p><em>Como supervisor de operações, quero que sistema detecte campos obrigatórios faltantes automaticamente, para garantir relatórios completos antes de aprovar.</em></p>
+</li>
+<li>
+<p><strong>US-02-002:</strong> Preencher Formulário Automaticamente com IA</p>
+</li>
+<li>
+<p><em>Como técnico de campo, quero que sistema preencha formulário automaticamente após transcrição, para eliminar trabalho manual de digitação.</em></p>
+</li>
+<li>
+<p><strong>US-02-003:</strong> Enriquecer Dados com Base de Conhecimento RAG</p>
+</li>
+<li><em>Como sistema de processamento, quero consultar base vetorizada específica da empresa, para preencher campos usando contexto e histórico.</em></li>
+</ul>
+<h3 id="42-wireframe-ascii-desktop">4.2 Wireframe ASCII (Desktop)<a class="headerlink" href="#42-wireframe-ascii-desktop" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>┌────────────────────────────────────────────────────────────────────────────────────┐
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>│ Header (64px, fixed top)                                                           │
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>│ [Logo VoiceCap] Dashboard  Inspeções  Relatórios  [🔍 Buscar...] 🔔³ João Silva▼  │
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>├────────────────────────────────────────────────────────────────────────────────────┤
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>│                                                                                    │
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>│                  ┌───────────────────────────────────────────────────┐            │
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>│                  │ Breadcrumb: Home &gt; Inspeções &gt; #1234 &gt; Editar     │            │
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>│                  ├───────────────────────────────────────────────────┤            │
+<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>│                  │ Heading1: Editar Inspeção #1234                   │            │
+<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>│                  │ Badge: 🟡 Pendente | Completude: ███░░ 60%        │            │
+<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>│                  ├───────────────────────────────────────────────────┤            │
+<a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a>│                  │                                                   │            │
+<a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a>│                  │ ┌───────────────────────────────────────────────┐│            │
+<a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a>│                  │ │ Card: Informações de Auditoria                ││            │
+<a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a>│                  │ │ Criado por: João Silva em 02/02/2026 14:30   ││            │
+<a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a>│                  │ │ Última edição: Maria Costa em 02/02/2026 16:45││            │
+<a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a>│                  │ │ Histórico: [Ver 3 alterações →]               ││            │
+<a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a>│                  │ └───────────────────────────────────────────────┘│            │
+<a id="__codelineno-3-19" name="__codelineno-3-19" href="#__codelineno-3-19"></a>│                  │                                  spacing.lg (24px)│            │
+<a id="__codelineno-3-20" name="__codelineno-3-20" href="#__codelineno-3-20"></a>│                  │ ┌───────────────────────────────────────────────┐│            │
+<a id="__codelineno-3-21" name="__codelineno-3-21" href="#__codelineno-3-21"></a>│                  │ │ Card: Áudio Original                          ││            │
+<a id="__codelineno-3-22" name="__codelineno-3-22" href="#__codelineno-3-22"></a>│                  │ │ ┌───────────────────────────────────────────┐ ││            │
+<a id="__codelineno-3-23" name="__codelineno-3-23" href="#__codelineno-3-23"></a>│                  │ │ │ 🔊 Áudio gravado em 02/02/2026 14:30      │ ││            │
+<a id="__codelineno-3-24" name="__codelineno-3-24" href="#__codelineno-3-24"></a>│                  │ │ │ Duração: 02:35 | Tamanho: 2.4 MB          │ ││            │
+<a id="__codelineno-3-25" name="__codelineno-3-25" href="#__codelineno-3-25"></a>│                  │ │ │ [▶️ Reproduzir] [📥 Baixar] [🔄 Reprocessar]││            │
+<a id="__codelineno-3-26" name="__codelineno-3-26" href="#__codelineno-3-26"></a>│                  │ │ │                                           │ ││            │
+<a id="__codelineno-3-27" name="__codelineno-3-27" href="#__codelineno-3-27"></a>│                  │ │ │ Status: ✅ Processado com sucesso         │ ││            │
+<a id="__codelineno-3-28" name="__codelineno-3-28" href="#__codelineno-3-28"></a>│                  │ │ └───────────────────────────────────────────┘ ││            │
+<a id="__codelineno-3-29" name="__codelineno-3-29" href="#__codelineno-3-29"></a>│                  │ └───────────────────────────────────────────────┘│            │
+<a id="__codelineno-3-30" name="__codelineno-3-30" href="#__codelineno-3-30"></a>│                  │                                  spacing.lg (24px)│            │
+<a id="__codelineno-3-31" name="__codelineno-3-31" href="#__codelineno-3-31"></a>│                  │ FormField: Tipo de Inspeção *                     │            │
+<a id="__codelineno-3-32" name="__codelineno-3-32" href="#__codelineno-3-32"></a>│                  │ [Preventiva ▼] ✨ Preenchido por IA              │            │
+<a id="__codelineno-3-33" name="__codelineno-3-33" href="#__codelineno-3-33"></a>│                  │                                  spacing.md (16px)│            │
+<a id="__codelineno-3-34" name="__codelineno-3-34" href="#__codelineno-3-34"></a>│                  │ FormField: Objeto Inspecionado *                  │            │
+<a id="__codelineno-3-35" name="__codelineno-3-35" href="#__codelineno-3-35"></a>│                  │ [Poste de Concreto ▼]                             │            │
+<a id="__codelineno-3-36" name="__codelineno-3-36" href="#__codelineno-3-36"></a>│                  │                                  spacing.md (16px)│            │
+<a id="__codelineno-3-37" name="__codelineno-3-37" href="#__codelineno-3-37"></a>│                  │ FormField: Localização * ⚠️                       │            │
+<a id="__codelineno-3-38" name="__codelineno-3-38" href="#__codelineno-3-38"></a>│                  │ [_____________________________________]            │            │
+<a id="__codelineno-3-39" name="__codelineno-3-39" href="#__codelineno-3-39"></a>│                  │ Error: Campo obrigatório não preenchido           │            │
+<a id="__codelineno-3-40" name="__codelineno-3-40" href="#__codelineno-3-40"></a>│                  │                                  spacing.md (16px)│            │
+<a id="__codelineno-3-41" name="__codelineno-3-41" href="#__codelineno-3-41"></a>│                  │ FormField: Severidade *                           │            │
+<a id="__codelineno-3-42" name="__codelineno-3-42" href="#__codelineno-3-42"></a>│                  │ [○ Baixa  ○ Média  ● Alta  ○ Crítica]            │            │
+<a id="__codelineno-3-43" name="__codelineno-3-43" href="#__codelineno-3-43"></a>│                  │                                  spacing.md (16px)│            │
+<a id="__codelineno-3-44" name="__codelineno-3-44" href="#__codelineno-3-44"></a>│                  │ FormField: Descrição do Problema *                │            │
+<a id="__codelineno-3-45" name="__codelineno-3-45" href="#__codelineno-3-45"></a>│                  │ [Poste apresenta rachadura na base...         ]   │            │
+<a id="__codelineno-3-46" name="__codelineno-3-46" href="#__codelineno-3-46"></a>│                  │ [Necessário verificar estrutura interna...    ]   │            │
+<a id="__codelineno-3-47" name="__codelineno-3-47" href="#__codelineno-3-47"></a>│                  │ [                                             ]   │            │
+<a id="__codelineno-3-48" name="__codelineno-3-48" href="#__codelineno-3-48"></a>│                  │ Hint: 280/500 caracteres                          │            │
+<a id="__codelineno-3-49" name="__codelineno-3-49" href="#__codelineno-3-49"></a>│                  │                                  spacing.md (16px)│            │
+<a id="__codelineno-3-50" name="__codelineno-3-50" href="#__codelineno-3-50"></a>│                  │ FormField: Ações Recomendadas                     │            │
+<a id="__codelineno-3-51" name="__codelineno-3-51" href="#__codelineno-3-51"></a>│                  │ [Solicitar avaliação estrutural...            ]   │            │
+<a id="__codelineno-3-52" name="__codelineno-3-52" href="#__codelineno-3-52"></a>│                  │ [Considerar substituição se dano exceder 30%  ]   │            │
+<a id="__codelineno-3-53" name="__codelineno-3-53" href="#__codelineno-3-53"></a>│                  │ Hint: 95 caracteres (opcional)                    │            │
+<a id="__codelineno-3-54" name="__codelineno-3-54" href="#__codelineno-3-54"></a>│                  │                                  spacing.md (16px)│            │
+<a id="__codelineno-3-55" name="__codelineno-3-55" href="#__codelineno-3-55"></a>│                  │ FormField: Fotos                                  │            │
+<a id="__codelineno-3-56" name="__codelineno-3-56" href="#__codelineno-3-56"></a>│                  │ ┌──────────┐ ┌──────────┐ ┌──────────┐           │            │
+<a id="__codelineno-3-57" name="__codelineno-3-57" href="#__codelineno-3-57"></a>│                  │ │[Foto 1]  │ │[Foto 2]  │ │ [+ Add]  │           │            │
+<a id="__codelineno-3-58" name="__codelineno-3-58" href="#__codelineno-3-58"></a>│                  │ │  × Remov │ │  × Remov │ │  Foto    │           │            │
+<a id="__codelineno-3-59" name="__codelineno-3-59" href="#__codelineno-3-59"></a>│                  │ └──────────┘ └──────────┘ └──────────┘           │            │
+<a id="__codelineno-3-60" name="__codelineno-3-60" href="#__codelineno-3-60"></a>│                  │ Hint: 2 de 10 fotos | Adicionar mais?            │            │
+<a id="__codelineno-3-61" name="__codelineno-3-61" href="#__codelineno-3-61"></a>│                  │                                  spacing.md (16px)│            │
+<a id="__codelineno-3-62" name="__codelineno-3-62" href="#__codelineno-3-62"></a>│                  │ FormField: Técnico Responsável *                  │            │
+<a id="__codelineno-3-63" name="__codelineno-3-63" href="#__codelineno-3-63"></a>│                  │ [João Silva ▼]                                    │            │
+<a id="__codelineno-3-64" name="__codelineno-3-64" href="#__codelineno-3-64"></a>│                  │   Atribuído: 02/02/2026                           │            │
+<a id="__codelineno-3-65" name="__codelineno-3-65" href="#__codelineno-3-65"></a>│                  │                                  spacing.md (16px)│            │
+<a id="__codelineno-3-66" name="__codelineno-3-66" href="#__codelineno-3-66"></a>│                  │ FormField: Equipamentos Afetados                  │            │
+<a id="__codelineno-3-67" name="__codelineno-3-67" href="#__codelineno-3-67"></a>│                  │ [___________________] [+ Adicionar Equipamento]   │            │
+<a id="__codelineno-3-68" name="__codelineno-3-68" href="#__codelineno-3-68"></a>│                  │ • Transformador T-4523 (associado)                │            │
+<a id="__codelineno-3-69" name="__codelineno-3-69" href="#__codelineno-3-69"></a>│                  │                                                   │            │
+<a id="__codelineno-3-70" name="__codelineno-3-70" href="#__codelineno-3-70"></a>│                  │ ┌───────────────────────────────────────────────┐│            │
+<a id="__codelineno-3-71" name="__codelineno-3-71" href="#__codelineno-3-71"></a>│                  │ │ Card: Campos Faltantes para Completude        ││            │
+<a id="__codelineno-3-72" name="__codelineno-3-72" href="#__codelineno-3-72"></a>│                  │ │ ⚠️ Esta inspeção está 60% completa             ││            │
+<a id="__codelineno-3-73" name="__codelineno-3-73" href="#__codelineno-3-73"></a>│                  │ │ Campos obrigatórios faltando:                 ││            │
+<a id="__codelineno-3-74" name="__codelineno-3-74" href="#__codelineno-3-74"></a>│                  │ │ • Localização (obrigatório)                   ││            │
+<a id="__codelineno-3-75" name="__codelineno-3-75" href="#__codelineno-3-75"></a>│                  │ │ Campos opcionais sugeridos:                   ││            │
+<a id="__codelineno-3-76" name="__codelineno-3-76" href="#__codelineno-3-76"></a>│                  │ │ • Equipamentos Afetados                       ││            │
+<a id="__codelineno-3-77" name="__codelineno-3-77" href="#__codelineno-3-77"></a>│                  │ │ • Fotos adicionais (min 3 recomendado)        ││            │
+<a id="__codelineno-3-78" name="__codelineno-3-78" href="#__codelineno-3-78"></a>│                  │ │ [Preencher campos faltantes ↑]                ││            │
+<a id="__codelineno-3-79" name="__codelineno-3-79" href="#__codelineno-3-79"></a>│                  │ └───────────────────────────────────────────────┘│            │
+<a id="__codelineno-3-80" name="__codelineno-3-80" href="#__codelineno-3-80"></a>│                  │                                                   │            │
+<a id="__codelineno-3-81" name="__codelineno-3-81" href="#__codelineno-3-81"></a>│                  │                                  spacing.xxl (48px│            │
+<a id="__codelineno-3-82" name="__codelineno-3-82" href="#__codelineno-3-82"></a>│                  └───────────────────────────────────────────────────┘            │
+<a id="__codelineno-3-83" name="__codelineno-3-83" href="#__codelineno-3-83"></a>│                                                                                    │
+<a id="__codelineno-3-84" name="__codelineno-3-84" href="#__codelineno-3-84"></a>├────────────────────────────────────────────────────────────────────────────────────┤
+<a id="__codelineno-3-85" name="__codelineno-3-85" href="#__codelineno-3-85"></a>│ Footer (fixed bottom, 72px height, shadow-lg, background white)                   │
+<a id="__codelineno-3-86" name="__codelineno-3-86" href="#__codelineno-3-86"></a>│ [Cancelar] [Excluir Inspeção]              [💾 Salvar] [Salvar e Aprovar]         │
+<a id="__codelineno-3-87" name="__codelineno-3-87" href="#__codelineno-3-87"></a>└────────────────────────────────────────────────────────────────────────────────────┘
+<a id="__codelineno-3-88" name="__codelineno-3-88" href="#__codelineno-3-88"></a>  ↑           ↑                                   ↑           ↑
+<a id="__codelineno-3-89" name="__codelineno-3-89" href="#__codelineno-3-89"></a>  Outline    Danger (red.500)              Secondary (teal) Primary (green)
+</code></pre></div>
+<p><strong>Dimensões:</strong></p>
+<ul>
+<li>Idênticas à Tela 3 (Criar), com adições:</li>
+<li>Card de Auditoria: width 100%, padding spacing.md (16px)</li>
+<li>Card de Áudio: width 100%, padding spacing.md (16px)</li>
+<li>Card de Campos Faltantes: width 100%, background warning.50, border warning.500</li>
+<li>Badge de Completude: inline no header (60% = amarelo, 100% = verde)</li>
+</ul>
+<h3 id="43-componentes-usados">4.3 Componentes Usados<a class="headerlink" href="#43-componentes-usados" title="Permanent link">&para;</a></h3>
+<h4 id="template_1">Template<a class="headerlink" href="#template_1" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>FormTemplate</strong> - Layout com Header + Form centralizado + Footer fixed</li>
+</ul>
+<h4 id="organismos_1">Organismos<a class="headerlink" href="#organismos_1" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>Header</strong> - Navegação global</li>
+</ul>
+<h4 id="moleculas_1">Moléculas<a class="headerlink" href="#moleculas_1" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>Card</strong> (variantes: elevated, warning) - 3 cards:</li>
+<li>Informações de Auditoria</li>
+<li>Áudio Original</li>
+<li>Campos Faltantes para Completude (variante warning)</li>
+<li><strong>FormField</strong> - Mesmos 9 campos da Tela 3, mas pré-preenchidos</li>
+<li><strong>StatusBadge</strong> - Badge de status da inspeção (🟡 Pendente)</li>
+</ul>
+<h4 id="atomos_1">Átomos<a class="headerlink" href="#atomos_1" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>Button</strong> (variantes: primary, secondary, outline, danger)</li>
+<li>Primary: "Salvar e Aprovar" (valida 100% completude antes)</li>
+<li>Secondary: "💾 Salvar" (salva sem aprovar)</li>
+<li>Outline: "Cancelar"</li>
+<li>Danger: "Excluir Inspeção" (confirmação modal)</li>
+<li>Secondary: "🔄 Reprocessar" (no card de áudio)</li>
+<li>Ghost: "▶️ Reproduzir", "📥 Baixar"</li>
+<li><strong>Input</strong> - Campos de texto pré-preenchidos</li>
+<li><strong>Icon</strong> - Ícones diversos (✨, ⚠️, 🔊, ✅)</li>
+<li><strong>Badge</strong> - Badge de completude (60%), ícone ✨ (preenchido por IA)</li>
+</ul>
+<h3 id="44-estados-da-tela">4.4 Estados da Tela<a class="headerlink" href="#44-estados-da-tela" title="Permanent link">&para;</a></h3>
+<h4 id="loading_1">Loading<a class="headerlink" href="#loading_1" title="Permanent link">&para;</a></h4>
+<p><strong>Cenário 1: Loading inicial (carregar inspeção existente)</strong></p>
+<p><strong>Comportamento:</strong></p>
+<ul>
+<li>Header carrega imediatamente</li>
+<li>Form mostra skeleton completo:</li>
+<li>Cards de Auditoria e Áudio: retângulos cinzas animados</li>
+<li>Todos os FormField: skeleton nos inputs (retângulos cinzas)</li>
+<li>Footer: botões disabled</li>
+<li>Após carregar dados:</li>
+<li>Fade-in suave dos dados reais</li>
+<li>Focus automático no primeiro campo vazio ou com erro</li>
+</ul>
+<p><strong>Tempo estimado:</strong> 500-800ms (carregar inspeção do backend)</p>
+<p><strong>Cenário 2: Reprocessando áudio</strong></p>
+<p><strong>Comportamento:</strong></p>
+<ul>
+<li>Card de Áudio mostra:</li>
+<li>Spinner azul rotativo</li>
+<li>Texto: "Reprocessando áudio... Isso pode atualizar campos preenchidos anteriormente."</li>
+<li>Progress bar: 0% → 100%</li>
+<li>Form fields ficam readonly temporariamente</li>
+<li>Após conclusão:</li>
+<li>Toast verde: "✅ Áudio reprocessado! Verifique os campos atualizados."</li>
+<li>Campos atualizados com highlight amarelo</li>
+<li>Diff visual: valores antigos → novos (opcional)</li>
+</ul>
+<p><strong>Tempo estimado:</strong> 10-20s (igual à Tela 3)</p>
+<p><strong>Cenário 3: Salvando alterações</strong></p>
+<p><strong>Comportamento:</strong></p>
+<ul>
+<li>Botão clicado ("Salvar" ou "Salvar e Aprovar") muda para loading:</li>
+<li>Spinner branco rotativo</li>
+<li>Texto: "Salvando..." ou "Aprovando..."</li>
+<li>Demais botões disabled</li>
+<li>Form readonly</li>
+<li>Após conclusão:</li>
+<li>Toast verde: "✅ Inspeção atualizada com sucesso!"</li>
+<li>Se "Salvar e Aprovar": toast adicional "🟢 Inspeção aprovada!"</li>
+<li>Redireciona para tela de Detalhes</li>
+</ul>
+<p><strong>Tempo estimado:</strong> 1-2s (update no banco + re-upload de fotos se houver novas)</p>
+<h4 id="error_1">Error<a class="headerlink" href="#error_1" title="Permanent link">&para;</a></h4>
+<p><strong>Cenário 1: Erro de validação (campos obrigatórios faltando)</strong></p>
+<p><strong>Comportamento:</strong></p>
+<ul>
+<li>Idêntico à Tela 3</li>
+<li>Adicional: Card de "Campos Faltantes" pisca em vermelho (animação attention)</li>
+<li>Scroll automático para primeiro campo com erro</li>
+</ul>
+<p><strong>Cenário 2: Erro ao reprocessar áudio</strong></p>
+<p><strong>Comportamento:</strong></p>
+<ul>
+<li>Card de Áudio mostra:</li>
+<li>Ícone ⚠️ vermelho</li>
+<li>Texto: "Erro ao reprocessar áudio"</li>
+<li>Botão: "Tentar novamente"</li>
+<li>Dados do form preservados (não sobrescritos)</li>
+</ul>
+<p><strong>Cenário 3: Erro ao salvar</strong></p>
+<p><strong>Comportamento:</strong></p>
+<ul>
+<li>Toast vermelho: "❌ Erro ao salvar alterações. Tente novamente."</li>
+<li>Se erro de concorrência (outro usuário editou simultaneamente):</li>
+<li>Modal: "Conflito de Edição"</li>
+<li>"Esta inspeção foi editada por [Nome] há 2 minutos. Deseja:"</li>
+<li>Buttons:<ul>
+<li>"Ver versão atual" (recarrega dados)</li>
+<li>"Sobrescrever" (salva suas alterações, perde alterações do outro)</li>
+<li>"Cancelar" (permanece na tela)</li>
+</ul>
+</li>
+</ul>
+<p><strong>Cenário 4: Erro ao aprovar (inspeção incompleta)</strong></p>
+<p><strong>Comportamento:</strong></p>
+<ul>
+<li>Ao clicar "Salvar e Aprovar" com completude &lt;100%:</li>
+<li>Modal de erro:<ul>
+<li>Heading: "Não é possível aprovar inspeção incompleta"</li>
+<li>Body: "Complete os seguintes campos obrigatórios antes de aprovar:"</li>
+<li>Lista: Campos faltantes (linkados, clicar scrolla para o campo)</li>
+<li>Button Primary: "Entendi"</li>
+</ul>
+</li>
+<li>Card de "Campos Faltantes" pisca em amarelo (animação attention)</li>
+</ul>
+<h4 id="empty_1">Empty<a class="headerlink" href="#empty_1" title="Permanent link">&para;</a></h4>
+<p><strong>Não aplicável para tela de edição</strong> (sempre há dados pré-existentes para editar)</p>
+<h3 id="45-interacoes-do-usuario">4.5 Interações do Usuário<a class="headerlink" href="#45-interacoes-do-usuario" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>Clicar em "▶️ Reproduzir" (áudio)</strong> →</li>
+<li>
+<p>Abre modal com player de áudio:</p>
+<ul>
+<li>Waveform visual interativo</li>
+<li>Controles: play/pause, seek, volume, velocidade (0.5x, 1x, 1.5x, 2x)</li>
+<li>Timeline: "00:35 / 02:35"</li>
+<li>Transcrição completa abaixo do player (scrollable)</li>
+<li>Botão: "Fechar" (Esc também fecha)</li>
+</ul>
+</li>
+<li>
+<p><strong>Clicar em "📥 Baixar" (áudio)</strong> →</p>
+</li>
+<li>Download direto do áudio original (formato preservado)</li>
+<li>
+<p>Nome do arquivo: <code>inspecao-1234-audio-02-02-2026.mp3</code></p>
+</li>
+<li>
+<p><strong>Clicar em "🔄 Reprocessar" (áudio)</strong> →</p>
+</li>
+<li>Modal de confirmação:<ul>
+<li>"Reprocessar áudio?"</li>
+<li>"Isso pode alterar os campos preenchidos anteriormente. Alterações atuais serão preservadas."</li>
+<li>Checkbox: "Sobrescrever campos manualmente editados" (default: false)</li>
+<li>Buttons: "Cancelar", "Reprocessar"</li>
+</ul>
+</li>
+<li>
+<p>Após confirmar: inicia reprocessamento (loading state)</p>
+</li>
+<li>
+<p><strong>Clicar em "Ver 3 alterações →" (histórico)</strong> →</p>
+</li>
+<li>
+<p>Abre modal com histórico de edições:</p>
+<ul>
+<li>Timeline vertical com cards de cada alteração:</li>
+<li>Data/hora</li>
+<li>Usuário</li>
+<li>Campos alterados (diff: valor antigo → novo)</li>
+<li>Ação (criou, editou, aprovou, rejeitou)</li>
+<li>Botão: "Restaurar versão anterior" (admin only)</li>
+</ul>
+</li>
+<li>
+<p><strong>Editar qualquer campo</strong> →</p>
+</li>
+<li>Remove ícone ✨ (se campo foi preenchido por IA)</li>
+<li>Adiciona indicador "✏️ Editado manualmente"</li>
+<li>Atualiza completude em tempo real (se campo obrigatório)</li>
+<li>
+<p>Remove error state se campo estava com erro</p>
+</li>
+<li>
+<p><strong>Clicar em "Preencher campos faltantes ↑"</strong> →</p>
+</li>
+<li>Scroll automático + focus no primeiro campo faltante</li>
+<li>
+<p>Animação de highlight no campo (flash amarelo)</p>
+</li>
+<li>
+<p><strong>Clicar em "Cancelar"</strong> →</p>
+</li>
+<li>Detecta se houve alterações (dirty state)</li>
+<li>Se houver alterações:<ul>
+<li>Modal: "Descartar alterações?"</li>
+<li>"Você tem alterações não salvas. Deseja sair sem salvar?"</li>
+<li>Buttons: "Descartar", "Salvar", "Continuar Editando"</li>
+</ul>
+</li>
+<li>
+<p>Se não houver: navega direto para <code>/inspecoes/{id}</code> (detalhes)</p>
+</li>
+<li>
+<p><strong>Clicar em "Excluir Inspeção"</strong> →</p>
+</li>
+<li>Modal de confirmação destrutiva:<ul>
+<li>Heading: "EXCLUIR INSPEÇÃO #1234?"</li>
+<li>Body: "Esta ação é IRREVERSÍVEL. A inspeção, fotos e áudio serão permanentemente excluídos."</li>
+<li>Input: "Digite 'EXCLUIR' para confirmar" (required)</li>
+<li>Buttons: "Cancelar", "Sim, excluir" (danger, disabled até digitar "EXCLUIR")</li>
+</ul>
+</li>
+<li>
+<p>Após confirmar:</p>
+<ul>
+<li>Loading state</li>
+<li>Toast: "✅ Inspeção excluída com sucesso"</li>
+<li>Redireciona para listagem</li>
+</ul>
+</li>
+<li>
+<p><strong>Clicar em "💾 Salvar"</strong> →</p>
+</li>
+<li>Valida apenas campos obrigatórios (não exige 100% completude)</li>
+<li>Se válido:<ul>
+<li>Loading state</li>
+<li>Salva alterações</li>
+<li>Atualiza card de Auditoria (nova "última edição")</li>
+<li>Toast: "✅ Alterações salvas"</li>
+<li>Redireciona para detalhes OU permanece na tela (opção do usuário)</li>
+</ul>
+</li>
+<li>
+<p>Se inválido:</p>
+<ul>
+<li>Mostra erros</li>
+<li>Scroll para primeiro erro</li>
+</ul>
+</li>
+<li>
+<p><strong>Clicar em "Salvar e Aprovar"</strong> →</p>
+<ul>
+<li>Valida completude 100% (não permite aprovar se incompleto)</li>
+<li>Se completude &lt;100%:</li>
+<li>Modal de erro (descrito em "Error &gt; Cenário 4")</li>
+<li>Se completude 100%:</li>
+<li>Loading state</li>
+<li>Salva + muda status para "aprovado"</li>
+<li>Toast: "✅ Inspeção aprovada com sucesso!"</li>
+<li>Redireciona para detalhes (badge muda para 🟢 Aprovado)</li>
+</ul>
+</li>
+<li>
+<p><strong>Hover em campo com ícone ✨</strong> →</p>
+<ul>
+<li>Tooltip: "Preenchido automaticamente pela IA em 02/02/2026 14:30"</li>
+</ul>
+</li>
+<li>
+<p><strong>Hover em campo com erro ⚠️</strong> →</p>
+<ul>
+<li>Tooltip: "Campo obrigatório faltando. Completude atual: 60%"</li>
+</ul>
+</li>
+<li>
+<p><strong>Alterar campo obrigatório faltante</strong> →</p>
+<ul>
+<li>Progress bar de completude atualiza em tempo real (60% → 70%)</li>
+<li>Card de "Campos Faltantes" atualiza lista (remove campo preenchido)</li>
+<li>Se atingir 100%: card muda para 🟢 "Inspeção completa! Pronta para aprovação"</li>
+</ul>
+</li>
+<li>
+<p><strong>Pressionar Ctrl+S (atalho)</strong> →</p>
+<ul>
+<li>Aciona ação "Salvar"</li>
+</ul>
+</li>
+<li>
+<p><strong>Pressionar Ctrl+Enter (atalho)</strong> →</p>
+<ul>
+<li>Aciona ação "Salvar e Aprovar"</li>
+</ul>
+</li>
+</ol>
+<h3 id="46-responsividade-desktop">4.6 Responsividade (Desktop)<a class="headerlink" href="#46-responsividade-desktop" title="Permanent link">&para;</a></h3>
+<p><strong>Idêntica à Tela 3 (Criar Nova Inspeção)</strong>, com adições:</p>
+<h4 id="19201080-desktop-grande_1">1920×1080 (Desktop Grande)<a class="headerlink" href="#19201080-desktop-grande_1" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Cards de Auditoria e Áudio: width 100% do container</li>
+<li>Botões do footer: 4 botões em linha ("Cancelar", "Excluir", "Salvar", "Salvar e Aprovar")</li>
+</ul>
+<h4 id="1366768-laptop-padrao_1">1366×768 (Laptop Padrão)<a class="headerlink" href="#1366768-laptop-padrao_1" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Cards mantêm layout</li>
+<li>Botões do footer: ligeiramente compactados, mantêm em linha</li>
+</ul>
+<h4 id="1024768-tablet-landscape_1">1024×768 (Tablet Landscape)<a class="headerlink" href="#1024768-tablet-landscape_1" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Footer não fixed (relative)</li>
+<li>Botões empilham verticalmente:</li>
+<li>"Salvar e Aprovar" (topo, primary)</li>
+<li>"Salvar" (secondary)</li>
+<li>"Excluir Inspeção" (danger)</li>
+<li>"Cancelar" (outline, base)</li>
+</ul>
+<h3 id="47-notas-de-implementacao">4.7 Notas de Implementação<a class="headerlink" href="#47-notas-de-implementacao" title="Permanent link">&para;</a></h3>
+<h4 id="tecnologias-especificas_1">Tecnologias Específicas<a class="headerlink" href="#tecnologias-especificas_1" title="Permanent link">&para;</a></h4>
+<p><strong>Adicionais à Tela 3:</strong></p>
+<ul>
+<li><strong>WebSocket:</strong> Real-time notifications de edições concorrentes (outro usuário editando simultaneamente)</li>
+<li><strong>Diff algorithm:</strong> Mostrar alterações no histórico (diff de valores antigos vs novos)</li>
+<li><strong>Audio player:</strong> Wavesurfer.js ou similar para visualização de waveform</li>
+</ul>
+<h4 id="otimizacoes-de-performance_1">Otimizações de Performance<a class="headerlink" href="#otimizacoes-de-performance_1" title="Permanent link">&para;</a></h4>
+<p><strong>Adicionais à Tela 3:</strong></p>
+<ul>
+<li><strong>Optimistic updates:</strong> Atualizar UI imediatamente ao salvar, reverter se erro</li>
+<li><strong>Autosave drafts:</strong> Salvar alterações localmente a cada 30s (localStorage)</li>
+<li><strong>Conflict detection:</strong> Verificar timestamp de "última edição" antes de salvar (evitar overwrite acidental)</li>
+<li><strong>Lazy load do histórico:</strong> Carregar histórico de edições apenas ao abrir modal</li>
+</ul>
+<h4 id="integracoes-com-backend_1">Integrações com Backend<a class="headerlink" href="#integracoes-com-backend_1" title="Permanent link">&para;</a></h4>
+<p><strong>Endpoints necessários:</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nx">GET</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="nx">api</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="nx">inspections</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">id</span><span class="w"> </span><span class="p">};</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="c1">// Retorna: Inspection completa com auditoria, áudio, fotos, equipamentos</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="nx">GET</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="nx">api</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="nx">inspections</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">id</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="nx">history</span><span class="p">;</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="c1">// Retorna: { edits: Edit[], total: number }</span>
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="c1">// Edit: { timestamp, user, changes: { field, oldValue, newValue }[], action }</span>
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="nx">PUT</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="nx">api</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="nx">inspections</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">id</span><span class="w"> </span><span class="p">};</span>
+<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="c1">// Body: Partial&lt;Inspection&gt; com lastEditedAt (para conflict detection)</span>
+<a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a><span class="c1">// Retorna: { id, updatedAt, completeness: number }</span>
+<a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a>
+<a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a><span class="nx">POST</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="nx">api</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="nx">inspections</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">id</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="nx">approve</span><span class="p">;</span>
+<a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a><span class="c1">// Body: { userId, timestamp }</span>
+<a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a><span class="c1">// Retorna: { id, status: &#39;approved&#39;, approvedAt, approvedBy }</span>
+<a id="__codelineno-4-15" name="__codelineno-4-15" href="#__codelineno-4-15"></a>
+<a id="__codelineno-4-16" name="__codelineno-4-16" href="#__codelineno-4-16"></a><span class="nx">DELETE</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="nx">api</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="nx">inspections</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">id</span><span class="w"> </span><span class="p">};</span>
+<a id="__codelineno-4-17" name="__codelineno-4-17" href="#__codelineno-4-17"></a><span class="c1">// Query: ?deleteAudios=true</span>
+<a id="__codelineno-4-18" name="__codelineno-4-18" href="#__codelineno-4-18"></a><span class="c1">// Retorna: { deleted: true, audioDeleted: true }</span>
+<a id="__codelineno-4-19" name="__codelineno-4-19" href="#__codelineno-4-19"></a>
+<a id="__codelineno-4-20" name="__codelineno-4-20" href="#__codelineno-4-20"></a><span class="nx">POST</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="nx">api</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="nx">inspections</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">id</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="nx">audio</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="nx">reprocess</span><span class="p">;</span>
+<a id="__codelineno-4-21" name="__codelineno-4-21" href="#__codelineno-4-21"></a><span class="c1">// Body: { overwriteManualEdits: boolean }</span>
+<a id="__codelineno-4-22" name="__codelineno-4-22" href="#__codelineno-4-22"></a><span class="c1">// Retorna: { transcription, analysis: {...}, updatedFields: string[] }</span>
+<a id="__codelineno-4-23" name="__codelineno-4-23" href="#__codelineno-4-23"></a>
+<a id="__codelineno-4-24" name="__codelineno-4-24" href="#__codelineno-4-24"></a><span class="nx">GET</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="nx">api</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="nx">inspections</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">id</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="nx">completeness</span><span class="p">;</span>
+<a id="__codelineno-4-25" name="__codelineno-4-25" href="#__codelineno-4-25"></a><span class="c1">// Retorna: { percentage: 60, missingRequired: string[], missingSuggested: string[] }</span>
+</code></pre></div>
+<p><strong>Validações backend obrigatórias:</strong></p>
+<ul>
+<li><strong>Conflict detection:</strong> Comparar <code>lastEditedAt</code> do client vs server antes de salvar</li>
+<li><strong>Approval validation:</strong> Não permitir aprovar inspeção com completude &lt;100%</li>
+<li><strong>Permission check:</strong> Apenas admin pode excluir ou restaurar versões antigas</li>
+<li><strong>Audit log:</strong> Registrar TODAS as alterações (quem, quando, o quê) para compliance</li>
+</ul>
+<h4 id="acessibilidade-especifica_1">Acessibilidade Específica<a class="headerlink" href="#acessibilidade-especifica_1" title="Permanent link">&para;</a></h4>
+<p><strong>Adicionais à Tela 3:</strong></p>
+<ul>
+<li><strong>Progress bar de completude:</strong> <code>role="progressbar"</code>, <code>aria-valuenow="60"</code>, <code>aria-label="Completude da inspeção: 60%"</code></li>
+<li><strong>Card de Campos Faltantes:</strong> <code>role="alert"</code>, anunciado automaticamente ao carregar tela</li>
+<li><strong>Histórico de edições:</strong> Timeline navegável via teclado (Tab entre cards, Enter para expandir detalhes)</li>
+<li><strong>Modal de conflito:</strong> Focus trap, anunciar "Conflito de edição detectado" ao abrir</li>
+<li><strong>Diff de valores:</strong> Valores antigos e novos anunciados claramente ("Campo X alterado de Y para Z")</li>
+</ul>
+<hr />
+<h2 id="resumo-da-parte-2">RESUMO DA PARTE 2<a class="headerlink" href="#resumo-da-parte-2" title="Permanent link">&para;</a></h2>
+<h3 id="telas-desktop-criadas">Telas Desktop Criadas<a class="headerlink" href="#telas-desktop-criadas" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Total nesta parte:</strong> 2 telas desktop</li>
+<li><strong>Templates usados:</strong> FormTemplate (2 telas)</li>
+<li><strong>Organismos usados:</strong> Header (ambas telas)</li>
+</ul>
+<h3 id="componentes-reutilizados">Componentes Reutilizados<a class="headerlink" href="#componentes-reutilizados" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Átomos:</strong> Button (5 variantes), Input, Icon, Badge</li>
+<li><strong>Moléculas:</strong> Card (elevated, warning), FormField (9 tipos diferentes), StatusBadge</li>
+<li><strong>Organismos:</strong> Header</li>
+<li><strong>Templates:</strong> FormTemplate (Header + Form centralizado + Footer fixed/relative)</li>
+</ul>
+<h3 id="diferenciais-entre-telas-3-e-4">Diferenciais entre Telas 3 e 4<a class="headerlink" href="#diferenciais-entre-telas-3-e-4" title="Permanent link">&para;</a></h3>
+<p><strong>Tela 3 (Criar):</strong></p>
+<ul>
+<li>Form vazio (exceto campo auto-preenchido)</li>
+<li>Card de Gravação de Áudio (novo)</li>
+<li>Footer com 3 botões (Cancelar, Salvar Rascunho, Criar)</li>
+<li>Foco em captura de dados pela primeira vez</li>
+</ul>
+<p><strong>Tela 4 (Editar):</strong></p>
+<ul>
+<li>Form pré-preenchido com dados existentes</li>
+<li>Cards de Auditoria + Áudio Original + Campos Faltantes</li>
+<li>Footer com 4 botões (Cancelar, Excluir, Salvar, Salvar e Aprovar)</li>
+<li>Foco em validação de completude e aprovação</li>
+<li>Histórico de edições e conflict detection</li>
+</ul>
+<h3 id="proximos-passos">Próximos Passos<a class="headerlink" href="#proximos-passos" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Arquivo 3/3 (DONE_4_06_03_telas_detalhes_validacao.md):</strong> Tela de detalhes da inspeção com tabs + seções consolidadas (rastreabilidade, resumo, auto-validação)</li>
+</ul>
+<hr />
+<p><strong>Última atualização:</strong> 2026-02-03
+<strong>Versão:</strong> 1.0
+<strong>Status desta parte:</strong> ✅ COMPLETO</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Voltar para o topo
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Rodapé" >
+        
+          
+          <a href="../DONE_4_06_01_telas_dashboard_listagem/" class="md-footer__link md-footer__link--prev" aria-label="Anterior: [75] CONVERSA 06: TELAS DESKTOP - WIREFRAMES DE ALTA FIDELIDADE (PARTE 1/3)">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Anterior
+              </span>
+              <div class="md-ellipsis">
+                [75] CONVERSA 06: TELAS DESKTOP - WIREFRAMES DE ALTA FIDELIDADE (PARTE 1/3)
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../DONE_4_06_03_telas_detalhes_validacao/" class="md-footer__link md-footer__link--next" aria-label="Próximo: [77] CONVERSA 06: TELAS DESKTOP - WIREFRAMES DE ALTA FIDELIDADE (PARTE 3/3)">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Próximo
+              </span>
+              <div class="md-ellipsis">
+                [77] CONVERSA 06: TELAS DESKTOP - WIREFRAMES DE ALTA FIDELIDADE (PARTE 3/3)
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2026 VoiceCap - Desenvolvido com Metodologia MDSIA
+    </div>
+  
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/voicecap" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://voicecap.com.br" target="_blank" rel="noopener" title="voicecap.com.br" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M351.9 280H161c2.9 64.5 17.2 123.9 37.5 167.4 11.4 24.5 23.7 41.8 35.1 52.4 11.2 10.5 18.9 12.2 22.9 12.2s11.7-1.7 22.9-12.2c11.4-10.6 23.7-28 35.1-52.4 20.3-43.5 34.6-102.9 37.5-167.4zm-191-48h190.9c-2.8-64.5-17.1-123.9-37.4-167.4-11.4-24.4-23.7-41.8-35.1-52.4C268.1 1.7 260.4 0 256.4 0s-11.7 1.7-22.9 12.2c-11.4 10.6-23.7 28-35.1 52.4-20.3 43.5-34.6 102.9-37.5 167.4m-48 0c3.5-85.6 25.6-165.1 57.9-217.3C78.7 47.3 10.9 131.2 1.5 232zM1.5 280c9.4 100.8 77.2 184.7 169.3 217.3-32.3-52.2-54.4-131.7-57.9-217.3zm398.4 0c-3.5 85.6-25.6 165.1-57.9 217.3 92.1-32.7 159.9-116.5 169.3-217.3zm111.4-48C501.9 131.2 434.1 47.3 342 14.7c32.3 52.2 54.4 131.7 57.9 217.3z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["announce.dismiss", "content.code.copy", "navigation.footer", "navigation.sections", "navigation.tabs", "navigation.tabs.sticky", "navigation.top", "search.highlight", "search.share", "search.suggest", "toc.follow"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado para \u00e1rea de transfer\u00eancia", "clipboard.copy": "Copiar para \u00e1rea de transfer\u00eancia", "search.result.more.one": "mais 1 nesta p\u00e1gina", "search.result.more.other": "# mais nesta p\u00e1gina", "search.result.none": "Nenhum documento encontrado", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Digite para iniciar a busca", "search.result.term.missing": "Ausente", "select.version": "Selecione a vers\u00e3o"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../js/print-site.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

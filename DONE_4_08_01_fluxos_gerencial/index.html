@@ -1,0 +1,7468 @@
+
+<!doctype html>
+<html lang="pt" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Documentação técnica completa do sistema VoiceCap - Captura de informações por voz com IA híbrida multi-tenant">
+      
+      
+        <meta name="author" content="Equipe VoiceCap">
+      
+      
+        <link rel="canonical" href="https://voicecap.com.br/DONE_4_08_01_fluxos_gerencial/">
+      
+      
+        <link rel="prev" href="../DONE_4_07_03_rastreabilidade_cobertura/">
+      
+      
+        <link rel="next" href="../DONE_4_08_02_fluxos_operacional/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>[81] CONVERSA 08: FLUXOS DE USUÁRIO - PERFIL GERENCIAL (PARTE 1/3) - VoiceCap - Documentação Técnica Completa</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CFira+Code:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Fira Code"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../css/print-site.css">
+    
+      <link rel="stylesheet" href="../css/print-site-material.css">
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="blue">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#conversa-08-fluxos-de-usuario-perfil-gerencial-parte-13" class="md-skip">
+          Pular para conteúdo
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabeçalho">
+    <a href=".." title="VoiceCap - Documentação Técnica Completa" class="md-header__button md-logo" aria-label="VoiceCap - Documentação Técnica Completa" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            VoiceCap - Documentação Técnica Completa
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              [81] CONVERSA 08: FLUXOS DE USUÁRIO - PERFIL GERENCIAL (PARTE 1/3)
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="blue"  aria-label="Alternar para modo escuro"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Alternar para modo escuro" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="blue"  aria-label="Alternar para modo claro"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Alternar para modo claro" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Buscar" placeholder="Buscar" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Pesquisar">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Compartilhar" aria-label="Compartilhar" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpar" aria-label="Limpar" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando busca
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Abas" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Início
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../DONE_1_01_problem_statement/" class="md-tabs__link">
+          
+  
+  
+  1. Contexto Estratégico do Projeto
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../DONE_2_01_analise_stakeholders_contexto/" class="md-tabs__link">
+          
+  
+  
+  2. Requisitos e Especificações
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../DONE_3_01_00_INDICE_MASTER/" class="md-tabs__link">
+          
+  
+  
+  3. Arquitetura do Sistema
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../DONE_4_01_00_INDICE/" class="md-tabs__link">
+          
+  
+  
+  4. Design de Interface e Interação
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../print_page/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Imprimir Documentação Completa
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navegação" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="VoiceCap - Documentação Técnica Completa" class="md-nav__button md-logo" aria-label="VoiceCap - Documentação Técnica Completa" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    VoiceCap - Documentação Técnica Completa
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Início
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1. Contexto Estratégico do Projeto
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    1. Contexto Estratégico do Projeto
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1" id="__nav_2_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1.1 Descoberta do Problema
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    1.1 Descoberta do Problema
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_1_01_problem_statement/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [1] PROBLEM STATEMENT & ANÁLISE DO PROBLEMA
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_1_02_stakeholders_personas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [2] STAKEHOLDERS & PERSONAS PRIMÁRIAS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_1_03_proposta_valor_bmc/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [3] PROPOSTA DE VALOR & BUSINESS MODEL CANVAS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1.2 Planejamento Estratégico
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    1.2 Planejamento Estratégico
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_1_04_okrs_kpis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [4] OKRs, KPIs E MÉTRICAS DE SUCESSO
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_1_05_restricoes_negocio/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [5] RESTRIÇÕES DE NEGÓCIO (BUDGET/PRAZO/COMPLIANCE)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_1_06_escopo_mvp_futuro/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [6] ESCOPO MVP vs FUTURO
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1.3 Validação de Viabilidade
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    1.3 Validação de Viabilidade
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_1_07_riscos_viabilidade/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [7] RISCOS & ANÁLISE DE VIABILIDADE
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_1_08_documento_final_saidas_camada2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [8] DOCUMENTO FINAL: CONTEXTO ESTRATÉGICO
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2. Requisitos e Especificações
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    2. Requisitos e Especificações
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_1" id="__nav_3_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2.1 Análise de Stakeholders e Backlog
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    2.1 Análise de Stakeholders e Backlog
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_2_01_analise_stakeholders_contexto/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [9] CONVERSA 1: ANÁLISE DE STAKEHOLDERS & CONTEXTO
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_2_02_product_backlog_inicial/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [10] CONVERSA 2: PRODUCT BACKLOG INICIAL
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_2_03_user_stories_parte1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [11] CONVERSA 3: USER STORIES (PARTE 1/2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2.2 Especificação Funcional Completa
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    2.2 Especificação Funcional Completa
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_2_04_user_stories_parte2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [12] CONVERSA 4: USER STORIES (PARTE 2/2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_2_05_wireframes_ascii_preliminares/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [13] CONVERSA 5: WIREFRAMES ASCII PRELIMINARES
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_2_06_casos_de_uso/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [14] CONVERSA 6: CASOS DE USO
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_2_07_criterios_aceitacao_regras_negocio/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [15] CONVERSA 7: CRITÉRIOS DE ACEITAÇÃO & REGRAS DE NEGÓCIO
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_3" id="__nav_3_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2.3 Requisitos Não-Funcionais
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    2.3 Requisitos Não-Funcionais
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_2_08_rnf_performance_escalabilidade/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [16] CONVERSA 8: RNF - PERFORMANCE & ESCALABILIDADE
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_2_09_rnf_seguranca_disponibilidade/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [17] CONVERSA 9: RNF - SEGURANÇA & DISPONIBILIDADE
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_2_10_rnf_usabilidade_compatibilidade/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [18] CONVERSA 10: RNF - USABILIDADE & COMPATIBILIDADE
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_4" id="__nav_3_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2.4 Priorização e Rastreabilidade
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    2.4 Priorização e Rastreabilidade
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_2_11_priorizacao/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [19] PRIORIZAÇÃO DE REQUISITOS (MoSCoW + RICE)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_2_12_estimativas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [20] ESTIMATIVAS DE ESFORÇO (STORY POINTS)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_2_13_matriz_rastreabilidade/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [21] MATRIZ DE RASTREABILIDADE E DOCUMENTO CONSOLIDADO
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3. Arquitetura do Sistema
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    3. Arquitetura do Sistema
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_1" id="__nav_4_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3.1 Decisões Arquiteturais
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    3.1 Decisões Arquiteturais
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_3_01_00_INDICE_MASTER/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [22] DECISÃO DE ARQUITETURA VOICECAP - ÍNDICE MASTER
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_3_01_01_analise_contexto/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [23] CONVERSA 1: DECISÃO DE ARQUITETURA - PARTE 1/7
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_3_01_02_padroes_candidatos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [24] CONVERSA 1: DECISÃO DE ARQUITETURA - PARTE 2/7
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_3_01_03_matriz_decisao/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [25] CONVERSA 1: DECISÃO DE ARQUITETURA - PARTE 3/7
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_3_01_04_recomendacao/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [26] CONVERSA 1: DECISÃO DE ARQUITETURA - PARTE 4/7
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_3_01_05_tradeoffs_riscos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [27] CONVERSA 1: DECISÃO DE ARQUITETURA - PARTE 5/7
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_3_01_06_roadmap_principios/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [28] CONVERSA 1: DECISÃO DE ARQUITETURA - PARTE 6/7
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_3_01_07_alternativas_adr/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [29] CONVERSA 1: DECISÃO DE ARQUITETURA - PARTE 7/7
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_2" id="__nav_4_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3.2 Diagramação C4 Model
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    3.2 Diagramação C4 Model
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_3_02_c4_context/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [30] DIAGRAMA C4 NÍVEL 1 (SYSTEM CONTEXT) - VoiceCap
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_3_03_c4_container/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [31] DIAGRAMA C4 NÍVEL 2 (CONTAINER) - VoiceCap
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_3_04_01_c4_component_backend/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [32] DIAGRAMA C4 NÍVEL 3 (COMPONENT - BACKEND) - VoiceCap
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_3_04_02_fluxos_validacao/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [33] DIAGRAMA C4 COMPONENT - FLUXOS E VALIDAÇÃO
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_3" id="__nav_4_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3.3 Modelagem de Dados
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    3.3 Modelagem de Dados
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_3_05_01_diagrama_er/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [34] DIAGRAMA ER (ENTITY-RELATIONSHIP) - VoiceCap
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_3_05_02_scripts_ddl_migrations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [35] SCRIPTS SQL DDL E MIGRATIONS - VoiceCap
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_4" id="__nav_4_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3.4 Estrutura de Código Backend
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    3.4 Estrutura de Código Backend
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_3_06_01_estrutura_pastas_backend/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [36] ESTRUTURA DE PASTAS - BACKEND - VoiceCap (Parte 1/2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_3_06_02_exemplos_codigo_validacao/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [37] ESTRUTURA DE PASTAS - BACKEND - VoiceCap (Parte 2/2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_5" id="__nav_4_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3.5 Estrutura de Código Frontend
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    3.5 Estrutura de Código Frontend
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_3_07_01_estrutura_pastas_frontend/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [38] ESTRUTURA DE PASTAS - FRONTEND - VoiceCap (Parte 1/2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_3_07_02_exemplos_codigo_validacao/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [39] ESTRUTURA DE PASTAS - FRONTEND - VoiceCap (Parte 2/2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_6" id="__nav_4_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3.6 Dependências e Tecnologias
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    3.6 Dependências e Tecnologias
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_3_08_01_matriz_backend/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [40] MATRIZ DE DEPENDÊNCIAS - BACKEND (Parte 1/3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_3_08_02_matriz_frontend/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [41] MATRIZ DE DEPENDÊNCIAS - FRONTEND (Parte 2/3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_3_08_03_comunicacao_validacao/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [42] COMUNICAÇÃO & VALIDAÇÃO (Parte 3/3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_7" id="__nav_4_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3.7 Padrões de Domínio (DDD)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    3.7 Padrões de Domínio (DDD)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_3_09_01_padroes_basicos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [43] PADRÕES DE DOMAIN (DDD) - PARTE 1: PADRÕES BÁSICOS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_3_09_02_padroes_avancados/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [44] PADRÕES DE DOMAIN (DDD) - PARTE 2: PADRÕES AVANÇADOS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_3_09_03_templates_validacao/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [45] PADRÕES DE DOMAIN (DDD) - PARTE 3: TEMPLATES E VALIDAÇÃO
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_8" id="__nav_4_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3.8 Especificação de APIs
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    3.8 Especificação de APIs
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_3_10_01_fundamentos_api/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [46] PADRÕES DE API REST - PARTE 1: FUNDAMENTOS API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_3_10_02_controllers_seguranca/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [47] PADRÕES DE API REST - PARTE 2: CONTROLLERS E SEGURANÇA
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_3_10_03_recursos_completos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [48] PADRÕES DE API REST - PARTE 3: RECURSOS COMPLETOS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_9" id="__nav_4_9_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3.9 Estratégia de Testes
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_9">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    3.9 Estratégia de Testes
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_3_11_01_fundamentos_estrategia_testes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [49] ESTRATÉGIA DE TESTES - PARTE 1: FUNDAMENTOS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_3_11_02_exemplos_rnfs_validacao/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [50] ESTRATÉGIA DE TESTES - PARTE 2: EXEMPLOS E VALIDAÇÃO
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_10" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_10" id="__nav_4_10_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3.10 Architecture Decision Records (ADRs)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_10">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    3.10 Architecture Decision Records (ADRs)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_3_12_00_indice/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [51] ÍNDICE DE ADRs - VoiceCap
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_3_12_AUTO_VALIDACAO/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [52] AUTO-VALIDAÇÃO: ADRs VoiceCap
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_3_12_01_adrs_arquitetura/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [53] ADRs DE ARQUITETURA - VoiceCap
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_3_12_02_adrs_dados_backend/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [54] ADRs DE DADOS & BACKEND - VoiceCap
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_3_12_03_adrs_seguranca_testes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [55] ADRs DE SEGURANÇA & TESTES - VoiceCap
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_11" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_11" id="__nav_4_11_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3.11 Validação Arquitetural
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_11_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_11">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    3.11 Validação Arquitetural
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_3_13_00_INDICE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [56] VALIDAÇÃO FINAL DA ARQUITETURA VOICECAP - ÍNDICE MASTER
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_3_13_01_validacoes_scores/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [57] VALIDAÇÃO FINAL DA ARQUITETURA - PARTE 1: VALIDAÇÕES E SCORES
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_3_13_02_riscos_gaps_recomendacoes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [58] VALIDAÇÃO FINAL DA ARQUITETURA - PARTE 2: RISCOS, GAPS E RECOMENDAÇÕES
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_3_13_03_readme_aprovacao/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [59] VALIDAÇÃO FINAL DA ARQUITETURA - PARTE 3: README E APROVAÇÃO
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4. Design de Interface e Interação
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    4. Design de Interface e Interação
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_1" id="__nav_5_1_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4.1 Sistema de Design (Design Tokens)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    4.1 Sistema de Design (Design Tokens)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_4_01_00_INDICE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [60] DESIGN TOKENS - VoiceCap (Índice Master)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_4_01_01_design_tokens_cores_tipografia/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [61] DESIGN TOKENS - VoiceCap (Parte 1/3: Cores e Tipografia)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_4_01_02_design_tokens_espacamento_visual/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [62] DESIGN TOKENS - VoiceCap (Parte 2/3: Espaçamento e Visual)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_4_01_03_design_tokens_responsive_animacao/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [63] DESIGN TOKENS - VoiceCap (Parte 3/3: Responsivo, Animação e Exportação)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_2" id="__nav_5_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4.2 Componentes Atômicos
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    4.2 Componentes Atômicos
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_4_02_01_atomos_componentes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [64] ÁTOMOS - COMPONENTES BÁSICOS - VoiceCap (Parte 1/2: Especificações)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_4_02_02_atomos_referencia_validacao/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [65] ÁTOMOS - COMPONENTES BÁSICOS - VoiceCap (Parte 2/2: Referência e Validação)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_3" id="__nav_5_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4.3 Componentes Moleculares
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    4.3 Componentes Moleculares
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_4_03_01_moleculas_componentes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [66] MOLÉCULAS - COMPONENTES COMBINADOS - VoiceCap (Parte 1/2: Especificações)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_4_03_02_moleculas_referencia_validacao/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [67] MOLÉCULAS - COMPONENTES COMBINADOS - VoiceCap (Parte 2/2: Referência e Validação)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_4" id="__nav_5_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4.4 Componentes Organismos
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    4.4 Componentes Organismos
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_4_04_01_organismos_datatable/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [68] ORGANISMOS - DATATABLE - VoiceCap (Parte 1/4)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_4_04_02_organismos_modal/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [69] ORGANISMOS - MODAL - VoiceCap (Parte 2/4)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_4_04_03_organismos_navegacao/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [70] ORGANISMOS - NAVEGAÇÃO (HEADER + SIDEBAR) - VoiceCap (Parte 3/4)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_4_04_04_organismos_mapview_validacao/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [71] ORGANISMOS - MAPVIEW + VALIDAÇÃO - VoiceCap (Parte 4/4)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_5" id="__nav_5_5_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4.5 Templates de Páginas
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    4.5 Templates de Páginas
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_4_05_01_template_dashboard/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [72] TEMPLATE: DASHBOARDTEMPLATE (Parte 1/3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_4_05_02_template_form/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [73] TEMPLATE: FORMTEMPLATE (Parte 2/3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_4_05_03_template_auth_validacao/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [74] TEMPLATE: AUTHTEMPLATE + VALIDAÇÃO (Parte 3/3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_6" id="__nav_5_6_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4.6 Telas Desktop Completas
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    4.6 Telas Desktop Completas
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_4_06_01_telas_dashboard_listagem/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [75] CONVERSA 06: TELAS DESKTOP - WIREFRAMES DE ALTA FIDELIDADE (PARTE 1/3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_4_06_02_telas_forms/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [76] CONVERSA 06: TELAS DESKTOP - WIREFRAMES DE ALTA FIDELIDADE (PARTE 2/3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_4_06_03_telas_detalhes_validacao/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [77] CONVERSA 06: TELAS DESKTOP - WIREFRAMES DE ALTA FIDELIDADE (PARTE 3/3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_7" id="__nav_5_7_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4.7 Telas Mobile
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    4.7 Telas Mobile
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_4_07_01_telas_mobile_adaptacoes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [78] CONVERSA 07: TELAS MOBILE - ADAPTAÇÕES DESKTOP (PARTE 1/3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_4_07_02_telas_mobile_exclusivas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [79] CONVERSA 07: TELAS MOBILE - EXCLUSIVAS OPERACIONAIS (PARTE 2/3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_4_07_03_rastreabilidade_cobertura/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [80] CONVERSA 07: TELAS MOBILE - RASTREABILIDADE E COBERTURA (PARTE 3/3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_8" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_5_8" id="__nav_5_8_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4.8 Fluxos de Usuário
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_8_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    4.8 Fluxos de Usuário
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [81] CONVERSA 08: FLUXOS DE USUÁRIO - PERFIL GERENCIAL (PARTE 1/3)
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [81] CONVERSA 08: FLUXOS DE USUÁRIO - PERFIL GERENCIAL (PARTE 1/3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+  
+
+<nav class="md-nav md-nav--secondary" aria-label="Nesta página">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Nesta página
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#metadados" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        METADADOS
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#indice-de-user-flows-parte-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ÍNDICE DE USER FLOWS (PARTE 1)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#user-flow-1-monitorar-dashboard-e-aprovar-inspecoes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        USER FLOW 1: MONITORAR DASHBOARD E APROVAR INSPEÇÕES
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="USER FLOW 1: MONITORAR DASHBOARD E APROVAR INSPEÇÕES">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-informacoes-gerais" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.1 Informações Gerais
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-descricao" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.2 Descrição
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-diagrama-mermaid" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.3 Diagrama Mermaid
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14-telas-envolvidas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.4 Telas Envolvidas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#15-pontos-de-decisao" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.5 Pontos de Decisão
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.5 Pontos de Decisão">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#decisao-1-ha-inspecoes-pendentes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Decisão 1: Há inspeções pendentes?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#decisao-2-dados-corretos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Decisão 2: Dados corretos?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#decisao-3-transcricoes-mescladas-corretamente" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Decisão 3: Transcrições mescladas corretamente?
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#16-cenarios-de-erro" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.6 Cenários de Erro
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.6 Cenários de Erro">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#erro-1-tentativa-de-aprovar-inspecao-incompleta" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Erro 1: Tentativa de aprovar inspeção incompleta
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#erro-2-erro-ao-salvar-aprovacao" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Erro 2: Erro ao salvar aprovação
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#erro-3-conflito-de-edicao-concorrente" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Erro 3: Conflito de edição concorrente
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#17-processos-backend" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.7 Processos Backend
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#18-notificacoes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.8 Notificações
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#19-tempo-estimado" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.9 Tempo Estimado
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#110-metricas-de-sucesso" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.10 Métricas de Sucesso
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#111-transicoes-desktop-mobile" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.11 Transições Desktop ↔ Mobile
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#112-variacoes-do-fluxo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.12 Variações do Fluxo
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.12 Variações do Fluxo">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#variacao-1-aprovar-multiplas-inspecoes-em-lote" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Variação 1: Aprovar múltiplas inspeções em lote
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#variacao-2-reprocessar-audio-com-ia" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Variação 2: Reprocessar áudio com IA
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#user-flow-2-revisar-inspecao-pendente-e-gerar-relatorio-pdf" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        USER FLOW 2: REVISAR INSPEÇÃO PENDENTE E GERAR RELATÓRIO PDF
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="USER FLOW 2: REVISAR INSPEÇÃO PENDENTE E GERAR RELATÓRIO PDF">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-informacoes-gerais" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 Informações Gerais
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-descricao" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2 Descrição
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-diagrama-mermaid" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3 Diagrama Mermaid
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24-telas-envolvidas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.4 Telas Envolvidas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#25-pontos-de-decisao" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.5 Pontos de Decisão
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.5 Pontos de Decisão">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#decisao-1-enviar-por-email" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Decisão 1: Enviar por email?
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#26-cenarios-de-erro" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.6 Cenários de Erro
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.6 Cenários de Erro">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#erro-1-sem-fotos-disponiveis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Erro 1: Sem fotos disponíveis
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#erro-2-erro-ao-gerar-pdf" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Erro 2: Erro ao gerar PDF
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#erro-3-erro-ao-enviar-email" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Erro 3: Erro ao enviar email
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#27-processos-backend" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.7 Processos Backend
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#28-notificacoes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.8 Notificações
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#29-tempo-estimado" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.9 Tempo Estimado
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#210-metricas-de-sucesso" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.10 Métricas de Sucesso
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#211-transicoes-desktop-mobile" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.11 Transições Desktop ↔ Mobile
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#212-variacoes-do-fluxo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.12 Variações do Fluxo
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.12 Variações do Fluxo">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#variacao-1-gerar-relatorio-consolidado-de-multiplas-inspecoes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Variação 1: Gerar relatório consolidado de múltiplas inspeções
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#variacao-2-customizar-template-de-pdf" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Variação 2: Customizar template de PDF
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#user-flow-3-filtrar-inspecoes-criticas-e-aprovar-em-lote" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        USER FLOW 3: FILTRAR INSPEÇÕES CRÍTICAS E APROVAR EM LOTE
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="USER FLOW 3: FILTRAR INSPEÇÕES CRÍTICAS E APROVAR EM LOTE">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-informacoes-gerais" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1 Informações Gerais
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-descricao" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2 Descrição
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-diagrama-mermaid" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3 Diagrama Mermaid
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#34-telas-envolvidas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.4 Telas Envolvidas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#35-pontos-de-decisao" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.5 Pontos de Decisão
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3.5 Pontos de Decisão">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#decisao-1-revisar-individualmente" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Decisão 1: Revisar individualmente?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#decisao-2-confirmar-aprovacao-em-lote" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Decisão 2: Confirmar aprovação em lote?
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#36-cenarios-de-erro" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.6 Cenários de Erro
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3.6 Cenários de Erro">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#erro-1-nenhuma-inspecao-100-completa" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Erro 1: Nenhuma inspeção 100% completa
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#erro-2-falha-parcial-em-aprovacao-batch" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Erro 2: Falha parcial em aprovação batch
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#erro-3-timeout-na-aprovacao-batch" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Erro 3: Timeout na aprovação batch
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#37-processos-backend" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.7 Processos Backend
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#38-notificacoes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.8 Notificações
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#39-tempo-estimado" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.9 Tempo Estimado
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#310-metricas-de-sucesso" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.10 Métricas de Sucesso
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#311-transicoes-desktop-mobile" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.11 Transições Desktop ↔ Mobile
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#312-variacoes-do-fluxo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.12 Variações do Fluxo
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3.12 Variações do Fluxo">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#variacao-1-rejeitar-multiplas-inspecoes-em-lote" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Variação 1: Rejeitar múltiplas inspeções em lote
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#variacao-2-exportar-inspecoes-criticas-para-excel" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Variação 2: Exportar inspeções críticas para Excel
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#resumo-da-parte-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        RESUMO DA PARTE 1
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="RESUMO DA PARTE 1">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#user-flows-criados" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        User Flows Criados
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#perfis-de-usuario-cobertos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Perfis de Usuário Cobertos
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#caracteristicas-dos-fluxos-gerenciais" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Características dos Fluxos Gerenciais
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metricas-agregadas-perfil-gerencial" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Métricas Agregadas (Perfil Gerencial)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#proximos-passos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Próximos Passos
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_4_08_02_fluxos_operacional/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [82] CONVERSA 08: FLUXOS DE USUÁRIO - PERFIL OPERACIONAL (PARTE 2/3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_4_08_03_rastreabilidade_validacao/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [83] CONVERSA 08: FLUXOS DE USUÁRIO - RASTREABILIDADE E VALIDAÇÃO (PARTE 3/3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_9" id="__nav_5_9_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4.9 Responsividade Multi-Dispositivo
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_9">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    4.9 Responsividade Multi-Dispositivo
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_4_09_01_responsividade_telas_parte1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [84] CONVERSA 09: RESPONSIVIDADE - ESTRATÉGIA DE ADAPTAÇÃO (PARTE 1/3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_4_09_02_responsividade_telas_parte2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [85] CONVERSA 09: RESPONSIVIDADE - ESTRATÉGIA DE ADAPTAÇÃO (PARTE 2/3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_4_09_03_responsividade_componentes_validacao/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [86] CONVERSA 09: RESPONSIVIDADE - ESTRATÉGIA DE ADAPTAÇÃO (PARTE 3/3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_10" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_10" id="__nav_5_10_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4.10 Acessibilidade WCAG e Validação
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_10">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    4.10 Acessibilidade WCAG e Validação
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_4_10_01_checklist_componentes_atomos_moleculas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [87] CONVERSA 10: ACESSIBILIDADE WCAG 2.1 AA - PARTE 1/4
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_4_10_02_checklist_componentes_organismos_templates_telas_desktop/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [88] CONVERSA 10: ACESSIBILIDADE WCAG 2.1 AA - PARTE 2/4
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_4_10_03_checklist_telas_mobile_validacao_wcag/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [89] CONVERSA 10: ACESSIBILIDADE WCAG 2.1 AA - PARTE 3/4
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_4_10_04_ferramentas_guia_casos_uso_rnfs_validacao/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [90] CONVERSA 10: ACESSIBILIDADE WCAG 2.1 AA - PARTE 4/4
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../print_page/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Imprimir Documentação Completa
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+<nav class="md-nav md-nav--secondary" aria-label="Nesta página">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Nesta página
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#metadados" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        METADADOS
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#indice-de-user-flows-parte-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ÍNDICE DE USER FLOWS (PARTE 1)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#user-flow-1-monitorar-dashboard-e-aprovar-inspecoes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        USER FLOW 1: MONITORAR DASHBOARD E APROVAR INSPEÇÕES
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="USER FLOW 1: MONITORAR DASHBOARD E APROVAR INSPEÇÕES">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-informacoes-gerais" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.1 Informações Gerais
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-descricao" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.2 Descrição
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-diagrama-mermaid" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.3 Diagrama Mermaid
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14-telas-envolvidas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.4 Telas Envolvidas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#15-pontos-de-decisao" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.5 Pontos de Decisão
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.5 Pontos de Decisão">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#decisao-1-ha-inspecoes-pendentes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Decisão 1: Há inspeções pendentes?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#decisao-2-dados-corretos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Decisão 2: Dados corretos?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#decisao-3-transcricoes-mescladas-corretamente" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Decisão 3: Transcrições mescladas corretamente?
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#16-cenarios-de-erro" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.6 Cenários de Erro
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.6 Cenários de Erro">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#erro-1-tentativa-de-aprovar-inspecao-incompleta" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Erro 1: Tentativa de aprovar inspeção incompleta
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#erro-2-erro-ao-salvar-aprovacao" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Erro 2: Erro ao salvar aprovação
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#erro-3-conflito-de-edicao-concorrente" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Erro 3: Conflito de edição concorrente
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#17-processos-backend" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.7 Processos Backend
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#18-notificacoes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.8 Notificações
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#19-tempo-estimado" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.9 Tempo Estimado
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#110-metricas-de-sucesso" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.10 Métricas de Sucesso
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#111-transicoes-desktop-mobile" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.11 Transições Desktop ↔ Mobile
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#112-variacoes-do-fluxo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.12 Variações do Fluxo
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.12 Variações do Fluxo">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#variacao-1-aprovar-multiplas-inspecoes-em-lote" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Variação 1: Aprovar múltiplas inspeções em lote
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#variacao-2-reprocessar-audio-com-ia" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Variação 2: Reprocessar áudio com IA
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#user-flow-2-revisar-inspecao-pendente-e-gerar-relatorio-pdf" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        USER FLOW 2: REVISAR INSPEÇÃO PENDENTE E GERAR RELATÓRIO PDF
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="USER FLOW 2: REVISAR INSPEÇÃO PENDENTE E GERAR RELATÓRIO PDF">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-informacoes-gerais" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 Informações Gerais
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-descricao" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2 Descrição
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-diagrama-mermaid" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3 Diagrama Mermaid
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24-telas-envolvidas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.4 Telas Envolvidas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#25-pontos-de-decisao" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.5 Pontos de Decisão
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.5 Pontos de Decisão">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#decisao-1-enviar-por-email" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Decisão 1: Enviar por email?
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#26-cenarios-de-erro" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.6 Cenários de Erro
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.6 Cenários de Erro">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#erro-1-sem-fotos-disponiveis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Erro 1: Sem fotos disponíveis
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#erro-2-erro-ao-gerar-pdf" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Erro 2: Erro ao gerar PDF
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#erro-3-erro-ao-enviar-email" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Erro 3: Erro ao enviar email
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#27-processos-backend" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.7 Processos Backend
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#28-notificacoes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.8 Notificações
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#29-tempo-estimado" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.9 Tempo Estimado
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#210-metricas-de-sucesso" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.10 Métricas de Sucesso
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#211-transicoes-desktop-mobile" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.11 Transições Desktop ↔ Mobile
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#212-variacoes-do-fluxo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.12 Variações do Fluxo
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.12 Variações do Fluxo">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#variacao-1-gerar-relatorio-consolidado-de-multiplas-inspecoes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Variação 1: Gerar relatório consolidado de múltiplas inspeções
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#variacao-2-customizar-template-de-pdf" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Variação 2: Customizar template de PDF
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#user-flow-3-filtrar-inspecoes-criticas-e-aprovar-em-lote" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        USER FLOW 3: FILTRAR INSPEÇÕES CRÍTICAS E APROVAR EM LOTE
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="USER FLOW 3: FILTRAR INSPEÇÕES CRÍTICAS E APROVAR EM LOTE">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-informacoes-gerais" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1 Informações Gerais
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-descricao" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2 Descrição
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-diagrama-mermaid" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3 Diagrama Mermaid
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#34-telas-envolvidas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.4 Telas Envolvidas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#35-pontos-de-decisao" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.5 Pontos de Decisão
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3.5 Pontos de Decisão">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#decisao-1-revisar-individualmente" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Decisão 1: Revisar individualmente?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#decisao-2-confirmar-aprovacao-em-lote" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Decisão 2: Confirmar aprovação em lote?
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#36-cenarios-de-erro" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.6 Cenários de Erro
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3.6 Cenários de Erro">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#erro-1-nenhuma-inspecao-100-completa" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Erro 1: Nenhuma inspeção 100% completa
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#erro-2-falha-parcial-em-aprovacao-batch" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Erro 2: Falha parcial em aprovação batch
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#erro-3-timeout-na-aprovacao-batch" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Erro 3: Timeout na aprovação batch
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#37-processos-backend" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.7 Processos Backend
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#38-notificacoes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.8 Notificações
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#39-tempo-estimado" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.9 Tempo Estimado
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#310-metricas-de-sucesso" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.10 Métricas de Sucesso
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#311-transicoes-desktop-mobile" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.11 Transições Desktop ↔ Mobile
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#312-variacoes-do-fluxo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.12 Variações do Fluxo
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3.12 Variações do Fluxo">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#variacao-1-rejeitar-multiplas-inspecoes-em-lote" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Variação 1: Rejeitar múltiplas inspeções em lote
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#variacao-2-exportar-inspecoes-criticas-para-excel" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Variação 2: Exportar inspeções críticas para Excel
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#resumo-da-parte-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        RESUMO DA PARTE 1
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="RESUMO DA PARTE 1">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#user-flows-criados" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        User Flows Criados
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#perfis-de-usuario-cobertos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Perfis de Usuário Cobertos
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#caracteristicas-dos-fluxos-gerenciais" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Características dos Fluxos Gerenciais
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metricas-agregadas-perfil-gerencial" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Métricas Agregadas (Perfil Gerencial)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#proximos-passos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Próximos Passos
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="conversa-08-fluxos-de-usuario-perfil-gerencial-parte-13">CONVERSA 08: FLUXOS DE USUÁRIO - PERFIL GERENCIAL (PARTE 1/3)<a class="headerlink" href="#conversa-08-fluxos-de-usuario-perfil-gerencial-parte-13" title="Permanent link">&para;</a></h1>
+<h2 id="metadados">METADADOS<a class="headerlink" href="#metadados" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Data de Criação: 2026-02-03</li>
+<li>Versão: 1.0</li>
+<li>Status: ✅ COMPLETO</li>
+<li>Arquivo: 1/3 (Fluxos Gerencial/Supervisor)</li>
+<li>Dependências: DONE*4_07<em>*</em> (Telas Mobile), DONE<em>4_06*</em>* (Telas Desktop), DONE_2_06 (Casos de Uso)</li>
+</ul>
+<hr />
+<h2 id="indice-de-user-flows-parte-1">ÍNDICE DE USER FLOWS (PARTE 1)<a class="headerlink" href="#indice-de-user-flows-parte-1" title="Permanent link">&para;</a></h2>
+<ol>
+<li><a href="#user-flow-1-monitorar-dashboard-e-aprovar-inspeções">Fluxo Gerencial 1: Monitorar Dashboard e Aprovar Inspeções</a> - Perfil: Supervisor</li>
+<li><a href="#user-flow-2-revisar-inspeção-pendente-e-gerar-relatório-pdf">Fluxo Gerencial 2: Revisar Inspeção Pendente e Gerar Relatório PDF</a> - Perfil: Gestor</li>
+<li><a href="#user-flow-3-filtrar-inspeções-críticas-e-aprovar-em-lote">Fluxo Gerencial 3: Filtrar Inspeções Críticas e Aprovar em Lote</a> - Perfil: Supervisor</li>
+</ol>
+<p><strong>Total nesta parte:</strong> 3 User Flows (perfil gerencial/supervisor, desktop-focused)</p>
+<hr />
+<h2 id="user-flow-1-monitorar-dashboard-e-aprovar-inspecoes">USER FLOW 1: MONITORAR DASHBOARD E APROVAR INSPEÇÕES<a class="headerlink" href="#user-flow-1-monitorar-dashboard-e-aprovar-inspecoes" title="Permanent link">&para;</a></h2>
+<h3 id="11-informacoes-gerais">1.1 Informações Gerais<a class="headerlink" href="#11-informacoes-gerais" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Caso de Uso Mapeado:</strong> UC-006 - Validar e Revisar Formulário Preenchido</li>
+<li><strong>Perfil de Usuário:</strong> Supervisor de Operações</li>
+<li><strong>Dispositivo Principal:</strong> Desktop (1366×768 ou superior)</li>
+<li><strong>Prioridade:</strong> Must Have</li>
+</ul>
+<h3 id="12-descricao">1.2 Descrição<a class="headerlink" href="#12-descricao" title="Permanent link">&para;</a></h3>
+<p>Supervisor acessa dashboard para monitorar métricas de inspeções, identifica inspeções pendentes de aprovação, revisa detalhes de uma inspeção específica, valida completude dos dados, e aprova a inspeção para que possa ser enviada ao cliente ou gerar relatório.</p>
+<h3 id="13-diagrama-mermaid">1.3 Diagrama Mermaid<a class="headerlink" href="#13-diagrama-mermaid" title="Permanent link">&para;</a></h3>
+<pre class="mermaid"><code>graph TD
+    Start([Início: Supervisor loga no sistema]) --&gt; Dashboard[DashboardScreen]
+    Dashboard --&gt; ViewMetrics[Visualiza métricas: 18 pendentes]
+    ViewMetrics --&gt; Decision1{Há inspeções pendentes?}
+
+    Decision1 --&gt;|Não| End1([Fim: Dashboard sem ações])
+
+    Decision1 --&gt;|Sim| ClickPending[Clica em card Pendentes]
+    ClickPending --&gt; ListScreen[ListagemScreen com filtro status=pendente]
+    ListScreen --&gt; SelectInsp[Seleciona inspeção #1233]
+    SelectInsp --&gt; DetailScreen[DetalhesScreen]
+
+    DetailScreen --&gt; CheckComplete{Completude = 100%?}
+
+    CheckComplete --&gt;|Não| ViewMissing[Visualiza campos faltantes]
+    ViewMissing --&gt; ClickEdit[Clica Editar]
+    ClickEdit --&gt; EditScreen[EditarScreen]
+    EditScreen --&gt; FillFields[Preenche campos obrigatórios]
+    FillFields --&gt; SaveEdit[Clica Salvar]
+    SaveEdit --&gt; ProcessSave[Sistema valida e salva]
+    ProcessSave --&gt; DetailScreen
+
+    CheckComplete --&gt;|Sim| ReviewData[Revisa transcrição e fotos]
+    ReviewData --&gt; Decision2{Dados corretos?}
+
+    Decision2 --&gt;|Não| Error1[Rejeita inspeção com motivo]
+    Error1 --&gt; NotifyTech[Sistema notifica técnico]
+    NotifyTech --&gt; End2([Fim: Inspeção rejeitada])
+
+    Decision2 --&gt;|Sim| ClickApprove[Clica Salvar e Aprovar]
+    ClickApprove --&gt; ValidateApproval[Sistema valida aprovação]
+    ValidateApproval --&gt; UpdateStatus[Status muda para Aprovada]
+    UpdateStatus --&gt; Notification[Sistema notifica técnico]
+    Notification --&gt; End3([Fim: Dashboard atualizado])
+
+    style Start fill:#e1f5e1
+    style End1 fill:#e1f5e1
+    style End2 fill:#e1f5e1
+    style End3 fill:#e1f5e1
+    style Error1 fill:#ffe1e1</code></pre>
+<h3 id="14-telas-envolvidas">1.4 Telas Envolvidas<a class="headerlink" href="#14-telas-envolvidas" title="Permanent link">&para;</a></h3>
+<ul>
+<li>
+<p><strong>DashboardScreen (Desktop):</strong> Supervisor visualiza métricas agregadas (total, pendentes, aprovadas, críticas) e inspeções recentes. Card de "Pendentes" mostra contador "18" com link "Ver lista".</p>
+</li>
+<li>
+<p><strong>ListagemScreen (Desktop):</strong> Tabela com filtro <code>status=pendente</code> aplicado automaticamente. Exibe 18 inspeções pendentes com colunas: ID, Local, Completude, Data, Técnico, Ações. Supervisor pode ordenar por completude ou data.</p>
+</li>
+<li>
+<p><strong>DetalhesScreen (Desktop):</strong> Tabs (Resumo, Transcrição, Formulário, Mídias, Histórico). Supervisor revisa todos os dados, verifica <strong>múltiplos áudios originais</strong> (se houver), fotos geolocalizadas, e mapa de localização. Pode ouvir cada áudio individualmente e verificar se a mesclagem de transcrições foi feita corretamente pela IA.</p>
+</li>
+<li>
+<p><strong>EditarScreen (Desktop):</strong> Formulário completo com card de "Campos Faltantes" destacando campos obrigatórios vazios. Progress bar de completude atualiza em tempo real.</p>
+</li>
+</ul>
+<h3 id="15-pontos-de-decisao">1.5 Pontos de Decisão<a class="headerlink" href="#15-pontos-de-decisao" title="Permanent link">&para;</a></h3>
+<h4 id="decisao-1-ha-inspecoes-pendentes">Decisão 1: Há inspeções pendentes?<a class="headerlink" href="#decisao-1-ha-inspecoes-pendentes" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>Critério:</strong> Card "Pendentes" no dashboard mostra contador &gt; 0</li>
+<li><strong>Sim (caminho principal):</strong> Supervisor clica no card para acessar listagem filtrada</li>
+<li><strong>Não (caminho alternativo):</strong> Supervisor permanece no dashboard, pode acessar outras funcionalidades (gerar relatórios, visualizar aprovadas)</li>
+</ul>
+<h4 id="decisao-2-dados-corretos">Decisão 2: Dados corretos?<a class="headerlink" href="#decisao-2-dados-corretos" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>Critério:</strong> Supervisor revisa transcrição, fotos, localização GPS, e formulário preenchido pela IA. Se houver múltiplos áudios, verifica se a mesclagem incremental foi feita corretamente (sem duplicação ou perda de informação).</li>
+<li><strong>Sim (caminho principal):</strong> Supervisor aprova a inspeção (muda status para "Aprovada")</li>
+<li><strong>Não (caminho alternativo):</strong> Supervisor rejeita com motivo (ex: "Fotos sem evidência clara do problema" ou "Transcrições mescladas incorretamente"), técnico recebe notificação para corrigir</li>
+</ul>
+<h4 id="decisao-3-transcricoes-mescladas-corretamente">Decisão 3: Transcrições mescladas corretamente?<a class="headerlink" href="#decisao-3-transcricoes-mescladas-corretamente" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>Critério:</strong> Supervisor ouve múltiplos áudios (quando existem) e verifica se LLM mesclou informações incrementalmente sem perder dados ou duplicar</li>
+<li><strong>Sim:</strong> Supervisor aprova normalmente</li>
+<li><strong>Não:</strong> Supervisor pode solicitar reprocessamento (sistema mantém cache de transcrições individuais para reprocessamento rápido) ou rejeita para técnico revisar</li>
+</ul>
+<h3 id="16-cenarios-de-erro">1.6 Cenários de Erro<a class="headerlink" href="#16-cenarios-de-erro" title="Permanent link">&para;</a></h3>
+<h4 id="erro-1-tentativa-de-aprovar-inspecao-incompleta">Erro 1: Tentativa de aprovar inspeção incompleta<a class="headerlink" href="#erro-1-tentativa-de-aprovar-inspecao-incompleta" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>Quando ocorre:</strong> Supervisor clica "Salvar e Aprovar" mas completude &lt; 100%</li>
+<li><strong>Mensagem:</strong> Modal - "Não é possível aprovar inspeção incompleta. Complete os seguintes campos: Localização, Severidade"</li>
+<li><strong>Ações disponíveis:</strong> [Entendi] (fecha modal), [Completar agora] (scrolla para primeiro campo faltante)</li>
+<li><strong>Destino:</strong> Permanece na tela de Edição com campos faltantes destacados</li>
+</ul>
+<h4 id="erro-2-erro-ao-salvar-aprovacao">Erro 2: Erro ao salvar aprovação<a class="headerlink" href="#erro-2-erro-ao-salvar-aprovacao" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>Quando ocorre:</strong> Backend retorna erro 500 ou timeout durante salvamento</li>
+<li><strong>Mensagem:</strong> Toast vermelho - "❌ Erro ao aprovar inspeção. Tente novamente."</li>
+<li><strong>Ações disponíveis:</strong> [Tentar novamente] (resubmete), [Fechar] (volta para detalhes)</li>
+<li><strong>Destino:</strong> Permanece na tela de Detalhes, dados não são perdidos</li>
+</ul>
+<h4 id="erro-3-conflito-de-edicao-concorrente">Erro 3: Conflito de edição concorrente<a class="headerlink" href="#erro-3-conflito-de-edicao-concorrente" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>Quando ocorre:</strong> Técnico editou a inspeção simultaneamente (timestamp diferente)</li>
+<li><strong>Mensagem:</strong> Modal - "Conflito de Edição. Esta inspeção foi editada por João Silva há 2 minutos."</li>
+<li><strong>Ações disponíveis:</strong> [Ver versão atual] (recarrega dados), [Sobrescrever] (perde edições do técnico), [Cancelar]</li>
+<li><strong>Destino:</strong> Se "Ver versão atual": recarrega DetalhesScreen com dados atualizados</li>
+</ul>
+<h3 id="17-processos-backend">1.7 Processos Backend<a class="headerlink" href="#17-processos-backend" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Processo 1: Validar aprovação</strong></li>
+<li><strong>Operação:</strong> Backend verifica se completude = 100%, valida campos obrigatórios, verifica permissões do usuário</li>
+<li><strong>Tempo estimado:</strong> 500ms-1s</li>
+<li>
+<p><strong>Feedback ao usuário:</strong> Loading spinner no botão "Salvando..."</p>
+</li>
+<li>
+<p><strong>Processo 2: Atualizar status e notificar</strong></p>
+</li>
+<li><strong>Operação:</strong> UPDATE status='aprovada', approved_by=user_id, approved_at=timestamp; INSERT notification (técnico); Invalidate cache</li>
+<li><strong>Tempo estimado:</strong> 300-500ms</li>
+<li><strong>Feedback ao usuário:</strong> Toast verde "✅ Inspeção aprovada com sucesso!"</li>
+</ul>
+<h3 id="18-notificacoes">1.8 Notificações<a class="headerlink" href="#18-notificacoes" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Notificação 1: Técnico recebe aprovação</strong></li>
+<li><strong>Quando:</strong> Após supervisor aprovar inspeção</li>
+<li><strong>Destinatário:</strong> Técnico que criou a inspeção (João Silva)</li>
+<li><strong>Conteúdo:</strong> "✅ Inspeção #1233 foi aprovada por Maria Costa. Você pode gerar o relatório agora."</li>
+<li>
+<p><strong>Canal:</strong> Push notification (mobile) + Email + Badge no app</p>
+</li>
+<li>
+<p><strong>Notificação 2: Técnico recebe rejeição</strong></p>
+</li>
+<li><strong>Quando:</strong> Supervisor rejeita inspeção</li>
+<li><strong>Destinatário:</strong> Técnico que criou a inspeção</li>
+<li><strong>Conteúdo:</strong> "⚠️ Inspeção #1233 foi rejeitada por Maria Costa. Motivo: Fotos sem evidência clara. Corrija e reenvie."</li>
+<li><strong>Canal:</strong> Push notification (mobile) + Email</li>
+</ul>
+<h3 id="19-tempo-estimado">1.9 Tempo Estimado<a class="headerlink" href="#19-tempo-estimado" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Caminho feliz (happy path):</strong> 3-5 minutos</li>
+<li>Dashboard: 20s (visualizar métricas)</li>
+<li>Listagem: 30s (identificar inspeção)</li>
+<li>Detalhes: 2-3min (revisar transcrição, fotos, mapa)</li>
+<li>
+<p>Aprovação: 10s (clicar e confirmar)</p>
+</li>
+<li>
+<p><strong>Caminho com ajustes:</strong> 8-12 minutos</p>
+</li>
+<li>Caminho feliz: 3-5min</li>
+<li>Edição de campos faltantes: 3-5min (preencher 2-3 campos)</li>
+<li>
+<p>Revalidação: 1-2min</p>
+</li>
+<li>
+<p><strong>Caminho com erros (e recuperação):</strong> 15-20 minutos</p>
+</li>
+<li>Caminho com ajustes: 8-12min</li>
+<li>Investigação de erro: 3-5min</li>
+<li>Retry ou resolução de conflito: 2-3min</li>
+</ul>
+<p><strong>Justificativa do tempo:</strong></p>
+<ul>
+<li>Revisão de transcrição (2-3min de áudio) consome maior parte do tempo</li>
+<li>Fotos e mapa são revisão visual rápida (30s-1min total)</li>
+<li>Formulário já preenchido pela IA requer apenas validação (não digitação)</li>
+</ul>
+<h3 id="110-metricas-de-sucesso">1.10 Métricas de Sucesso<a class="headerlink" href="#110-metricas-de-sucesso" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Taxa de conclusão esperada:</strong> 90% (supervisores completam aprovação na maioria dos casos)</li>
+<li><strong>Tempo médio esperado:</strong> 4 minutos (happy path sem edições)</li>
+<li><strong>Taxa de erro esperada:</strong> 5% (erros de rede ou conflitos de edição raros)</li>
+<li><strong>Taxa de abandono esperada:</strong> 3% (supervisor interrompido por outra tarefa urgente)</li>
+</ul>
+<p><strong>Benchmarks:</strong></p>
+<ul>
+<li>Indústria (sistemas de aprovação workflow): Taxa de conclusão 85-95%, tempo médio 3-6min</li>
+<li>VoiceCap otimiza tempo com IA pré-preenchendo formulário (economiza ~5min de digitação manual)</li>
+</ul>
+<h3 id="111-transicoes-desktop-mobile">1.11 Transições Desktop ↔ Mobile<a class="headerlink" href="#111-transicoes-desktop-mobile" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Início em Desktop, continua em Mobile:</strong> Sim (possível mas raro)</li>
+<li><strong>Ponto de transição:</strong> Supervisor inicia revisão no desktop, precisa sair do escritório</li>
+<li><strong>Estado compartilhado:</strong> Inspeção permanece com status "pendente", supervisor pode continuar revisão no mobile (DashboardMobileScreen → DetalhesMobile)</li>
+<li>
+<p><strong>Exemplo:</strong> Supervisor revisa 80% dos dados no desktop, recebe chamada urgente, abre app mobile para aprovar rapidamente</p>
+</li>
+<li>
+<p><strong>Início em Mobile, continua em Desktop:</strong> Não (fluxo não aplicável)</p>
+</li>
+<li>Supervisores geralmente trabalham em desktop (tela maior facilita revisão de múltiplos dados)</li>
+</ul>
+<h3 id="112-variacoes-do-fluxo">1.12 Variações do Fluxo<a class="headerlink" href="#112-variacoes-do-fluxo" title="Permanent link">&para;</a></h3>
+<h4 id="variacao-1-aprovar-multiplas-inspecoes-em-lote">Variação 1: Aprovar múltiplas inspeções em lote<a class="headerlink" href="#variacao-1-aprovar-multiplas-inspecoes-em-lote" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>Condição:</strong> Supervisor tem &gt;5 inspeções pendentes simples (100% completas, mesma localidade)</li>
+<li><strong>Diferença:</strong> Na ListagemScreen, supervisor seleciona checkboxes de múltiplas linhas, clica "Aprovar selecionadas" → Modal de confirmação → Aprovação em batch</li>
+<li><strong>Telas adicionais:</strong> Nenhuma (usa ListagemScreen com seleção múltipla)</li>
+</ul>
+<h4 id="variacao-2-reprocessar-audio-com-ia">Variação 2: Reprocessar áudio com IA<a class="headerlink" href="#variacao-2-reprocessar-audio-com-ia" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>Condição:</strong> Transcrição parece incorreta (ruído no áudio, IA não entendeu)</li>
+<li><strong>Diferença:</strong> Em DetalhesScreen, supervisor clica "Reprocessar áudio" → Sistema reenvia para Whisper API + LLM → Campos são atualizados</li>
+<li><strong>Telas adicionais:</strong> Nenhuma (modal de loading durante reprocessamento)</li>
+</ul>
+<hr />
+<h2 id="user-flow-2-revisar-inspecao-pendente-e-gerar-relatorio-pdf">USER FLOW 2: REVISAR INSPEÇÃO PENDENTE E GERAR RELATÓRIO PDF<a class="headerlink" href="#user-flow-2-revisar-inspecao-pendente-e-gerar-relatorio-pdf" title="Permanent link">&para;</a></h2>
+<h3 id="21-informacoes-gerais">2.1 Informações Gerais<a class="headerlink" href="#21-informacoes-gerais" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Caso de Uso Mapeado:</strong> UC-007 - Gerar Relatório Profissional em PDF</li>
+<li><strong>Perfil de Usuário:</strong> Gestor de Operações</li>
+<li><strong>Dispositivo Principal:</strong> Desktop (1920×1080)</li>
+<li><strong>Prioridade:</strong> Must Have</li>
+</ul>
+<h3 id="22-descricao">2.2 Descrição<a class="headerlink" href="#22-descricao" title="Permanent link">&para;</a></h3>
+<p>Gestor acessa listagem de inspeções aprovadas, filtra por período e localidade, seleciona inspeção específica para gerar relatório PDF profissional incluindo fotos, mapa, transcrição e assinaturas. Relatório é baixado e pode ser enviado ao cliente ou impresso.</p>
+<h3 id="23-diagrama-mermaid">2.3 Diagrama Mermaid<a class="headerlink" href="#23-diagrama-mermaid" title="Permanent link">&para;</a></h3>
+<pre class="mermaid"><code>graph TD
+    Start([Início: Gestor acessa Relatórios]) --&gt; ListScreen[ListagemScreen]
+    ListScreen --&gt; ApplyFilter[Aplica filtro: Aprovadas + Período]
+    ApplyFilter --&gt; ResultsTable[DataTable exibe 15 inspeções]
+    ResultsTable --&gt; SelectInsp[Seleciona inspeção #1230]
+    SelectInsp --&gt; DetailScreen[DetalhesScreen]
+
+    DetailScreen --&gt; ClickPDF[Clica Gerar PDF]
+    ClickPDF --&gt; ModalConfig[Modal: Configuração de PDF]
+    ModalConfig --&gt; SelectOptions[Marca opções: transcrição, fotos, mapa]
+    SelectOptions --&gt; ClickGenerate[Clica Gerar PDF]
+
+    ClickGenerate --&gt; ProcessPDF[Sistema gera PDF no backend]
+    ProcessPDF --&gt; CheckMedia{Fotos disponíveis?}
+
+    CheckMedia --&gt;|Não| Error1[Aviso: Sem fotos no relatório]
+    Error1 --&gt; GeneratePDF[Gera PDF sem fotos]
+
+    CheckMedia --&gt;|Sim| GeneratePDF[Gera PDF completo]
+    GeneratePDF --&gt; DownloadPDF[Download automático do PDF]
+    DownloadPDF --&gt; NotificationSent[Toast: PDF gerado com sucesso]
+    NotificationSent --&gt; Decision1{Enviar por email?}
+
+    Decision1 --&gt;|Não| End1([Fim: PDF salvo localmente])
+
+    Decision1 --&gt;|Sim| ClickShare[Clica Compartilhar]
+    ClickShare --&gt; ModalShare[Modal: Compartilhar]
+    ModalShare --&gt; EnterEmail[Digite email do cliente]
+    EnterEmail --&gt; SendEmail[Sistema envia email com PDF anexo]
+    SendEmail --&gt; ConfirmSent[Toast: Email enviado]
+    ConfirmSent --&gt; End2([Fim: PDF compartilhado])
+
+    style Start fill:#e1f5e1
+    style End1 fill:#e1f5e1
+    style End2 fill:#e1f5e1
+    style Error1 fill:#ffe1e1</code></pre>
+<h3 id="24-telas-envolvidas">2.4 Telas Envolvidas<a class="headerlink" href="#24-telas-envolvidas" title="Permanent link">&para;</a></h3>
+<ul>
+<li>
+<p><strong>ListagemScreen (Desktop):</strong> Gestor aplica filtro "Status: Aprovadas" + "Período: Última semana". DataTable exibe inspeções ordenadas por data decrescente.</p>
+</li>
+<li>
+<p><strong>DetalhesScreen (Desktop):</strong> Gestor revisa inspeção completa (tab Resumo com mapa, tab Mídias com fotos/áudio, tab Transcrição). Botão "📄 Gerar PDF" destacado no header.</p>
+</li>
+<li>
+<p><strong>Modal de Configuração de PDF:</strong> Checkboxes para incluir/excluir seções (transcrição, fotos, mapa, histórico). Select de idioma (PT, EN, ES).</p>
+</li>
+<li>
+<p><strong>Modal de Compartilhar:</strong> Input de email, textarea para mensagem opcional, botão "Enviar".</p>
+</li>
+</ul>
+<h3 id="25-pontos-de-decisao">2.5 Pontos de Decisão<a class="headerlink" href="#25-pontos-de-decisao" title="Permanent link">&para;</a></h3>
+<h4 id="decisao-1-enviar-por-email">Decisão 1: Enviar por email?<a class="headerlink" href="#decisao-1-enviar-por-email" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>Critério:</strong> Gestor decide se precisa enviar relatório imediatamente ao cliente ou apenas salvar localmente</li>
+<li><strong>Sim:</strong> Gestor clica "Compartilhar" e preenche email do cliente</li>
+<li><strong>Não:</strong> Gestor baixa PDF e envia manualmente depois (via outro canal)</li>
+</ul>
+<h3 id="26-cenarios-de-erro">2.6 Cenários de Erro<a class="headerlink" href="#26-cenarios-de-erro" title="Permanent link">&para;</a></h3>
+<h4 id="erro-1-sem-fotos-disponiveis">Erro 1: Sem fotos disponíveis<a class="headerlink" href="#erro-1-sem-fotos-disponiveis" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>Quando ocorre:</strong> Inspeção foi criada manualmente sem captura de fotos</li>
+<li><strong>Mensagem:</strong> Toast amarelo - "⚠️ Esta inspeção não possui fotos. Relatório será gerado sem evidências fotográficas."</li>
+<li><strong>Ações disponíveis:</strong> [Continuar] (gera PDF sem fotos), [Cancelar] (volta para detalhes)</li>
+<li><strong>Destino:</strong> Se Continuar: PDF é gerado normalmente, seção "Evidências Fotográficas" mostra "Nenhuma foto disponível"</li>
+</ul>
+<h4 id="erro-2-erro-ao-gerar-pdf">Erro 2: Erro ao gerar PDF<a class="headerlink" href="#erro-2-erro-ao-gerar-pdf" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>Quando ocorre:</strong> Backend falha ao renderizar PDF (timeout, biblioteca de PDF com erro)</li>
+<li><strong>Mensagem:</strong> Toast vermelho - "❌ Erro ao gerar PDF. Tente novamente em alguns instantes."</li>
+<li><strong>Ações disponíveis:</strong> [Tentar novamente] (resubmete requisição), [Fechar]</li>
+<li><strong>Destino:</strong> Permanece em DetalhesScreen, botão "Gerar PDF" volta ao estado normal</li>
+</ul>
+<h4 id="erro-3-erro-ao-enviar-email">Erro 3: Erro ao enviar email<a class="headerlink" href="#erro-3-erro-ao-enviar-email" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>Quando ocorre:</strong> Servidor SMTP falha ou email inválido</li>
+<li><strong>Mensagem:</strong> Toast vermelho - "❌ Erro ao enviar email. Verifique o endereço e tente novamente."</li>
+<li><strong>Ações disponíveis:</strong> [Corrigir email] (modal permanece aberto), [Baixar PDF manualmente]</li>
+<li><strong>Destino:</strong> Modal de Compartilhar permanece aberto para correção</li>
+</ul>
+<h3 id="27-processos-backend">2.7 Processos Backend<a class="headerlink" href="#27-processos-backend" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Processo 1: Gerar PDF</strong></li>
+<li><strong>Operação:</strong> Busca dados da inspeção, renderiza template HTML, converte para PDF com biblioteca (Puppeteer/jsPDF), embute fotos, gera mapa estático (Leaflet snapshot), armazena temporariamente no S3</li>
+<li><strong>Tempo estimado:</strong> 3-8s (depende de quantidade de fotos e complexidade do mapa)</li>
+<li>
+<p><strong>Feedback ao usuário:</strong> Modal com progress bar (0% → 30% buscar dados → 60% renderizar → 100% pronto)</p>
+</li>
+<li>
+<p><strong>Processo 2: Enviar email</strong></p>
+</li>
+<li><strong>Operação:</strong> Gera URL pré-assinada do PDF no S3, monta template de email, envia via SMTP (SendGrid/AWS SES)</li>
+<li><strong>Tempo estimado:</strong> 1-3s</li>
+<li><strong>Feedback ao usuário:</strong> Loading spinner no botão "Enviando..."</li>
+</ul>
+<h3 id="28-notificacoes">2.8 Notificações<a class="headerlink" href="#28-notificacoes" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Notificação 1: Email para cliente</strong></li>
+<li><strong>Quando:</strong> Gestor clica "Enviar" no modal de compartilhamento</li>
+<li><strong>Destinatário:</strong> Email fornecido pelo gestor (cliente externo)</li>
+<li><strong>Conteúdo:</strong> "Segue relatório da inspeção #1230 realizada em 02/02/2026. [Baixar PDF] (link expira em 7 dias)"</li>
+<li><strong>Canal:</strong> Email com PDF anexo ou link de download</li>
+</ul>
+<h3 id="29-tempo-estimado">2.9 Tempo Estimado<a class="headerlink" href="#29-tempo-estimado" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Caminho feliz (happy path):</strong> 2-3 minutos</li>
+<li>Listagem e filtro: 20s</li>
+<li>Detalhes: 1min (revisão rápida)</li>
+<li>Configuração e geração de PDF: 30s</li>
+<li>
+<p>Download: 5s</p>
+</li>
+<li>
+<p><strong>Caminho com ajustes:</strong> 4-6 minutos</p>
+</li>
+<li>Caminho feliz: 2-3min</li>
+<li>Compartilhar por email: 1-2min (digitar email, mensagem)</li>
+<li>
+<p>Confirmação: 1min</p>
+</li>
+<li>
+<p><strong>Caminho com erros:</strong> 8-10 minutos</p>
+</li>
+<li>Caminho com ajustes: 4-6min</li>
+<li>Retry de geração de PDF: 2-3min</li>
+<li>Correção de email: 1min</li>
+</ul>
+<p><strong>Justificativa do tempo:</strong></p>
+<ul>
+<li>Geração de PDF é processo automatizado (3-8s), não requer input do usuário</li>
+<li>Maior tempo gasto em revisão dos dados antes de gerar relatório (garantir qualidade)</li>
+</ul>
+<h3 id="210-metricas-de-sucesso">2.10 Métricas de Sucesso<a class="headerlink" href="#210-metricas-de-sucesso" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Taxa de conclusão esperada:</strong> 95% (geração de PDF raramente falha)</li>
+<li><strong>Tempo médio esperado:</strong> 2.5 minutos</li>
+<li><strong>Taxa de erro esperada:</strong> 3% (erros de backend ou SMTP raros)</li>
+<li><strong>Taxa de abandono esperada:</strong> 2% (gestor interrompido)</li>
+</ul>
+<p><strong>Benchmarks:</strong></p>
+<ul>
+<li>Indústria (sistemas de relatórios): Taxa de conclusão 90-98%, tempo médio 2-4min</li>
+<li>VoiceCap otimiza com templates profissionais pré-configurados (não requer customização manual)</li>
+</ul>
+<h3 id="211-transicoes-desktop-mobile">2.11 Transições Desktop ↔ Mobile<a class="headerlink" href="#211-transicoes-desktop-mobile" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Início em Desktop, continua em Mobile:</strong> Não (fluxo específico de desktop)</li>
+<li>Geração de PDF requer tela grande para revisar configurações e visualizar preview</li>
+<li>
+<p>Mobile pode visualizar PDF já gerado, mas não gerar novos</p>
+</li>
+<li>
+<p><strong>Início em Mobile, continua em Desktop:</strong> Não aplicável</p>
+</li>
+</ul>
+<h3 id="212-variacoes-do-fluxo">2.12 Variações do Fluxo<a class="headerlink" href="#212-variacoes-do-fluxo" title="Permanent link">&para;</a></h3>
+<h4 id="variacao-1-gerar-relatorio-consolidado-de-multiplas-inspecoes">Variação 1: Gerar relatório consolidado de múltiplas inspeções<a class="headerlink" href="#variacao-1-gerar-relatorio-consolidado-de-multiplas-inspecoes" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>Condição:</strong> Gestor precisa de relatório mensal com todas as inspeções de um período</li>
+<li><strong>Diferença:</strong> Na ListagemScreen, seleciona múltiplas inspeções (checkboxes), clica "Gerar Relatório Consolidado" → PDF com sumário executivo + seções por inspeção</li>
+<li><strong>Telas adicionais:</strong> Modal de configuração mais complexo (agrupar por localidade, técnico, ou cronologicamente)</li>
+</ul>
+<h4 id="variacao-2-customizar-template-de-pdf">Variação 2: Customizar template de PDF<a class="headerlink" href="#variacao-2-customizar-template-de-pdf" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>Condição:</strong> Cliente específico requer logo da empresa, cabeçalho customizado</li>
+<li><strong>Diferença:</strong> Em Modal de Configuração, opção "Template customizado" → Seleciona template salvo (ex: "Template Cliente XYZ")</li>
+<li><strong>Telas adicionais:</strong> Nenhuma (templates são configurados previamente por admin)</li>
+</ul>
+<hr />
+<h2 id="user-flow-3-filtrar-inspecoes-criticas-e-aprovar-em-lote">USER FLOW 3: FILTRAR INSPEÇÕES CRÍTICAS E APROVAR EM LOTE<a class="headerlink" href="#user-flow-3-filtrar-inspecoes-criticas-e-aprovar-em-lote" title="Permanent link">&para;</a></h2>
+<h3 id="31-informacoes-gerais">3.1 Informações Gerais<a class="headerlink" href="#31-informacoes-gerais" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Caso de Uso Mapeado:</strong> UC-006 - Validar e Revisar Formulário Preenchido</li>
+<li><strong>Perfil de Usuário:</strong> Supervisor de Operações</li>
+<li><strong>Dispositivo Principal:</strong> Desktop (1366×768 ou superior)</li>
+<li><strong>Prioridade:</strong> Should Have</li>
+</ul>
+<h3 id="32-descricao">3.2 Descrição<a class="headerlink" href="#32-descricao" title="Permanent link">&para;</a></h3>
+<p>Supervisor acessa dashboard, identifica 12 inspeções críticas (alta severidade), acessa listagem filtrada, revisa rapidamente múltiplas inspeções com completude 100%, seleciona todas as inspeções válidas, e aprova em lote para agilizar processamento de casos urgentes.</p>
+<h3 id="33-diagrama-mermaid">3.3 Diagrama Mermaid<a class="headerlink" href="#33-diagrama-mermaid" title="Permanent link">&para;</a></h3>
+<pre class="mermaid"><code>graph TD
+    Start([Início: Supervisor no Dashboard]) --&gt; ViewCritical[Visualiza card Críticas: 12]
+    ViewCritical --&gt; ClickCritical[Clica Ver lista]
+    ClickCritical --&gt; ListScreen[ListagemScreen filtro severidade=alta]
+    ListScreen --&gt; ReviewTable[DataTable: 12 inspeções críticas]
+
+    ReviewTable --&gt; Decision1{Revisar individualmente?}
+
+    Decision1 --&gt;|Sim| SelectFirst[Seleciona primeira inspeção]
+    SelectFirst --&gt; DetailScreen[DetalhesScreen]
+    DetailScreen --&gt; QuickReview[Revisão rápida: 1min]
+    QuickReview --&gt; BackList[Volta para listagem]
+    BackList --&gt; ReviewTable
+
+    Decision1 --&gt;|Não| FilterComplete[Filtra apenas 100% completas]
+    FilterComplete --&gt; CheckCount{Quantas completas?}
+
+    CheckCount --&gt;|0| Error1[Aviso: Nenhuma completa]
+    Error1 --&gt; End1([Fim: Supervisor deve completar])
+
+    CheckCount --&gt;|1-12| SelectAll[Seleciona checkboxes de 8 completas]
+    SelectAll --&gt; ClickBatchApprove[Clica Aprovar selecionadas]
+    ClickBatchApprove --&gt; ModalConfirm[Modal: Confirmar aprovação em lote]
+    ModalConfirm --&gt; ViewList[Lista das 8 inspeções selecionadas]
+    ViewList --&gt; Decision2{Confirmar?}
+
+    Decision2 --&gt;|Não| Cancel[Clica Cancelar]
+    Cancel --&gt; ListScreen
+
+    Decision2 --&gt;|Sim| ClickConfirm[Clica Aprovar]
+    ClickConfirm --&gt; ProcessBatch[Sistema processa batch]
+    ProcessBatch --&gt; ValidateEach[Valida cada inspeção]
+    ValidateEach --&gt; CheckError{Alguma falhou?}
+
+    CheckError --&gt;|Sim| PartialSuccess[Toast: 7 aprovadas, 1 falhou]
+    PartialSuccess --&gt; ShowError[Exibe motivo da falha]
+    ShowError --&gt; NotifyPartial[Notifica técnicos das aprovadas]
+    NotifyPartial --&gt; End2([Fim: Aprovação parcial])
+
+    CheckError --&gt;|Não| FullSuccess[Toast: 8 inspeções aprovadas]
+    FullSuccess --&gt; UpdateDashboard[Dashboard atualiza métricas]
+    UpdateDashboard --&gt; NotifyAll[Sistema notifica todos os técnicos]
+    NotifyAll --&gt; End3([Fim: Aprovação completa])
+
+    style Start fill:#e1f5e1
+    style End1 fill:#e1f5e1
+    style End2 fill:#e1f5e1
+    style End3 fill:#e1f5e1
+    style Error1 fill:#ffe1e1</code></pre>
+<h3 id="34-telas-envolvidas">3.4 Telas Envolvidas<a class="headerlink" href="#34-telas-envolvidas" title="Permanent link">&para;</a></h3>
+<ul>
+<li>
+<p><strong>DashboardScreen (Desktop):</strong> Card "Críticas" mostra contador "12" com badge vermelho e ícone ⚠️. Link "Ver lista" direciona para listagem filtrada.</p>
+</li>
+<li>
+<p><strong>ListagemScreen (Desktop):</strong> DataTable com filtro <code>severidade=alta</code> aplicado. Exibe 12 inspeções com colunas destacadas: ID, Local, Status, <strong>Completude</strong> (progress bar visual), Data, Ações. Supervisor pode ordenar por completude decrescente (100% no topo).</p>
+</li>
+<li>
+<p><strong>DetalhesScreen (Desktop):</strong> Supervisor pode abrir inspeção individual para revisão mais detalhada (tab Resumo, Mídias, Transcrição).</p>
+</li>
+<li>
+<p><strong>Modal de Confirmação de Batch:</strong> Lista das inspeções selecionadas (ID, Local, Técnico), checkbox "Li e valido que todas as inspeções listadas estão corretas", botão "Aprovar".</p>
+</li>
+</ul>
+<h3 id="35-pontos-de-decisao">3.5 Pontos de Decisão<a class="headerlink" href="#35-pontos-de-decisao" title="Permanent link">&para;</a></h3>
+<h4 id="decisao-1-revisar-individualmente">Decisão 1: Revisar individualmente?<a class="headerlink" href="#decisao-1-revisar-individualmente" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>Critério:</strong> Supervisor decide se precisa revisar cada inspeção em detalhes ou se pode aprovar em lote (baseado em confiança na equipe técnica)</li>
+<li><strong>Sim:</strong> Supervisor abre DetalhesScreen de cada inspeção (fluxo mais lento, ~8-10min para 8 inspeções)</li>
+<li><strong>Não:</strong> Supervisor confia nas inspeções 100% completas e aprova em lote (fluxo rápido, ~2-3min)</li>
+</ul>
+<h4 id="decisao-2-confirmar-aprovacao-em-lote">Decisão 2: Confirmar aprovação em lote?<a class="headerlink" href="#decisao-2-confirmar-aprovacao-em-lote" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>Critério:</strong> Supervisor revisa lista de inspeções selecionadas no modal de confirmação</li>
+<li><strong>Sim:</strong> Supervisor marca checkbox "Li e valido" e clica "Aprovar"</li>
+<li><strong>Não:</strong> Supervisor clica "Cancelar" se identificar alguma inspeção que não deveria ser aprovada</li>
+</ul>
+<h3 id="36-cenarios-de-erro">3.6 Cenários de Erro<a class="headerlink" href="#36-cenarios-de-erro" title="Permanent link">&para;</a></h3>
+<h4 id="erro-1-nenhuma-inspecao-100-completa">Erro 1: Nenhuma inspeção 100% completa<a class="headerlink" href="#erro-1-nenhuma-inspecao-100-completa" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>Quando ocorre:</strong> Supervisor aplica filtro "Completude = 100%" mas todas as 12 críticas estão incompletas</li>
+<li><strong>Mensagem:</strong> Toast amarelo - "⚠️ Nenhuma inspeção crítica está 100% completa. Revise e complete antes de aprovar."</li>
+<li><strong>Ações disponíveis:</strong> [Entendi] (fecha toast), [Editar primeira] (abre EditarScreen da primeira inspeção)</li>
+<li><strong>Destino:</strong> ListagemScreen com filtro removido, supervisor pode ver quais campos estão faltando</li>
+</ul>
+<h4 id="erro-2-falha-parcial-em-aprovacao-batch">Erro 2: Falha parcial em aprovação batch<a class="headerlink" href="#erro-2-falha-parcial-em-aprovacao-batch" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>Quando ocorre:</strong> Backend aprova 7 inspeções mas 1 falha (ex: conflito de edição concorrente, erro de rede)</li>
+<li><strong>Mensagem:</strong> Toast amarelo - "⚠️ 7 inspeções aprovadas com sucesso. 1 falhou: #1225 (conflito de edição). Tente novamente."</li>
+<li><strong>Ações disponíveis:</strong> [Ver detalhes] (abre modal com detalhes da falha), [Fechar]</li>
+<li><strong>Destino:</strong> ListagemScreen atualizada (7 inspeções não aparecem mais no filtro "pendentes", 1 permanece)</li>
+</ul>
+<h4 id="erro-3-timeout-na-aprovacao-batch">Erro 3: Timeout na aprovação batch<a class="headerlink" href="#erro-3-timeout-na-aprovacao-batch" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>Quando ocorre:</strong> Backend leva &gt;30s para processar batch (servidor sobrecarregado)</li>
+<li><strong>Mensagem:</strong> Toast vermelho - "❌ Tempo limite excedido. Aprovação em lote falhou. Tente novamente."</li>
+<li><strong>Ações disponíveis:</strong> [Tentar novamente] (resubmete), [Aprovar individualmente] (abre primeira inspeção)</li>
+<li><strong>Destino:</strong> ListagemScreen, nenhuma inspeção foi aprovada (rollback)</li>
+</ul>
+<h3 id="37-processos-backend">3.7 Processos Backend<a class="headerlink" href="#37-processos-backend" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Processo 1: Validar batch</strong></li>
+<li><strong>Operação:</strong> Para cada inspeção selecionada: verifica completude=100%, valida campos obrigatórios, verifica permissões, checa conflitos de edição</li>
+<li><strong>Tempo estimado:</strong> 500ms-2s (depende de quantidade, média 250ms por inspeção)</li>
+<li>
+<p><strong>Feedback ao usuário:</strong> Progress bar no modal "Validando 3 de 8..."</p>
+</li>
+<li>
+<p><strong>Processo 2: Aprovar batch</strong></p>
+</li>
+<li><strong>Operação:</strong> Transaction no banco: UPDATE status='aprovada' WHERE id IN (...); INSERT notifications; Invalidate cache; Log auditoria</li>
+<li><strong>Tempo estimado:</strong> 1-3s (8 inspeções simultaneamente)</li>
+<li><strong>Feedback ao usuário:</strong> Progress bar "Aprovando 5 de 8..."</li>
+</ul>
+<h3 id="38-notificacoes">3.8 Notificações<a class="headerlink" href="#38-notificacoes" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Notificação 1: Técnicos recebem aprovação</strong></li>
+<li><strong>Quando:</strong> Após aprovação em lote concluir</li>
+<li><strong>Destinatário:</strong> Cada técnico que criou inspeção aprovada (João Silva, Maria Costa, Pedro Souza...)</li>
+<li><strong>Conteúdo:</strong> "✅ Sua inspeção #1230 foi aprovada por Supervisor Maria. Você pode gerar o relatório agora."</li>
+<li><strong>Canal:</strong> Push notification (mobile) + Badge no app (número de aprovações)</li>
+</ul>
+<h3 id="39-tempo-estimado">3.9 Tempo Estimado<a class="headerlink" href="#39-tempo-estimado" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Caminho feliz (happy path - aprovação em lote sem revisão individual):</strong> 2-3 minutos</li>
+<li>Dashboard: 10s (visualizar críticas)</li>
+<li>Listagem: 30s (aplicar filtro completude=100%)</li>
+<li>Seleção: 20s (selecionar checkboxes)</li>
+<li>Confirmação: 10s (revisar modal)</li>
+<li>
+<p>Processamento: 1-2min (backend processa batch)</p>
+</li>
+<li>
+<p><strong>Caminho com ajustes (revisão individual de algumas inspeções):</strong> 6-10 minutos</p>
+</li>
+<li>Caminho feliz: 2-3min</li>
+<li>Revisão individual de 3 inspeções: 3-5min (1min cada)</li>
+<li>
+<p>Remoção de 1 inspeção da seleção: 10s</p>
+</li>
+<li>
+<p><strong>Caminho com erros (falha parcial + retry):</strong> 8-12 minutos</p>
+</li>
+<li>Caminho com ajustes: 6-10min</li>
+<li>Investigação de erro: 1min</li>
+<li>Retry da inspeção que falhou: 1min</li>
+</ul>
+<p><strong>Justificativa do tempo:</strong></p>
+<ul>
+<li>Aprovação em lote economiza ~8-10min comparado com aprovar 8 inspeções individualmente (1-1.5min cada)</li>
+<li>Inspeções críticas têm prioridade alta, fluxo otimizado para velocidade</li>
+</ul>
+<h3 id="310-metricas-de-sucesso">3.10 Métricas de Sucesso<a class="headerlink" href="#310-metricas-de-sucesso" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Taxa de conclusão esperada:</strong> 85% (aprovação em lote pode ter falhas parciais)</li>
+<li><strong>Tempo médio esperado:</strong> 2.5 minutos (caminho feliz)</li>
+<li><strong>Taxa de erro esperada:</strong> 10% (erros de conflito, timeout em lotes grandes)</li>
+<li><strong>Taxa de abandono esperada:</strong> 5% (supervisor interrompido por urgência)</li>
+</ul>
+<p><strong>Benchmarks:</strong></p>
+<ul>
+<li>Indústria (sistemas de aprovação batch): Taxa de conclusão 80-90%, tempo médio 2-4min</li>
+<li>VoiceCap oferece validação prévia robusta para minimizar falhas no batch</li>
+</ul>
+<h3 id="311-transicoes-desktop-mobile">3.11 Transições Desktop ↔ Mobile<a class="headerlink" href="#311-transicoes-desktop-mobile" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Início em Desktop, continua em Mobile:</strong> Possível mas raro</li>
+<li>
+<p>Supervisor inicia filtro no desktop, precisa sair, continua aprovação em lote no mobile (ListagemMobileScreen com seleção múltipla)</p>
+</li>
+<li>
+<p><strong>Início em Mobile, continua em Desktop:</strong> Não aplicável (mobile não possui aprovação em lote na versão inicial)</p>
+</li>
+</ul>
+<h3 id="312-variacoes-do-fluxo">3.12 Variações do Fluxo<a class="headerlink" href="#312-variacoes-do-fluxo" title="Permanent link">&para;</a></h3>
+<h4 id="variacao-1-rejeitar-multiplas-inspecoes-em-lote">Variação 1: Rejeitar múltiplas inspeções em lote<a class="headerlink" href="#variacao-1-rejeitar-multiplas-inspecoes-em-lote" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>Condição:</strong> Supervisor identifica padrão de erro em várias inspeções (ex: técnico esqueceu de tirar fotos em todas)</li>
+<li><strong>Diferença:</strong> Seleciona checkboxes, clica "Rejeitar selecionadas" → Modal com textarea obrigatório "Motivo da rejeição (aplicado a todas)" → Batch rejection</li>
+<li><strong>Telas adicionais:</strong> Modal de Rejeição em Lote (similar ao de aprovação)</li>
+</ul>
+<h4 id="variacao-2-exportar-inspecoes-criticas-para-excel">Variação 2: Exportar inspeções críticas para Excel<a class="headerlink" href="#variacao-2-exportar-inspecoes-criticas-para-excel" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>Condição:</strong> Supervisor precisa gerar relatório gerencial para reunião com diretoria</li>
+<li><strong>Diferença:</strong> Na ListagemScreen, clica "Exportar" → Seleciona formato "Excel" → Sistema gera planilha com as 12 inspeções críticas (ID, Local, Técnico, Data, Status, Ações Recomendadas)</li>
+<li><strong>Telas adicionais:</strong> Modal de Exportação (opções de formato e colunas)</li>
+</ul>
+<hr />
+<h2 id="resumo-da-parte-1">RESUMO DA PARTE 1<a class="headerlink" href="#resumo-da-parte-1" title="Permanent link">&para;</a></h2>
+<h3 id="user-flows-criados">User Flows Criados<a class="headerlink" href="#user-flows-criados" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Total:</strong> 3 User Flows (perfil gerencial/supervisor)</li>
+<li><strong>Casos de Uso cobertos:</strong> UC-006, UC-007</li>
+<li><strong>Telas desktop envolvidas:</strong> Dashboard, Listagem, Detalhes, Editar (4 de 5 telas desktop)</li>
+<li><strong>Telas mobile envolvidas:</strong> 0 (fluxos focados em desktop)</li>
+</ul>
+<h3 id="perfis-de-usuario-cobertos">Perfis de Usuário Cobertos<a class="headerlink" href="#perfis-de-usuario-cobertos" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Supervisor de Operações:</strong> 2 fluxos (monitorar/aprovar, aprovar em lote)</li>
+<li><strong>Gestor de Operações:</strong> 1 fluxo (gerar relatório PDF)</li>
+</ul>
+<h3 id="caracteristicas-dos-fluxos-gerenciais">Características dos Fluxos Gerenciais<a class="headerlink" href="#caracteristicas-dos-fluxos-gerenciais" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Dispositivo principal:</strong> Desktop (tela grande para revisar múltiplos dados)</li>
+<li><strong>Ações principais:</strong> Revisão, validação, aprovação, geração de relatórios</li>
+<li><strong>Complexidade:</strong> Média-alta (múltiplas decisões, validações, processos backend)</li>
+<li><strong>Tempo médio:</strong> 2-5 minutos por fluxo (otimizado com IA pré-preenchendo dados)</li>
+</ul>
+<h3 id="metricas-agregadas-perfil-gerencial">Métricas Agregadas (Perfil Gerencial)<a class="headerlink" href="#metricas-agregadas-perfil-gerencial" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Tempo médio dos fluxos (happy path):</strong> 2.5-4 minutos</li>
+<li><strong>Taxa de conclusão esperada:</strong> 90% (fluxos bem definidos, poucos erros)</li>
+<li><strong>Taxa de erro esperada:</strong> 6% (erros de rede, conflitos de edição)</li>
+<li><strong>Taxa de abandono esperada:</strong> 3% (interrupções por outras tarefas urgentes)</li>
+</ul>
+<h3 id="proximos-passos">Próximos Passos<a class="headerlink" href="#proximos-passos" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Arquivo 2/3:</strong> Fluxos Operacionais (perfil técnico de campo, mobile-focused)</li>
+<li><strong>Arquivo 3/3:</strong> Rastreabilidade, Mapa de Navegação, Cobertura de Telas, Auto-Validação</li>
+</ul>
+<hr />
+<p><strong>Última atualização:</strong> 2026-02-03
+<strong>Versão:</strong> 1.0
+<strong>Status desta parte:</strong> ✅ COMPLETO (3 User Flows gerenciais especificados)</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Voltar para o topo
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Rodapé" >
+        
+          
+          <a href="../DONE_4_07_03_rastreabilidade_cobertura/" class="md-footer__link md-footer__link--prev" aria-label="Anterior: [80] CONVERSA 07: TELAS MOBILE - RASTREABILIDADE E COBERTURA (PARTE 3/3)">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Anterior
+              </span>
+              <div class="md-ellipsis">
+                [80] CONVERSA 07: TELAS MOBILE - RASTREABILIDADE E COBERTURA (PARTE 3/3)
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../DONE_4_08_02_fluxos_operacional/" class="md-footer__link md-footer__link--next" aria-label="Próximo: [82] CONVERSA 08: FLUXOS DE USUÁRIO - PERFIL OPERACIONAL (PARTE 2/3)">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Próximo
+              </span>
+              <div class="md-ellipsis">
+                [82] CONVERSA 08: FLUXOS DE USUÁRIO - PERFIL OPERACIONAL (PARTE 2/3)
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2026 VoiceCap - Desenvolvido com Metodologia MDSIA
+    </div>
+  
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/voicecap" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://voicecap.com.br" target="_blank" rel="noopener" title="voicecap.com.br" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M351.9 280H161c2.9 64.5 17.2 123.9 37.5 167.4 11.4 24.5 23.7 41.8 35.1 52.4 11.2 10.5 18.9 12.2 22.9 12.2s11.7-1.7 22.9-12.2c11.4-10.6 23.7-28 35.1-52.4 20.3-43.5 34.6-102.9 37.5-167.4zm-191-48h190.9c-2.8-64.5-17.1-123.9-37.4-167.4-11.4-24.4-23.7-41.8-35.1-52.4C268.1 1.7 260.4 0 256.4 0s-11.7 1.7-22.9 12.2c-11.4 10.6-23.7 28-35.1 52.4-20.3 43.5-34.6 102.9-37.5 167.4m-48 0c3.5-85.6 25.6-165.1 57.9-217.3C78.7 47.3 10.9 131.2 1.5 232zM1.5 280c9.4 100.8 77.2 184.7 169.3 217.3-32.3-52.2-54.4-131.7-57.9-217.3zm398.4 0c-3.5 85.6-25.6 165.1-57.9 217.3 92.1-32.7 159.9-116.5 169.3-217.3zm111.4-48C501.9 131.2 434.1 47.3 342 14.7c32.3 52.2 54.4 131.7 57.9 217.3z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["announce.dismiss", "content.code.copy", "navigation.footer", "navigation.sections", "navigation.tabs", "navigation.tabs.sticky", "navigation.top", "search.highlight", "search.share", "search.suggest", "toc.follow"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado para \u00e1rea de transfer\u00eancia", "clipboard.copy": "Copiar para \u00e1rea de transfer\u00eancia", "search.result.more.one": "mais 1 nesta p\u00e1gina", "search.result.more.other": "# mais nesta p\u00e1gina", "search.result.none": "Nenhum documento encontrado", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Digite para iniciar a busca", "search.result.term.missing": "Ausente", "select.version": "Selecione a vers\u00e3o"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../js/print-site.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

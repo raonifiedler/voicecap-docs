@@ -1,0 +1,8266 @@
+
+<!doctype html>
+<html lang="pt" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Documentação técnica completa do sistema VoiceCap - Captura de informações por voz com IA híbrida multi-tenant">
+      
+      
+        <meta name="author" content="Equipe VoiceCap">
+      
+      
+        <link rel="canonical" href="https://voicecap.com.br/DONE_3_01_01_analise_contexto/">
+      
+      
+        <link rel="prev" href="../DONE_3_01_00_INDICE_MASTER/">
+      
+      
+        <link rel="next" href="../DONE_3_01_02_padroes_candidatos/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>[23] CONVERSA 1: DECISÃO DE ARQUITETURA - PARTE 1/7 - VoiceCap - Documentação Técnica Completa</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CFira+Code:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Fira Code"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../css/print-site.css">
+    
+      <link rel="stylesheet" href="../css/print-site-material.css">
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="blue">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#conversa-1-decisao-de-arquitetura-parte-17" class="md-skip">
+          Pular para conteúdo
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabeçalho">
+    <a href=".." title="VoiceCap - Documentação Técnica Completa" class="md-header__button md-logo" aria-label="VoiceCap - Documentação Técnica Completa" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            VoiceCap - Documentação Técnica Completa
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              [23] CONVERSA 1: DECISÃO DE ARQUITETURA - PARTE 1/7
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="blue"  aria-label="Alternar para modo escuro"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Alternar para modo escuro" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="blue"  aria-label="Alternar para modo claro"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Alternar para modo claro" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Buscar" placeholder="Buscar" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Pesquisar">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Compartilhar" aria-label="Compartilhar" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpar" aria-label="Limpar" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando busca
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Abas" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Início
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../DONE_1_01_problem_statement/" class="md-tabs__link">
+          
+  
+  
+  1. Contexto Estratégico do Projeto
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../DONE_2_01_analise_stakeholders_contexto/" class="md-tabs__link">
+          
+  
+  
+  2. Requisitos e Especificações
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../DONE_3_01_00_INDICE_MASTER/" class="md-tabs__link">
+          
+  
+  
+  3. Arquitetura do Sistema
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../DONE_4_01_00_INDICE/" class="md-tabs__link">
+          
+  
+  
+  4. Design de Interface e Interação
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../print_page/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Imprimir Documentação Completa
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navegação" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="VoiceCap - Documentação Técnica Completa" class="md-nav__button md-logo" aria-label="VoiceCap - Documentação Técnica Completa" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    VoiceCap - Documentação Técnica Completa
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Início
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1. Contexto Estratégico do Projeto
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    1. Contexto Estratégico do Projeto
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1" id="__nav_2_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1.1 Descoberta do Problema
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    1.1 Descoberta do Problema
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_1_01_problem_statement/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [1] PROBLEM STATEMENT & ANÁLISE DO PROBLEMA
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_1_02_stakeholders_personas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [2] STAKEHOLDERS & PERSONAS PRIMÁRIAS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_1_03_proposta_valor_bmc/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [3] PROPOSTA DE VALOR & BUSINESS MODEL CANVAS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1.2 Planejamento Estratégico
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    1.2 Planejamento Estratégico
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_1_04_okrs_kpis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [4] OKRs, KPIs E MÉTRICAS DE SUCESSO
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_1_05_restricoes_negocio/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [5] RESTRIÇÕES DE NEGÓCIO (BUDGET/PRAZO/COMPLIANCE)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_1_06_escopo_mvp_futuro/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [6] ESCOPO MVP vs FUTURO
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1.3 Validação de Viabilidade
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    1.3 Validação de Viabilidade
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_1_07_riscos_viabilidade/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [7] RISCOS & ANÁLISE DE VIABILIDADE
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_1_08_documento_final_saidas_camada2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [8] DOCUMENTO FINAL: CONTEXTO ESTRATÉGICO
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2. Requisitos e Especificações
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    2. Requisitos e Especificações
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_1" id="__nav_3_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2.1 Análise de Stakeholders e Backlog
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    2.1 Análise de Stakeholders e Backlog
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_2_01_analise_stakeholders_contexto/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [9] CONVERSA 1: ANÁLISE DE STAKEHOLDERS & CONTEXTO
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_2_02_product_backlog_inicial/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [10] CONVERSA 2: PRODUCT BACKLOG INICIAL
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_2_03_user_stories_parte1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [11] CONVERSA 3: USER STORIES (PARTE 1/2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2.2 Especificação Funcional Completa
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    2.2 Especificação Funcional Completa
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_2_04_user_stories_parte2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [12] CONVERSA 4: USER STORIES (PARTE 2/2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_2_05_wireframes_ascii_preliminares/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [13] CONVERSA 5: WIREFRAMES ASCII PRELIMINARES
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_2_06_casos_de_uso/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [14] CONVERSA 6: CASOS DE USO
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_2_07_criterios_aceitacao_regras_negocio/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [15] CONVERSA 7: CRITÉRIOS DE ACEITAÇÃO & REGRAS DE NEGÓCIO
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_3" id="__nav_3_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2.3 Requisitos Não-Funcionais
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    2.3 Requisitos Não-Funcionais
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_2_08_rnf_performance_escalabilidade/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [16] CONVERSA 8: RNF - PERFORMANCE & ESCALABILIDADE
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_2_09_rnf_seguranca_disponibilidade/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [17] CONVERSA 9: RNF - SEGURANÇA & DISPONIBILIDADE
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_2_10_rnf_usabilidade_compatibilidade/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [18] CONVERSA 10: RNF - USABILIDADE & COMPATIBILIDADE
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_4" id="__nav_3_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2.4 Priorização e Rastreabilidade
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    2.4 Priorização e Rastreabilidade
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_2_11_priorizacao/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [19] PRIORIZAÇÃO DE REQUISITOS (MoSCoW + RICE)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_2_12_estimativas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [20] ESTIMATIVAS DE ESFORÇO (STORY POINTS)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_2_13_matriz_rastreabilidade/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [21] MATRIZ DE RASTREABILIDADE E DOCUMENTO CONSOLIDADO
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3. Arquitetura do Sistema
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    3. Arquitetura do Sistema
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_1" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4_1" id="__nav_4_1_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3.1 Decisões Arquiteturais
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_1_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    3.1 Decisões Arquiteturais
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_3_01_00_INDICE_MASTER/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [22] DECISÃO DE ARQUITETURA VOICECAP - ÍNDICE MASTER
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [23] CONVERSA 1: DECISÃO DE ARQUITETURA - PARTE 1/7
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [23] CONVERSA 1: DECISÃO DE ARQUITETURA - PARTE 1/7
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+  
+
+<nav class="md-nav md-nav--secondary" aria-label="Nesta página">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Nesta página
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#analise-multi-dimensional-do-contexto" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ANÁLISE MULTI-DIMENSIONAL DO CONTEXTO
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#etapa-1-analise-multi-dimensional-do-contexto" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ETAPA 1: ANÁLISE MULTI-DIMENSIONAL DO CONTEXTO
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ETAPA 1: ANÁLISE MULTI-DIMENSIONAL DO CONTEXTO">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a-dominio-complexidade" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A) DOMÍNIO &amp; COMPLEXIDADE
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="A) DOMÍNIO &amp; COMPLEXIDADE">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#caracterizacao-do-dominio" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Caracterização do Domínio
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#b-integracao-comunicacao" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        B) INTEGRAÇÃO &amp; COMUNICAÇÃO
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="B) INTEGRAÇÃO &amp; COMUNICAÇÃO">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#integracoes-externas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Integrações Externas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#padroes-de-comunicacao" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Padrões de Comunicação
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#estrategia-de-resiliencia" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Estratégia de Resiliência
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#consistencia-de-dados" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Consistência de Dados
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#c-escalabilidade-performance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        C) ESCALABILIDADE &amp; PERFORMANCE
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="C) ESCALABILIDADE &amp; PERFORMANCE">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#volumes-esperados" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Volumes Esperados
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#performance-requerida" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Performance Requerida
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bottlenecks-identificados" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bottlenecks Identificados
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#d-contexto-da-equipe" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        D) CONTEXTO DA EQUIPE
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="D) CONTEXTO DA EQUIPE">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#composicao-da-equipe" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Composição da Equipe
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fator-critico-desenvolvimento-assistido-por-ia" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ⚠️ FATOR CRÍTICO: DESENVOLVIMENTO ASSISTIDO POR IA
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#experiencia-tecnica-relevante" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Experiência Técnica Relevante
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#capacidades-devops" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Capacidades DevOps
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rotatividade-e-disponibilidade" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rotatividade e Disponibilidade
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#e-restricoes-de-negocio" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        E) RESTRIÇÕES DE NEGÓCIO
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="E) RESTRIÇÕES DE NEGÓCIO">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#time-to-market" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Time-to-Market
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#budget" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Budget
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tolerancia-a-risco" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tolerância a Risco
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#compliance-e-regulamentacoes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Compliance e Regulamentações
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#f-infraestrutura" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        F) INFRAESTRUTURA
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="F) INFRAESTRUTURA">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#provider-e-modelo-de-hospedagem" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Provider e Modelo de Hospedagem
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#compliance-e-seguranca-infraestrutura" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Compliance e Segurança Infraestrutura
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#observabilidade" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Observabilidade
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#g-qualidade-manutencao" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        G) QUALIDADE &amp; MANUTENÇÃO
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="G) QUALIDADE &amp; MANUTENÇÃO">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#testabilidade" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Testabilidade
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#frequencia-de-mudancas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Frequência de Mudanças
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#portabilidade" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Portabilidade
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#debito-tecnico" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Débito Técnico
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#h-ia-on-device-performance-mobile-nova-dimensao-critica" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        H) IA ON-DEVICE &amp; PERFORMANCE MOBILE ⭐ NOVA DIMENSÃO CRÍTICA
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="H) IA ON-DEVICE &amp; PERFORMANCE MOBILE ⭐ NOVA DIMENSÃO CRÍTICA">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#modelos-embarcados" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Modelos Embarcados
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tamanho-do-app" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tamanho do App
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#performance-on-device" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Performance On-Device
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sincronizacao-de-modelos-ia" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sincronização de Modelos IA
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fallback-inteligente" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fallback Inteligente
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#impacto-arquitetural-ia-on-device" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Impacto Arquitetural IA On-Device
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#resumo-scores-por-dimensao" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        RESUMO SCORES POR DIMENSÃO
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#proxima-etapa" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PRÓXIMA ETAPA
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_3_01_02_padroes_candidatos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [24] CONVERSA 1: DECISÃO DE ARQUITETURA - PARTE 2/7
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_3_01_03_matriz_decisao/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [25] CONVERSA 1: DECISÃO DE ARQUITETURA - PARTE 3/7
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_3_01_04_recomendacao/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [26] CONVERSA 1: DECISÃO DE ARQUITETURA - PARTE 4/7
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_3_01_05_tradeoffs_riscos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [27] CONVERSA 1: DECISÃO DE ARQUITETURA - PARTE 5/7
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_3_01_06_roadmap_principios/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [28] CONVERSA 1: DECISÃO DE ARQUITETURA - PARTE 6/7
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_3_01_07_alternativas_adr/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [29] CONVERSA 1: DECISÃO DE ARQUITETURA - PARTE 7/7
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_2" id="__nav_4_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3.2 Diagramação C4 Model
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    3.2 Diagramação C4 Model
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_3_02_c4_context/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [30] DIAGRAMA C4 NÍVEL 1 (SYSTEM CONTEXT) - VoiceCap
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_3_03_c4_container/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [31] DIAGRAMA C4 NÍVEL 2 (CONTAINER) - VoiceCap
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_3_04_01_c4_component_backend/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [32] DIAGRAMA C4 NÍVEL 3 (COMPONENT - BACKEND) - VoiceCap
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_3_04_02_fluxos_validacao/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [33] DIAGRAMA C4 COMPONENT - FLUXOS E VALIDAÇÃO
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_3" id="__nav_4_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3.3 Modelagem de Dados
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    3.3 Modelagem de Dados
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_3_05_01_diagrama_er/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [34] DIAGRAMA ER (ENTITY-RELATIONSHIP) - VoiceCap
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_3_05_02_scripts_ddl_migrations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [35] SCRIPTS SQL DDL E MIGRATIONS - VoiceCap
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_4" id="__nav_4_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3.4 Estrutura de Código Backend
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    3.4 Estrutura de Código Backend
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_3_06_01_estrutura_pastas_backend/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [36] ESTRUTURA DE PASTAS - BACKEND - VoiceCap (Parte 1/2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_3_06_02_exemplos_codigo_validacao/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [37] ESTRUTURA DE PASTAS - BACKEND - VoiceCap (Parte 2/2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_5" id="__nav_4_5_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3.5 Estrutura de Código Frontend
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    3.5 Estrutura de Código Frontend
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_3_07_01_estrutura_pastas_frontend/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [38] ESTRUTURA DE PASTAS - FRONTEND - VoiceCap (Parte 1/2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_3_07_02_exemplos_codigo_validacao/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [39] ESTRUTURA DE PASTAS - FRONTEND - VoiceCap (Parte 2/2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_6" id="__nav_4_6_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3.6 Dependências e Tecnologias
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    3.6 Dependências e Tecnologias
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_3_08_01_matriz_backend/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [40] MATRIZ DE DEPENDÊNCIAS - BACKEND (Parte 1/3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_3_08_02_matriz_frontend/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [41] MATRIZ DE DEPENDÊNCIAS - FRONTEND (Parte 2/3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_3_08_03_comunicacao_validacao/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [42] COMUNICAÇÃO & VALIDAÇÃO (Parte 3/3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_7" id="__nav_4_7_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3.7 Padrões de Domínio (DDD)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    3.7 Padrões de Domínio (DDD)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_3_09_01_padroes_basicos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [43] PADRÕES DE DOMAIN (DDD) - PARTE 1: PADRÕES BÁSICOS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_3_09_02_padroes_avancados/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [44] PADRÕES DE DOMAIN (DDD) - PARTE 2: PADRÕES AVANÇADOS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_3_09_03_templates_validacao/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [45] PADRÕES DE DOMAIN (DDD) - PARTE 3: TEMPLATES E VALIDAÇÃO
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_8" id="__nav_4_8_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3.8 Especificação de APIs
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    3.8 Especificação de APIs
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_3_10_01_fundamentos_api/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [46] PADRÕES DE API REST - PARTE 1: FUNDAMENTOS API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_3_10_02_controllers_seguranca/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [47] PADRÕES DE API REST - PARTE 2: CONTROLLERS E SEGURANÇA
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_3_10_03_recursos_completos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [48] PADRÕES DE API REST - PARTE 3: RECURSOS COMPLETOS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_9" id="__nav_4_9_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3.9 Estratégia de Testes
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_9">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    3.9 Estratégia de Testes
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_3_11_01_fundamentos_estrategia_testes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [49] ESTRATÉGIA DE TESTES - PARTE 1: FUNDAMENTOS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_3_11_02_exemplos_rnfs_validacao/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [50] ESTRATÉGIA DE TESTES - PARTE 2: EXEMPLOS E VALIDAÇÃO
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_10" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_10" id="__nav_4_10_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3.10 Architecture Decision Records (ADRs)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_10">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    3.10 Architecture Decision Records (ADRs)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_3_12_00_indice/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [51] ÍNDICE DE ADRs - VoiceCap
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_3_12_AUTO_VALIDACAO/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [52] AUTO-VALIDAÇÃO: ADRs VoiceCap
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_3_12_01_adrs_arquitetura/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [53] ADRs DE ARQUITETURA - VoiceCap
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_3_12_02_adrs_dados_backend/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [54] ADRs DE DADOS & BACKEND - VoiceCap
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_3_12_03_adrs_seguranca_testes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [55] ADRs DE SEGURANÇA & TESTES - VoiceCap
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_11" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_11" id="__nav_4_11_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3.11 Validação Arquitetural
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_11_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_11">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    3.11 Validação Arquitetural
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_3_13_00_INDICE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [56] VALIDAÇÃO FINAL DA ARQUITETURA VOICECAP - ÍNDICE MASTER
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_3_13_01_validacoes_scores/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [57] VALIDAÇÃO FINAL DA ARQUITETURA - PARTE 1: VALIDAÇÕES E SCORES
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_3_13_02_riscos_gaps_recomendacoes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [58] VALIDAÇÃO FINAL DA ARQUITETURA - PARTE 2: RISCOS, GAPS E RECOMENDAÇÕES
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_3_13_03_readme_aprovacao/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [59] VALIDAÇÃO FINAL DA ARQUITETURA - PARTE 3: README E APROVAÇÃO
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4. Design de Interface e Interação
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    4. Design de Interface e Interação
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_1" id="__nav_5_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4.1 Sistema de Design (Design Tokens)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    4.1 Sistema de Design (Design Tokens)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_4_01_00_INDICE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [60] DESIGN TOKENS - VoiceCap (Índice Master)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_4_01_01_design_tokens_cores_tipografia/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [61] DESIGN TOKENS - VoiceCap (Parte 1/3: Cores e Tipografia)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_4_01_02_design_tokens_espacamento_visual/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [62] DESIGN TOKENS - VoiceCap (Parte 2/3: Espaçamento e Visual)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_4_01_03_design_tokens_responsive_animacao/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [63] DESIGN TOKENS - VoiceCap (Parte 3/3: Responsivo, Animação e Exportação)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_2" id="__nav_5_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4.2 Componentes Atômicos
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    4.2 Componentes Atômicos
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_4_02_01_atomos_componentes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [64] ÁTOMOS - COMPONENTES BÁSICOS - VoiceCap (Parte 1/2: Especificações)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_4_02_02_atomos_referencia_validacao/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [65] ÁTOMOS - COMPONENTES BÁSICOS - VoiceCap (Parte 2/2: Referência e Validação)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_3" id="__nav_5_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4.3 Componentes Moleculares
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    4.3 Componentes Moleculares
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_4_03_01_moleculas_componentes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [66] MOLÉCULAS - COMPONENTES COMBINADOS - VoiceCap (Parte 1/2: Especificações)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_4_03_02_moleculas_referencia_validacao/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [67] MOLÉCULAS - COMPONENTES COMBINADOS - VoiceCap (Parte 2/2: Referência e Validação)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_4" id="__nav_5_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4.4 Componentes Organismos
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    4.4 Componentes Organismos
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_4_04_01_organismos_datatable/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [68] ORGANISMOS - DATATABLE - VoiceCap (Parte 1/4)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_4_04_02_organismos_modal/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [69] ORGANISMOS - MODAL - VoiceCap (Parte 2/4)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_4_04_03_organismos_navegacao/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [70] ORGANISMOS - NAVEGAÇÃO (HEADER + SIDEBAR) - VoiceCap (Parte 3/4)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_4_04_04_organismos_mapview_validacao/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [71] ORGANISMOS - MAPVIEW + VALIDAÇÃO - VoiceCap (Parte 4/4)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_5" id="__nav_5_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4.5 Templates de Páginas
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    4.5 Templates de Páginas
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_4_05_01_template_dashboard/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [72] TEMPLATE: DASHBOARDTEMPLATE (Parte 1/3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_4_05_02_template_form/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [73] TEMPLATE: FORMTEMPLATE (Parte 2/3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_4_05_03_template_auth_validacao/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [74] TEMPLATE: AUTHTEMPLATE + VALIDAÇÃO (Parte 3/3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_6" id="__nav_5_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4.6 Telas Desktop Completas
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    4.6 Telas Desktop Completas
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_4_06_01_telas_dashboard_listagem/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [75] CONVERSA 06: TELAS DESKTOP - WIREFRAMES DE ALTA FIDELIDADE (PARTE 1/3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_4_06_02_telas_forms/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [76] CONVERSA 06: TELAS DESKTOP - WIREFRAMES DE ALTA FIDELIDADE (PARTE 2/3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_4_06_03_telas_detalhes_validacao/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [77] CONVERSA 06: TELAS DESKTOP - WIREFRAMES DE ALTA FIDELIDADE (PARTE 3/3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_7" id="__nav_5_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4.7 Telas Mobile
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    4.7 Telas Mobile
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_4_07_01_telas_mobile_adaptacoes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [78] CONVERSA 07: TELAS MOBILE - ADAPTAÇÕES DESKTOP (PARTE 1/3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_4_07_02_telas_mobile_exclusivas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [79] CONVERSA 07: TELAS MOBILE - EXCLUSIVAS OPERACIONAIS (PARTE 2/3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_4_07_03_rastreabilidade_cobertura/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [80] CONVERSA 07: TELAS MOBILE - RASTREABILIDADE E COBERTURA (PARTE 3/3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_8" id="__nav_5_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4.8 Fluxos de Usuário
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    4.8 Fluxos de Usuário
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_4_08_01_fluxos_gerencial/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [81] CONVERSA 08: FLUXOS DE USUÁRIO - PERFIL GERENCIAL (PARTE 1/3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_4_08_02_fluxos_operacional/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [82] CONVERSA 08: FLUXOS DE USUÁRIO - PERFIL OPERACIONAL (PARTE 2/3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_4_08_03_rastreabilidade_validacao/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [83] CONVERSA 08: FLUXOS DE USUÁRIO - RASTREABILIDADE E VALIDAÇÃO (PARTE 3/3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_9" id="__nav_5_9_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4.9 Responsividade Multi-Dispositivo
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_9">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    4.9 Responsividade Multi-Dispositivo
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_4_09_01_responsividade_telas_parte1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [84] CONVERSA 09: RESPONSIVIDADE - ESTRATÉGIA DE ADAPTAÇÃO (PARTE 1/3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_4_09_02_responsividade_telas_parte2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [85] CONVERSA 09: RESPONSIVIDADE - ESTRATÉGIA DE ADAPTAÇÃO (PARTE 2/3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_4_09_03_responsividade_componentes_validacao/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [86] CONVERSA 09: RESPONSIVIDADE - ESTRATÉGIA DE ADAPTAÇÃO (PARTE 3/3)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_10" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_10" id="__nav_5_10_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4.10 Acessibilidade WCAG e Validação
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_10">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    4.10 Acessibilidade WCAG e Validação
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_4_10_01_checklist_componentes_atomos_moleculas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [87] CONVERSA 10: ACESSIBILIDADE WCAG 2.1 AA - PARTE 1/4
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_4_10_02_checklist_componentes_organismos_templates_telas_desktop/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [88] CONVERSA 10: ACESSIBILIDADE WCAG 2.1 AA - PARTE 2/4
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_4_10_03_checklist_telas_mobile_validacao_wcag/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [89] CONVERSA 10: ACESSIBILIDADE WCAG 2.1 AA - PARTE 3/4
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DONE_4_10_04_ferramentas_guia_casos_uso_rnfs_validacao/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    [90] CONVERSA 10: ACESSIBILIDADE WCAG 2.1 AA - PARTE 4/4
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../print_page/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Imprimir Documentação Completa
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+<nav class="md-nav md-nav--secondary" aria-label="Nesta página">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Nesta página
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#analise-multi-dimensional-do-contexto" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ANÁLISE MULTI-DIMENSIONAL DO CONTEXTO
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#etapa-1-analise-multi-dimensional-do-contexto" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ETAPA 1: ANÁLISE MULTI-DIMENSIONAL DO CONTEXTO
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ETAPA 1: ANÁLISE MULTI-DIMENSIONAL DO CONTEXTO">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a-dominio-complexidade" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A) DOMÍNIO &amp; COMPLEXIDADE
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="A) DOMÍNIO &amp; COMPLEXIDADE">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#caracterizacao-do-dominio" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Caracterização do Domínio
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#b-integracao-comunicacao" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        B) INTEGRAÇÃO &amp; COMUNICAÇÃO
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="B) INTEGRAÇÃO &amp; COMUNICAÇÃO">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#integracoes-externas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Integrações Externas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#padroes-de-comunicacao" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Padrões de Comunicação
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#estrategia-de-resiliencia" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Estratégia de Resiliência
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#consistencia-de-dados" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Consistência de Dados
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#c-escalabilidade-performance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        C) ESCALABILIDADE &amp; PERFORMANCE
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="C) ESCALABILIDADE &amp; PERFORMANCE">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#volumes-esperados" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Volumes Esperados
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#performance-requerida" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Performance Requerida
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bottlenecks-identificados" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bottlenecks Identificados
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#d-contexto-da-equipe" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        D) CONTEXTO DA EQUIPE
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="D) CONTEXTO DA EQUIPE">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#composicao-da-equipe" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Composição da Equipe
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fator-critico-desenvolvimento-assistido-por-ia" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ⚠️ FATOR CRÍTICO: DESENVOLVIMENTO ASSISTIDO POR IA
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#experiencia-tecnica-relevante" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Experiência Técnica Relevante
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#capacidades-devops" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Capacidades DevOps
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rotatividade-e-disponibilidade" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rotatividade e Disponibilidade
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#e-restricoes-de-negocio" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        E) RESTRIÇÕES DE NEGÓCIO
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="E) RESTRIÇÕES DE NEGÓCIO">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#time-to-market" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Time-to-Market
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#budget" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Budget
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tolerancia-a-risco" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tolerância a Risco
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#compliance-e-regulamentacoes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Compliance e Regulamentações
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#f-infraestrutura" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        F) INFRAESTRUTURA
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="F) INFRAESTRUTURA">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#provider-e-modelo-de-hospedagem" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Provider e Modelo de Hospedagem
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#compliance-e-seguranca-infraestrutura" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Compliance e Segurança Infraestrutura
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#observabilidade" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Observabilidade
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#g-qualidade-manutencao" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        G) QUALIDADE &amp; MANUTENÇÃO
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="G) QUALIDADE &amp; MANUTENÇÃO">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#testabilidade" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Testabilidade
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#frequencia-de-mudancas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Frequência de Mudanças
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#portabilidade" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Portabilidade
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#debito-tecnico" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Débito Técnico
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#h-ia-on-device-performance-mobile-nova-dimensao-critica" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        H) IA ON-DEVICE &amp; PERFORMANCE MOBILE ⭐ NOVA DIMENSÃO CRÍTICA
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="H) IA ON-DEVICE &amp; PERFORMANCE MOBILE ⭐ NOVA DIMENSÃO CRÍTICA">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#modelos-embarcados" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Modelos Embarcados
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tamanho-do-app" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tamanho do App
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#performance-on-device" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Performance On-Device
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sincronizacao-de-modelos-ia" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sincronização de Modelos IA
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fallback-inteligente" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fallback Inteligente
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#impacto-arquitetural-ia-on-device" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Impacto Arquitetural IA On-Device
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#resumo-scores-por-dimensao" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        RESUMO SCORES POR DIMENSÃO
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#proxima-etapa" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PRÓXIMA ETAPA
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="conversa-1-decisao-de-arquitetura-parte-17">CONVERSA 1: DECISÃO DE ARQUITETURA - PARTE 1/7<a class="headerlink" href="#conversa-1-decisao-de-arquitetura-parte-17" title="Permanent link">&para;</a></h1>
+<h2 id="analise-multi-dimensional-do-contexto">ANÁLISE MULTI-DIMENSIONAL DO CONTEXTO<a class="headerlink" href="#analise-multi-dimensional-do-contexto" title="Permanent link">&para;</a></h2>
+<p><strong>Projeto:</strong> VoiceCap
+<strong>Data:</strong> 2026-01-31
+<strong>Responsável:</strong> IA (Claude Sonnet 4.5)
+<strong>Status:</strong> ✅ COMPLETO</p>
+<hr />
+<h2 id="etapa-1-analise-multi-dimensional-do-contexto">ETAPA 1: ANÁLISE MULTI-DIMENSIONAL DO CONTEXTO<a class="headerlink" href="#etapa-1-analise-multi-dimensional-do-contexto" title="Permanent link">&para;</a></h2>
+<h3 id="a-dominio-complexidade">A) DOMÍNIO &amp; COMPLEXIDADE<a class="headerlink" href="#a-dominio-complexidade" title="Permanent link">&para;</a></h3>
+<h4 id="caracterizacao-do-dominio">Caracterização do Domínio<a class="headerlink" href="#caracterizacao-do-dominio" title="Permanent link">&para;</a></h4>
+<p><strong>Tipo de Sistema:</strong></p>
+<ul>
+<li><strong>Categoria:</strong> Sistema Transacional + Analítico (Captura de dados + Processamento IA)</li>
+<li><strong>Natureza:</strong> Mobile-first, offline-first, IA-driven</li>
+<li><strong>Complexidade de Negócio:</strong> <strong>Média-Alta (7/10)</strong></li>
+</ul>
+<p><strong>Bounded Contexts Identificados:</strong></p>
+<ol>
+<li><strong>Contexto de Captura (Core Domain)</strong></li>
+<li>Gravação de áudio offline</li>
+<li>Armazenamento local (~30 dias)</li>
+<li>Captura multimídia (fotos + GPS)</li>
+<li>Sincronização automática</li>
+<li>
+<p><strong>Modelos IA embarcados</strong> (~2-2.5GB: Whisper local + LLM local + RAG local)</p>
+</li>
+<li>
+<p><strong>Contexto de Processamento IA Local (Core Domain)</strong> ⭐ <strong>NOVO</strong></p>
+</li>
+<li><strong>Transcrição on-device</strong> (Whisper.cpp Tiny/Base, 90-92% precisão)</li>
+<li><strong>Análise semântica local</strong> (Llama 3.2 1B ou Phi-3 Mini)</li>
+<li><strong>RAG local compacto</strong> (top 50-100 documentos essenciais)</li>
+<li><strong>Processamento imediato</strong> (5-10s sem internet)</li>
+<li>
+<p><strong>Feedback instantâneo offline</strong></p>
+</li>
+<li>
+<p><strong>Contexto de Processamento IA Cloud (Core Domain)</strong></p>
+</li>
+<li>Transcrição avançada (Whisper Large V3, 95-97% precisão)</li>
+<li>Análise semântica robusta (GPT-4/Claude 3.5/Llama 3.3 70B)</li>
+<li><strong>RAG completo</strong> (centenas/milhares docs via Supabase pgvector)</li>
+<li>Preenchimento automático de formulários</li>
+<li>Validação de completude</li>
+<li>
+<p><strong>Refinamento</strong> de processamento local</p>
+</li>
+<li>
+<p><strong>Contexto Multi-Tenant (Supporting Domain)</strong></p>
+</li>
+<li>Isolamento de dados por empresa via Supabase RLS</li>
+<li>Bases RAG isoladas por tenant (pgvector)</li>
+<li>Autenticação JWT (Supabase Auth)</li>
+<li>
+<p>Configurações específicas por empresa</p>
+</li>
+<li>
+<p><strong>Contexto de Integração Kaffa (Supporting Domain)</strong> ⭐ <strong>FRENTE A</strong></p>
+</li>
+<li>API REST para integração</li>
+<li>Campos texto/observações no Kaffa</li>
+<li>
+<p>Sincronização com sistema legado</p>
+</li>
+<li>
+<p><strong>Contexto de App Standalone (Supporting Domain)</strong> ⭐ <strong>FRENTE B</strong></p>
+</li>
+<li>Formulários dinâmicos próprios</li>
+<li>Backend independente</li>
+<li>Multi-tenant completo</li>
+</ol>
+<p><strong>Volatilidade do Domínio:</strong></p>
+<ul>
+<li><strong>Regras de Negócio:</strong> Média volatilidade (6/10)</li>
+<li>Formulários variam por setor (energia, agronegócio, construção)</li>
+<li>Normas técnicas mudam periodicamente (NR-10, ABNT)</li>
+<li>RAG precisa atualização contínua</li>
+<li>
+<p><strong>Modelos IA evoluem</strong> (atualizações periódicas Whisper/LLM)</p>
+</li>
+<li>
+<p><strong>Requisitos Técnicos:</strong> Alta volatilidade (8/10)</p>
+</li>
+<li>APIs IA (Groq, OpenAI) mudam versões</li>
+<li>Tecnologias on-device (Whisper.cpp, ONNX Runtime) evoluem rapidamente</li>
+<li>Performance mobile exige otimizações constantes</li>
+<li>Estratégia dual-track adiciona complexidade de integração</li>
+</ul>
+<p><strong>Complexidade Técnica:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Aspecto</th>
+<th>Complexidade</th>
+<th>Score</th>
+<th>Justificativa</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Lógica de Negócio</td>
+<td>Média</td>
+<td>6/10</td>
+<td>Regras de validação por setor, mapeamento fala→campos</td>
+</tr>
+<tr>
+<td><strong>Processamento IA Híbrido</strong></td>
+<td><strong>Alta</strong></td>
+<td><strong>9/10</strong></td>
+<td><strong>2 camadas (local + cloud), sincronização modelos, fallback</strong></td>
+</tr>
+<tr>
+<td><strong>IA On-Device</strong></td>
+<td><strong>Muito Alta</strong></td>
+<td><strong>9/10</strong></td>
+<td><strong>Whisper.cpp, quantização, otimização mobile, gestão ~2.5GB</strong></td>
+</tr>
+<tr>
+<td>Integração</td>
+<td>Alta</td>
+<td>8/10</td>
+<td>2 frentes (Kaffa + Standalone), motor IA compartilhado</td>
+</tr>
+<tr>
+<td>Sincronização Offline</td>
+<td>Alta</td>
+<td>8/10</td>
+<td>Conflitos, retry, armazenamento local 30 dias</td>
+</tr>
+<tr>
+<td>Multi-Tenant</td>
+<td>Média-Alta</td>
+<td>7/10</td>
+<td>Isolamento RLS, RAG por empresa, configurações dinâmicas</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Estratégia Dual-Track:</strong></p>
+<p>⚠️ <strong>FATOR CRÍTICO:</strong> Projeto possui 2 frentes paralelas compartilhando motor IA:</p>
+<ul>
+<li><strong>Frente A (Integração Kaffa):</strong></li>
+<li>Adiciona voz a sistema EXISTENTE (Kotlin)</li>
+<li>Kaffa JÁ TEM: offline-first, sincronização, formulários, fotos GPS</li>
+<li>Kaffa NÃO TEM: gravação áudio, <strong>IA on-device</strong> (novo)</li>
+<li>Prazo: 2-3 semanas (66 SP)</li>
+<li>
+<p>Mercado: Distribuidoras energia (10-15 clientes potenciais)</p>
+</li>
+<li>
+<p><strong>Frente B (App Standalone):</strong></p>
+</li>
+<li>App React Native completo do zero</li>
+<li>Backend próprio usando servidores existentes</li>
+<li>Prazo: 4-6 semanas (111 SP)</li>
+<li>
+<p>Mercado: Agronegócio, construção, manutenção (100+ clientes)</p>
+</li>
+<li>
+<p><strong>Motor IA Híbrido (Compartilhado):</strong></p>
+</li>
+<li><strong>IA Local:</strong> Whisper local + LLM local + RAG local (~2-2.5GB embarcado)</li>
+<li><strong>IA Cloud:</strong> Whisper cloud + LLM cloud + RAG Supabase pgvector</li>
+<li>API REST unificada (serve ambas frentes)</li>
+<li>Economia custos: 60-70% redução requisições cloud (local processa primeiro)</li>
+</ul>
+<p><strong>Score Final Dimensão A: 8/10</strong> (Complexidade Alta, mas gerenciável com arquitetura modular e IA gerando código)</p>
+<hr />
+<h3 id="b-integracao-comunicacao">B) INTEGRAÇÃO &amp; COMUNICAÇÃO<a class="headerlink" href="#b-integracao-comunicacao" title="Permanent link">&para;</a></h3>
+<h4 id="integracoes-externas">Integrações Externas<a class="headerlink" href="#integracoes-externas" title="Permanent link">&para;</a></h4>
+<p><strong>1. APIs IA Cloud (Críticas):</strong></p>
+<ul>
+<li><strong>Groq Whisper Large V3:</strong> Transcrição avançada (refinamento)</li>
+<li><strong>OpenAI GPT-4 / Anthropic Claude 3.5:</strong> LLM robusto</li>
+<li><strong>Llama 3.3 70B (Groq/Together.ai):</strong> Alternativa open-source</li>
+<li><strong>Sincronicidade:</strong> Assíncrona (processamento background)</li>
+<li><strong>Criticidade:</strong> Alta (mas com fallback IA local)</li>
+<li><strong>Volumes:</strong> 60-70% MENOR que processamento apenas cloud (local processa primeiro)</li>
+</ul>
+<p><strong>2. Integração Kaffa (Frente A):</strong></p>
+<ul>
+<li><strong>Sistema Kaffa (Kotlin):</strong> API REST ou integração código</li>
+<li><strong>Sincronicidade:</strong> Síncrona (botão gravação) + Assíncrona (refinamento)</li>
+<li><strong>Criticidade:</strong> Alta para Frente A</li>
+<li><strong>Desafio:</strong> Kaffa NÃO possui gravação áudio (funcionalidade nova)</li>
+</ul>
+<p><strong>3. Sistemas Legado Cliente (Futuro):</strong></p>
+<ul>
+<li><strong>SAP, Maximo, Protheus:</strong> Integrações Could Have</li>
+<li><strong>Sincronicidade:</strong> Assíncrona (sincronização noturna)</li>
+<li><strong>Criticidade:</strong> Baixa no MVP</li>
+</ul>
+<p><strong>4. Supabase PostgreSQL + pgvector (Core):</strong></p>
+<ul>
+<li><strong>Dados relacionais + RAG unificado:</strong> Queries híbridas SQL + vector</li>
+<li><strong>Autenticação:</strong> Supabase Auth JWT</li>
+<li><strong>Storage:</strong> Áudios S3 com RLS</li>
+<li><strong>Performance:</strong> 50-150ms busca vetorial (50% mais rápido que Pinecone 200-300ms)</li>
+<li><strong>Economia:</strong> Elimina Pinecone (<span class="arithmatex">\(70-200/mês) + ElastiCache (\)</span>50-100/mês)</li>
+</ul>
+<p><strong>5. AWS S3 + CloudFront:</strong></p>
+<ul>
+<li><strong>Storage permanente:</strong> Áudios pós-sincronização</li>
+<li><strong>CDN modelos IA:</strong> Download inicial (~2-2.5GB) via CloudFront</li>
+<li><strong>Sincronicidade:</strong> Assíncrona</li>
+<li><strong>Criticidade:</strong> Média (auditoria, retreinamento)</li>
+</ul>
+<h4 id="padroes-de-comunicacao">Padrões de Comunicação<a class="headerlink" href="#padroes-de-comunicacao" title="Permanent link">&para;</a></h4>
+<p><strong>Mobile → Backend:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Operação</th>
+<th>Padrão</th>
+<th>Protocolo</th>
+<th>Resiliência</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Gravação áudio</td>
+<td><strong>Local-first</strong></td>
+<td><strong>Device storage</strong></td>
+<td><strong>100% offline</strong></td>
+</tr>
+<tr>
+<td><strong>Processamento IA local</strong></td>
+<td><strong>On-device</strong></td>
+<td><strong>Whisper.cpp + LLM local</strong></td>
+<td><strong>100% offline (5-10s)</strong></td>
+</tr>
+<tr>
+<td>Upload áudio</td>
+<td>Assíncrono</td>
+<td>REST + SQS</td>
+<td>Retry automático 3x</td>
+</tr>
+<tr>
+<td><strong>Refinamento IA cloud</strong></td>
+<td><strong>Assíncrono</strong></td>
+<td><strong>REST API</strong></td>
+<td><strong>Fallback: usa local se falhar</strong></td>
+</tr>
+<tr>
+<td>Sincronização formulários</td>
+<td>Assíncrono</td>
+<td>REST</td>
+<td>Conflict resolution</td>
+</tr>
+<tr>
+<td>Download modelos IA</td>
+<td><strong>WiFi-only</strong></td>
+<td><strong>CloudFront CDN</strong></td>
+<td><strong>Retry, resumable</strong></td>
+</tr>
+<tr>
+<td>Busca RAG cloud</td>
+<td>Síncrono</td>
+<td><strong>Supabase pgvector</strong></td>
+<td><strong>Cache Redis 5min</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Backend → APIs IA:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Operação</th>
+<th>Padrão</th>
+<th>Timeout</th>
+<th>Retry</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Transcrição cloud (Groq)</td>
+<td>Assíncrono</td>
+<td>30s</td>
+<td>2x com backoff</td>
+</tr>
+<tr>
+<td>LLM análise (GPT-4/Claude)</td>
+<td>Assíncrono</td>
+<td>60s</td>
+<td>2x com backoff</td>
+</tr>
+<tr>
+<td><strong>RAG busca (Supabase pgvector)</strong></td>
+<td><strong>Síncrono</strong></td>
+<td><strong>500ms</strong></td>
+<td><strong>Cache Redis</strong></td>
+</tr>
+<tr>
+<td>Refinamento completo</td>
+<td>Assíncrono</td>
+<td>120s</td>
+<td>1x (fallback local)</td>
+</tr>
+</tbody>
+</table>
+<h4 id="estrategia-de-resiliencia">Estratégia de Resiliência<a class="headerlink" href="#estrategia-de-resiliencia" title="Permanent link">&para;</a></h4>
+<p><strong>Offline-First MELHORADO com IA Local:</strong></p>
+<ol>
+<li><strong>Campo (100% Offline):</strong></li>
+<li>Gravação áudio → armazenamento local tablet</li>
+<li><strong>IA local processa imediatamente</strong> (Whisper local + LLM local + RAG local)</li>
+<li>Campo preenchido em 5-10s <strong>SEM INTERNET</strong></li>
+<li>Inspetor vê resultado e valida</li>
+<li>
+<p>Áudio + transcrição local + campos salvos localmente</p>
+</li>
+<li>
+<p><strong>Sincronização (Online):</strong></p>
+</li>
+<li>Upload quando conectar (WiFi ou 4G)</li>
+<li><strong>IA cloud reprocessa e refina</strong> (2-3s)</li>
+<li>Delta enviado ao tablet (apenas melhorias)</li>
+<li>
+<p>Inspetor notificado se houver refinamentos</p>
+</li>
+<li>
+<p><strong>Fallback Inteligente:</strong></p>
+</li>
+<li>Se cloud falhar: <strong>IA local já preencheu</strong> (degradação graciosa)</li>
+<li>Se IA local falhar: fallback para gravação simples (raro)</li>
+<li>Qualidade: 90-92% (local) → 95-97% (cloud refinado)</li>
+</ol>
+<p><strong>Gestão de Falhas:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Falha</th>
+<th>Probabilidade</th>
+<th>Impacto</th>
+<th>Mitigação</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>IA local falha</strong></td>
+<td>Baixa (2%)</td>
+<td>Médio</td>
+<td>Fallback gravação simples + retry cloud</td>
+</tr>
+<tr>
+<td>Cloud API indisponível</td>
+<td>Média (5%)</td>
+<td><strong>Baixo</strong></td>
+<td><strong>IA local já funcionou, cloud apenas refina</strong></td>
+</tr>
+<tr>
+<td>Network timeout</td>
+<td>Alta (15%)</td>
+<td><strong>Baixo</strong></td>
+<td><strong>Processamento local imediato, refinamento posterior</strong></td>
+</tr>
+<tr>
+<td>Conflito sincronização</td>
+<td>Média (3%)</td>
+<td>Médio</td>
+<td>Last-write-wins + log auditoria</td>
+</tr>
+<tr>
+<td><strong>Download modelo falha</strong></td>
+<td>Baixa (1%)</td>
+<td>Alto</td>
+<td>Modelo anterior continua, retry WiFi automático</td>
+</tr>
+</tbody>
+</table>
+<h4 id="consistencia-de-dados">Consistência de Dados<a class="headerlink" href="#consistencia-de-dados" title="Permanent link">&para;</a></h4>
+<p><strong>Modelo de Consistência:</strong></p>
+<ul>
+<li><strong>Local:</strong> Strong consistency (SQLite ACID)</li>
+<li><strong>Cloud:</strong> Eventual consistency (sincronização assíncrona)</li>
+<li><strong>Conflitos:</strong> Last-write-wins com timestamp + log auditoria</li>
+<li><strong>RAG:</strong> Eventual consistency (atualização semanal/mensal bases)</li>
+<li><strong>Modelos IA:</strong> Eventual consistency (atualização mensal WiFi)</li>
+</ul>
+<p><strong>Score Final Dimensão B: 8/10</strong> (Integração complexa, mas offline-first + IA local mitiga riscos de conectividade)</p>
+<hr />
+<h3 id="c-escalabilidade-performance">C) ESCALABILIDADE &amp; PERFORMANCE<a class="headerlink" href="#c-escalabilidade-performance" title="Permanent link">&para;</a></h3>
+<h4 id="volumes-esperados">Volumes Esperados<a class="headerlink" href="#volumes-esperados" title="Permanent link">&para;</a></h4>
+<p><strong>MVP (6 meses):</strong></p>
+<table>
+<thead>
+<tr>
+<th>Métrica</th>
+<th>Frente A (Kaffa)</th>
+<th>Frente B (Standalone)</th>
+<th>Total</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Empresas clientes</td>
+<td>2-3 distribuidoras</td>
+<td>5-8 empresas</td>
+<td>8-10</td>
+</tr>
+<tr>
+<td>Inspetores ativos</td>
+<td>50-80</td>
+<td>100-150</td>
+<td>150-200</td>
+</tr>
+<tr>
+<td>Inspeções/dia</td>
+<td>200-400</td>
+<td>500-800</td>
+<td>700-1.200</td>
+</tr>
+<tr>
+<td>Áudios/dia</td>
+<td>200-400</td>
+<td>500-800</td>
+<td>700-1.200</td>
+</tr>
+<tr>
+<td><strong>Processamento IA local/dia</strong></td>
+<td><strong>200-400</strong></td>
+<td><strong>500-800</strong></td>
+<td><strong>700-1.200</strong></td>
+</tr>
+<tr>
+<td><strong>Refinamento cloud/dia</strong></td>
+<td><strong>120-200 (60%)</strong></td>
+<td><strong>300-400 (60%)</strong></td>
+<td><strong>420-600</strong></td>
+</tr>
+<tr>
+<td>Storage áudios/mês</td>
+<td>6-12 GB</td>
+<td>15-24 GB</td>
+<td>21-36 GB</td>
+</tr>
+<tr>
+<td><strong>Modelos IA embarcados</strong></td>
+<td><strong>~2.5GB/device</strong></td>
+<td><strong>~2.5GB/device</strong></td>
+<td><strong>~500GB total (200 devices)</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>12 meses (Scale):</strong></p>
+<table>
+<thead>
+<tr>
+<th>Métrica</th>
+<th>Frente A</th>
+<th>Frente B</th>
+<th>Total</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Empresas clientes</td>
+<td>5-8</td>
+<td>15-20</td>
+<td>20-25</td>
+</tr>
+<tr>
+<td>Inspetores ativos</td>
+<td>150-250</td>
+<td>300-500</td>
+<td>450-700</td>
+</tr>
+<tr>
+<td>Inspeções/dia</td>
+<td>800-1.500</td>
+<td>1.500-2.500</td>
+<td>2.300-4.000</td>
+</tr>
+<tr>
+<td><strong>Processamento IA local/dia</strong></td>
+<td><strong>800-1.500</strong></td>
+<td><strong>1.500-2.500</strong></td>
+<td><strong>2.300-4.000</strong></td>
+</tr>
+<tr>
+<td><strong>Refinamento cloud/dia</strong></td>
+<td><strong>480-750 (60%)</strong></td>
+<td><strong>900-1.250 (60%)</strong></td>
+<td><strong>1.380-2.000</strong></td>
+</tr>
+<tr>
+<td>Storage áudios/mês</td>
+<td>24-45 GB</td>
+<td>45-75 GB</td>
+<td>69-120 GB</td>
+</tr>
+</tbody>
+</table>
+<p><strong>⚠️ IMPACTO IA LOCAL:</strong></p>
+<ul>
+<li><strong>Redução 60-70% requisições cloud</strong> (local processa primeiro, cloud apenas refina)</li>
+<li><strong>Economia APIs IA:</strong> R$ 10-15k/mês (vs R$ 30-45k sem IA local)</li>
+<li><strong>Custo total operacional:</strong> R$ 60-70k/mês (vs R$ 95-120k sem IA local)</li>
+</ul>
+<h4 id="performance-requerida">Performance Requerida<a class="headerlink" href="#performance-requerida" title="Permanent link">&para;</a></h4>
+<p><strong>RNFs Críticos de Performance:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Requisito</th>
+<th>Target</th>
+<th>Justificativa</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>RNF-301: Processamento IA local</strong></td>
+<td><strong>≤10s</strong></td>
+<td><strong>Feedback instantâneo offline (90% casos ≤10s)</strong></td>
+</tr>
+<tr>
+<td><strong>RNF-421: Bateria IA local</strong></td>
+<td><strong>≤5% por processamento</strong></td>
+<td><strong>Dispositivo dura dia inteiro (8h)</strong></td>
+</tr>
+<tr>
+<td><strong>RNF-422: Memória IA local</strong></td>
+<td><strong>≤500MB RAM</strong></td>
+<td><strong>Devices 3-4GB RAM, outros apps rodando</strong></td>
+</tr>
+<tr>
+<td><strong>RNF-423: CPU IA local</strong></td>
+<td><strong>≤80% por ≤10s</strong></td>
+<td><strong>Não travar device, multitarefa</strong></td>
+</tr>
+<tr>
+<td>RNF-003: Processamento cloud</td>
+<td>≤30s</td>
+<td>Refinamento background (não bloqueia usuário)</td>
+</tr>
+<tr>
+<td>RNF-009: Sincronização completa</td>
+<td>≤5min/100 itens</td>
+<td>Upload batch 100 áudios + formulários</td>
+</tr>
+<tr>
+<td>RNF-006: API latência (p95)</td>
+<td>≤2s</td>
+<td>Operações síncronas (auth, validação)</td>
+</tr>
+<tr>
+<td><strong>RNF-012: RAG busca pgvector</strong></td>
+<td><strong>≤150ms</strong></td>
+<td><strong>Contexto para LLM, Supabase 50-150ms</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Benchmark Supabase pgvector vs Pinecone:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Operação</th>
+<th>Supabase pgvector</th>
+<th>Pinecone</th>
+<th>Vantagem</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Busca vetorial simples</td>
+<td>50-80ms</td>
+<td>150-200ms</td>
+<td><strong>2-3x mais rápido</strong></td>
+</tr>
+<tr>
+<td>Busca + filtros SQL</td>
+<td>80-150ms</td>
+<td>200-300ms</td>
+<td><strong>50% mais rápido</strong></td>
+</tr>
+<tr>
+<td>Query híbrida (SQL + vector)</td>
+<td>100-180ms</td>
+<td><strong>Impossível</strong></td>
+<td><strong>Único capaz</strong></td>
+</tr>
+<tr>
+<td>Latência multi-tenant RLS</td>
+<td>+10-20ms</td>
+<td>+50-100ms</td>
+<td><strong>RLS nativo</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Tipo de Escalabilidade:</strong></p>
+<ul>
+<li><strong>Horizontal:</strong> Backend cloud (pods Kubernetes/Fargate)</li>
+<li><strong>Vertical:</strong> IA local (limitada specs device, otimização via quantização)</li>
+<li><strong>Geográfica:</strong> Multi-region futuro (MVP single-region us-east-1/sa-east-1)</li>
+</ul>
+<h4 id="bottlenecks-identificados">Bottlenecks Identificados<a class="headerlink" href="#bottlenecks-identificados" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Bottleneck</th>
+<th>Probabilidade</th>
+<th>Impacto</th>
+<th>Mitigação</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Device specs (CPU/RAM)</strong></td>
+<td>Alta (30%)</td>
+<td>Alto</td>
+<td><strong>Quantização modelos (FP16/INT8), fallback cloud</strong></td>
+</tr>
+<tr>
+<td><strong>Tamanho modelos (~2.5GB)</strong></td>
+<td>Média (20%)</td>
+<td>Médio</td>
+<td><strong>Download WiFi-only, compressão, CDN CloudFront</strong></td>
+</tr>
+<tr>
+<td>APIs IA rate limit</td>
+<td>Baixa (5%)</td>
+<td>Médio</td>
+<td><strong>IA local reduz 60-70% chamadas</strong>, cache, retry backoff</td>
+</tr>
+<tr>
+<td><strong>Busca RAG pgvector lenta</strong></td>
+<td><strong>Baixa (5%)</strong></td>
+<td>Médio</td>
+<td><strong>Cache Redis 5min, índice HNSW, filtragem RLS</strong></td>
+</tr>
+<tr>
+<td>Upload concurrent 200+ devices</td>
+<td>Média (10%)</td>
+<td>Médio</td>
+<td>SQS queue, batch processing, throttle client</td>
+</tr>
+<tr>
+<td><strong>Sincronização modelos IA</strong></td>
+<td>Média (15%)</td>
+<td>Alto</td>
+<td><strong>CDN CloudFront, resumable download, WiFi-only</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Score Final Dimensão C: 7/10</strong> (Volumes moderados, IA local reduz carga cloud 60-70%, pgvector performa bem, mas devices variados exigem otimização)</p>
+<hr />
+<h3 id="d-contexto-da-equipe">D) CONTEXTO DA EQUIPE<a class="headerlink" href="#d-contexto-da-equipe" title="Permanent link">&para;</a></h3>
+<h4 id="composicao-da-equipe">Composição da Equipe<a class="headerlink" href="#composicao-da-equipe" title="Permanent link">&para;</a></h4>
+<p><strong>Tamanho:</strong> 4 desenvolvedores</p>
+<p><strong>Perfil de Senioridade:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Desenvolvedor</th>
+<th>Senioridade</th>
+<th>Backend</th>
+<th>Frontend</th>
+<th>Mobile</th>
+<th>IA/ML</th>
+<th>DevOps</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Dev 1</td>
+<td>Mid-Senior</td>
+<td>7/10</td>
+<td>5/10</td>
+<td>6/10</td>
+<td>4/10</td>
+<td>6/10</td>
+</tr>
+<tr>
+<td>Dev 2</td>
+<td>Mid</td>
+<td>6/10</td>
+<td>7/10</td>
+<td>5/10</td>
+<td>3/10</td>
+<td>4/10</td>
+</tr>
+<tr>
+<td>Dev 3</td>
+<td>Mid</td>
+<td>5/10</td>
+<td>6/10</td>
+<td>7/10</td>
+<td>3/10</td>
+<td>3/10</td>
+</tr>
+<tr>
+<td>Dev 4</td>
+<td>Junior-Mid</td>
+<td>4/10</td>
+<td>5/10</td>
+<td>6/10</td>
+<td>2/10</td>
+<td>3/10</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Média Geral:</strong> 5.5/10 (Mid-level)</p>
+<h4 id="fator-critico-desenvolvimento-assistido-por-ia">⚠️ FATOR CRÍTICO: DESENVOLVIMENTO ASSISTIDO POR IA<a class="headerlink" href="#fator-critico-desenvolvimento-assistido-por-ia" title="Permanent link">&para;</a></h4>
+<p><strong>Capacidades com IA Generativa (Claude Sonnet, GPT-4):</strong></p>
+<table>
+<thead>
+<tr>
+<th>Capacidade</th>
+<th>Score Humano</th>
+<th>Score com IA</th>
+<th>Multiplicador</th>
+<th>Impacto</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Geração de código</strong></td>
+<td>5/10</td>
+<td><strong>9/10</strong></td>
+<td><strong>3-5x mais rápido</strong></td>
+<td>✅ Padrões robustos viáveis</td>
+</tr>
+<tr>
+<td><strong>Validação de código</strong></td>
+<td>5/10</td>
+<td>5/10</td>
+<td>1x (humano valida)</td>
+<td>⚠️ Gargalo principal</td>
+</tr>
+<tr>
+<td><strong>Refatoração</strong></td>
+<td>4/10</td>
+<td>8/10</td>
+<td>4-6x mais rápido</td>
+<td>✅ Regenerar código via prompt</td>
+</tr>
+<tr>
+<td><strong>Testes unitários</strong></td>
+<td>4/10</td>
+<td>8/10</td>
+<td>3-4x mais rápido</td>
+<td>✅ Coverage 80%+ viável</td>
+</tr>
+<tr>
+<td><strong>Documentação</strong></td>
+<td>3/10</td>
+<td>9/10</td>
+<td>5-8x mais rápido</td>
+<td>✅ Docs sempre atualizadas</td>
+</tr>
+<tr>
+<td><strong>Arquitetura complexa</strong></td>
+<td>4/10</td>
+<td>7/10</td>
+<td>2-3x mais rápido</td>
+<td>✅ Clean/Hexagonal viáveis</td>
+</tr>
+</tbody>
+</table>
+<p><strong>MUDANÇA NO GARGALO:</strong></p>
+<ul>
+<li><strong>Antes:</strong> "Escrever código" (meses)</li>
+<li><strong>Com IA:</strong> "Validar e manter código" (semanas)</li>
+</ul>
+<p><strong>IMPLICAÇÃO ARQUITETURAL:</strong></p>
+<ul>
+<li>❌ NÃO rejeitar padrões porque "equipe não conhece"</li>
+<li>❌ NÃO assumir prazos tradicionais (4 meses = apenas MVC)</li>
+<li>✅ <strong>Padrões robustos (Clean, Hexagonal, DDD) são VIÁVEIS no prazo do MVP</strong></li>
+<li>✅ <strong>Priorizar LEGIBILIDADE</strong> (equipe precisa entender e manter)</li>
+<li>✅ Complexidade operacional continua relevante (debug, monitoring)</li>
+</ul>
+<h4 id="experiencia-tecnica-relevante">Experiência Técnica Relevante<a class="headerlink" href="#experiencia-tecnica-relevante" title="Permanent link">&para;</a></h4>
+<p><strong>Familiaridade com Tecnologias do Projeto:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Tecnologia</th>
+<th>Experiência</th>
+<th>Score</th>
+<th>Desafio</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>React Native</td>
+<td>Moderada</td>
+<td>6/10</td>
+<td>✅ Curva aprendizado baixa</td>
+</tr>
+<tr>
+<td>Kotlin (Kaffa)</td>
+<td>Baixa</td>
+<td>3/10</td>
+<td>⚠️ Requer capacitação (se Opção A integração)</td>
+</tr>
+<tr>
+<td>Node.js/TypeScript</td>
+<td>Alta</td>
+<td>7/10</td>
+<td>✅ Stack principal backend</td>
+</tr>
+<tr>
+<td>PostgreSQL</td>
+<td>Alta</td>
+<td>7/10</td>
+<td>✅ Experiência sólida</td>
+</tr>
+<tr>
+<td><strong>Supabase pgvector</strong></td>
+<td><strong>Baixa</strong></td>
+<td><strong>2/10</strong></td>
+<td><strong>⚠️ Nova tech, docs boas, curva rápida</strong></td>
+</tr>
+<tr>
+<td>APIs IA (OpenAI/Groq)</td>
+<td>Moderada</td>
+<td>5/10</td>
+<td>✅ Documentação excelente</td>
+</tr>
+<tr>
+<td><strong>Whisper.cpp / ONNX Runtime</strong></td>
+<td><strong>Muito Baixa</strong></td>
+<td><strong>1/10</strong></td>
+<td><strong>🔴 IA on-device é NOVO, curva alta</strong></td>
+</tr>
+<tr>
+<td><strong>LLM on-device (Llama.cpp)</strong></td>
+<td><strong>Muito Baixa</strong></td>
+<td><strong>1/10</strong></td>
+<td><strong>🔴 Quantização, otimização mobile</strong></td>
+</tr>
+<tr>
+<td><strong>RAG local embarcado</strong></td>
+<td><strong>Muito Baixa</strong></td>
+<td><strong>1/10</strong></td>
+<td><strong>🔴 Vetorização compacta, índices leves</strong></td>
+</tr>
+<tr>
+<td>AWS S3/CloudFront</td>
+<td>Moderada</td>
+<td>6/10</td>
+<td>✅ CDN modelos IA (~2.5GB)</td>
+</tr>
+<tr>
+<td>Redis/Upstash</td>
+<td>Moderada</td>
+<td>5/10</td>
+<td>✅ Cache simples</td>
+</tr>
+</tbody>
+</table>
+<p><strong>⚠️ NOVO DESAFIO: IA ON-DEVICE</strong></p>
+<p><strong>Tecnologias necessárias (nenhuma experiência prévia):</strong></p>
+<ol>
+<li><strong>Whisper.cpp:</strong> Transcrição on-device (C++, bindings React Native)</li>
+<li><strong>Llama.cpp / ONNX Runtime:</strong> LLM inference on-device</li>
+<li><strong>Quantização:</strong> FP32 → FP16 → INT8 (reduzir tamanho/consumo)</li>
+<li><strong>RAG local:</strong> Vetorização ChromaDB local ou FAISS mobile</li>
+<li><strong>Sincronização modelos:</strong> Download resumable ~2.5GB via CDN</li>
+</ol>
+<p><strong>Curva de Aprendizado:</strong> Alta (8/10) - <strong>MAS IA pode gerar integrações</strong></p>
+<p><strong>Tempo Estimado:</strong> 1-2 semanas pesquisa + POC (paralelo ao desenvolvimento)</p>
+<h4 id="capacidades-devops">Capacidades DevOps<a class="headerlink" href="#capacidades-devops" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Capacidade</th>
+<th>Score</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CI/CD (GitHub Actions)</td>
+<td>5/10</td>
+<td>✅ Básico implementado</td>
+</tr>
+<tr>
+<td>Docker/Kubernetes</td>
+<td>4/10</td>
+<td>⚠️ Baixa experiência</td>
+</tr>
+<tr>
+<td>Monitoring (Sentry, Grafana)</td>
+<td>4/10</td>
+<td>⚠️ Implementação básica</td>
+</tr>
+<tr>
+<td>Infraestrutura as Code</td>
+<td>3/10</td>
+<td>🔴 Pouca experiência</td>
+</tr>
+<tr>
+<td><strong>Supabase serverless</strong></td>
+<td>2/10</td>
+<td><strong>⚠️ Nova stack, managed, curva baixa</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Estratégia:</strong> Começar com <strong>Supabase managed</strong> (reduz overhead DevOps), evoluir IaC gradualmente.</p>
+<h4 id="rotatividade-e-disponibilidade">Rotatividade e Disponibilidade<a class="headerlink" href="#rotatividade-e-disponibilidade" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>Rotatividade:</strong> Baixa (equipe estável)</li>
+<li><strong>Disponibilidade:</strong> 100% dedicação (4 devs full-time)</li>
+<li><strong>Prazo MVP:</strong> 6 semanas (126 SP dual-track)</li>
+</ul>
+<p><strong>Score Final Dimensão D: 6/10</strong> (Equipe mid-level MAS acelerada 3-5x por IA, novo desafio IA on-device, DevOps básico compensado por Supabase managed)</p>
+<hr />
+<h3 id="e-restricoes-de-negocio">E) RESTRIÇÕES DE NEGÓCIO<a class="headerlink" href="#e-restricoes-de-negocio" title="Permanent link">&para;</a></h3>
+<h4 id="time-to-market">Time-to-Market<a class="headerlink" href="#time-to-market" title="Permanent link">&para;</a></h4>
+<p><strong>Prazos Críticos:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Frente</th>
+<th>Prazo</th>
+<th>Story Points</th>
+<th>Viabilidade com IA</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Frente A (Kaffa)</strong></td>
+<td>2-3 semanas</td>
+<td>66 SP</td>
+<td>✅ Viável (IA acelera 3-5x)</td>
+</tr>
+<tr>
+<td><strong>Frente B (Standalone)</strong></td>
+<td>4-6 semanas</td>
+<td>111 SP</td>
+<td>✅ Viável (backend existente + IA)</td>
+</tr>
+<tr>
+<td><strong>Dual-Track Completo</strong></td>
+<td>6 semanas</td>
+<td>126 SP</td>
+<td>✅ Viável (IA local conta 1x)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Detalhamento Frente A (66 SP):</strong></p>
+<ul>
+<li>Motor IA Local (Whisper.cpp + LLM + RAG): 28 SP</li>
+<li>Motor IA Cloud (Whisper + LLM + RAG pgvector): 23 SP</li>
+<li>Integração Kaffa (botão + campos): 15 SP</li>
+</ul>
+<p><strong>Detalhamento Frente B (111 SP):</strong></p>
+<ul>
+<li>Motor IA Local (reutilizado): 0 SP</li>
+<li>Motor IA Cloud (reutilizado): 0 SP</li>
+<li>App React Native completo: 60 SP</li>
+<li>Backend multi-tenant: 28 SP</li>
+<li>Configurações: 23 SP</li>
+</ul>
+<p><strong>⚠️ IMPACTO IA GERANDO CÓDIGO:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Tarefa Tradicional</th>
+<th>Tempo Trad.</th>
+<th>Com IA</th>
+<th>Economia</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Clean Architecture completa</td>
+<td>3-4 semanas</td>
+<td>2-3 dias geração + 1-2 sem validação</td>
+<td><strong>70% tempo</strong></td>
+</tr>
+<tr>
+<td>API REST CRUD 10 endpoints</td>
+<td>1 semana</td>
+<td>1 dia</td>
+<td><strong>80% tempo</strong></td>
+</tr>
+<tr>
+<td>Testes unitários 80% coverage</td>
+<td>2 semanas</td>
+<td>2-3 dias</td>
+<td><strong>75% tempo</strong></td>
+</tr>
+<tr>
+<td>Integração Whisper.cpp</td>
+<td>1-2 semanas</td>
+<td>3-5 dias</td>
+<td><strong>60% tempo</strong></td>
+</tr>
+<tr>
+<td>RAG completo pgvector</td>
+<td>2-3 semanas</td>
+<td>4-6 dias</td>
+<td><strong>70% tempo</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Conclusão:</strong> Prazo de 6 semanas dual-track é <strong>AGRESSIVO mas VIÁVEL</strong> com IA gerando código.</p>
+<h4 id="budget">Budget<a class="headerlink" href="#budget" title="Permanent link">&para;</a></h4>
+<p><strong>Investimento Desenvolvimento:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Frente</th>
+<th>Duração</th>
+<th>Custo Dev</th>
+<th>Infraestrutura Setup</th>
+<th>Total</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Frente A</strong></td>
+<td>2-3 semanas</td>
+<td>R$ 60-90k</td>
+<td>R$ 8-12k</td>
+<td><strong>R$ 68-102k</strong></td>
+</tr>
+<tr>
+<td><strong>Frente B</strong></td>
+<td>4-6 semanas</td>
+<td>R$ 120-180k</td>
+<td>R$ 16-24k</td>
+<td><strong>R$ 136-204k</strong></td>
+</tr>
+<tr>
+<td><strong>Dual-Track</strong></td>
+<td>6 semanas</td>
+<td>R$ 180k</td>
+<td>R$ 24k</td>
+<td><strong>R$ 204k</strong></td>
+</tr>
+</tbody>
+</table>
+<p><em>4 devs × R$ 7.500/dev/sem × duração + infraestrutura</em></p>
+<p><strong>Custos Operacionais Mensais:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Categoria</th>
+<th>Frente A</th>
+<th>Frente B</th>
+<th>Justificativa</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>APIs IA (redução 60-70%)</strong></td>
+<td>R$ 10-15k</td>
+<td>R$ 20-30k</td>
+<td><strong>IA local processa primeiro, cloud refina</strong></td>
+</tr>
+<tr>
+<td><strong>Supabase (PostgreSQL + pgvector + Auth + Storage)</strong></td>
+<td>~R$ 3k</td>
+<td>~R$ 10k</td>
+<td>Managed, escalável, RLS nativo</td>
+</tr>
+<tr>
+<td><strong>Upstash Redis</strong></td>
+<td>~R$ 50-150</td>
+<td>~R$ 100-200</td>
+<td>Cache serverless, pay-per-use</td>
+</tr>
+<tr>
+<td><strong>AWS (CloudFront + SQS)</strong></td>
+<td>~R$ 500-1k</td>
+<td>~R$ 1-2k</td>
+<td>CDN modelos (~2.5GB), message queue</td>
+</tr>
+<tr>
+<td><strong>Equipe (4 devs)</strong></td>
+<td>R$ 30k</td>
+<td>R$ 30k</td>
+<td>Manutenção, suporte, features</td>
+</tr>
+<tr>
+<td><strong>TOTAL</strong></td>
+<td><strong>R$ 44-49k</strong></td>
+<td><strong>R$ 61-72k</strong></td>
+<td><strong>Economia $100-250 vs Pinecone + ElastiCache</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Comparação SEM IA Local (Apenas Cloud):</strong></p>
+<table>
+<thead>
+<tr>
+<th>Categoria</th>
+<th>Sem IA Local</th>
+<th>Com IA Local</th>
+<th>Economia</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>APIs IA</td>
+<td>R$ 30-45k</td>
+<td>R$ 15-22k</td>
+<td><strong>R$ 15-23k/mês (60-70%)</strong></td>
+</tr>
+<tr>
+<td>Vector DB</td>
+<td>Pinecone R$ 500-1.5k</td>
+<td>Supabase incluído</td>
+<td><strong>R$ 500-1.5k/mês</strong></td>
+</tr>
+<tr>
+<td>Cache</td>
+<td>ElastiCache R$ 300-600</td>
+<td>Upstash R$ 100-200</td>
+<td><strong>R$ 200-400/mês</strong></td>
+</tr>
+<tr>
+<td><strong>TOTAL</strong></td>
+<td><strong>R$ 31-47k/mês APIs+DB</strong></td>
+<td><strong>R$ 15-22k/mês</strong></td>
+<td><strong>R$ 16-25k/mês (52% redução)</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Breakeven:</strong></p>
+<ul>
+<li><strong>Receita necessária:</strong> R$ 65k/mês (cobre operacional + margem)</li>
+<li><strong>Ticket médio:</strong> R$ 8k/empresa/mês</li>
+<li><strong>Empresas necessárias:</strong> 8-10 clientes</li>
+<li><strong>Prazo breakeven:</strong> Mês 6-8</li>
+</ul>
+<h4 id="tolerancia-a-risco">Tolerância a Risco<a class="headerlink" href="#tolerancia-a-risco" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Risco</th>
+<th>Tolerância</th>
+<th>Justificativa</th>
+<th>Mitigação Arquitetural</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>IA local não performa</strong></td>
+<td>Média-Alta</td>
+<td><strong>Crítico MVP, mas fallback cloud</strong></td>
+<td><strong>IA cloud refinamento sempre disponível</strong></td>
+</tr>
+<tr>
+<td>Prazo 6 semanas não cumprido</td>
+<td>Baixa</td>
+<td>Frente A prioritária (2-3 sem)</td>
+<td>MVP incremental, Frente A primeiro</td>
+</tr>
+<tr>
+<td>APIs IA instabilidade</td>
+<td>Média</td>
+<td><strong>IA local mitiga 80% impacto</strong></td>
+<td><strong>Processamento local imediato, refinamento opcional</strong></td>
+</tr>
+<tr>
+<td>Kaffa não integra</td>
+<td>Média</td>
+<td>Frente B standalone alternativa</td>
+<td>Desacoplar motor IA (API REST)</td>
+</tr>
+<tr>
+<td><strong>Tamanho app ~3.5GB</strong></td>
+<td>Média-Alta</td>
+<td><strong>Barreira adoção, mas UX offline compensa</strong></td>
+<td><strong>Download WiFi-only, modelos comprimidos, CDN CloudFront</strong></td>
+</tr>
+<tr>
+<td>Custos operacionais explodem</td>
+<td>Baixa</td>
+<td><strong>IA local reduz 60-70%</strong></td>
+<td><strong>Economia garantida, Supabase escalável</strong></td>
+</tr>
+</tbody>
+</table>
+<h4 id="compliance-e-regulamentacoes">Compliance e Regulamentações<a class="headerlink" href="#compliance-e-regulamentacoes" title="Permanent link">&para;</a></h4>
+<p><strong>LGPD (Lei Geral de Proteção de Dados):</strong></p>
+<ul>
+<li>✅ Dados audio armazenados apenas 30 dias local + S3 criptografado</li>
+<li>✅ Multi-tenant com isolamento RLS (Supabase)</li>
+<li>✅ Logs de auditoria (RNF-130/131/132)</li>
+<li>✅ Direito de exclusão (delete cascade)</li>
+</ul>
+<p><strong>Normas Setoriais:</strong></p>
+<ul>
+<li><strong>Energia:</strong> NR-10 (segurança trabalho), ANEEL (qualidade serviço)</li>
+<li><strong>Agronegócio:</strong> Normas fitossanitárias, rastreabilidade</li>
+<li><strong>Construção:</strong> NR-18 (condições trabalho), ABNT NBR</li>
+</ul>
+<p><strong>Score Final Dimensão E: 7/10</strong> (Prazo agressivo MAS viável com IA, budget controlado com IA local, compliance atendido, riscos mitigados)</p>
+<hr />
+<h3 id="f-infraestrutura">F) INFRAESTRUTURA<a class="headerlink" href="#f-infraestrutura" title="Permanent link">&para;</a></h3>
+<h4 id="provider-e-modelo-de-hospedagem">Provider e Modelo de Hospedagem<a class="headerlink" href="#provider-e-modelo-de-hospedagem" title="Permanent link">&para;</a></h4>
+<p><strong>Stack Híbrida Decidida:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Componente</th>
+<th>Provider</th>
+<th>Justificativa</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>PostgreSQL + pgvector + Auth + Storage</strong></td>
+<td><strong>Supabase</strong></td>
+<td><strong>Managed, RLS nativo, 50% mais rápido que Pinecone, elimina Cognito</strong></td>
+</tr>
+<tr>
+<td><strong>Redis Cache</strong></td>
+<td><strong>Upstash</strong></td>
+<td><strong>Serverless, pay-per-use, baixo custo</strong></td>
+</tr>
+<tr>
+<td><strong>Message Queue</strong></td>
+<td><strong>AWS SQS</strong></td>
+<td><strong>Confiável, integração simples</strong></td>
+</tr>
+<tr>
+<td><strong>CDN Modelos IA (~2.5GB)</strong></td>
+<td><strong>CloudFront</strong></td>
+<td><strong>Download inicial rápido, global</strong></td>
+</tr>
+<tr>
+<td><strong>Storage Áudios</strong></td>
+<td><strong>Supabase Storage</strong></td>
+<td><strong>S3 compatível, RLS automático</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Justificativa Supabase vs Alternativas:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Aspecto</th>
+<th>Supabase pgvector</th>
+<th>Pinecone + PostgreSQL</th>
+<th>Vantagem</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Performance RAG</strong></td>
+<td>50-150ms</td>
+<td>200-300ms</td>
+<td><strong>50% mais rápido</strong></td>
+</tr>
+<tr>
+<td><strong>Queries híbridas</strong></td>
+<td>SQL + vector na mesma query</td>
+<td><strong>Impossível</strong> (2 DBs)</td>
+<td><strong>Único capaz</strong></td>
+</tr>
+<tr>
+<td><strong>Multi-tenant RLS</strong></td>
+<td>Nativo (automático)</td>
+<td>Manual (middleware)</td>
+<td><strong>Segurança nativa</strong></td>
+</tr>
+<tr>
+<td><strong>Custo mensal</strong></td>
+<td>$25-300 (tudo incluso)</td>
+<td>$70-200 Pinecone + $50-100 ElastiCache + $20-50 Cognito</td>
+<td><strong>Economia $100-250/mês</strong></td>
+</tr>
+<tr>
+<td><strong>Setup DevOps</strong></td>
+<td>Managed (1 dia)</td>
+<td>Self-managed (1-2 semanas)</td>
+<td><strong>10x mais rápido</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Exemplo Query Híbrida (Impossível em Pinecone):</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1">-- Busca semântica + filtros relacionais + multi-tenant RLS automático</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="k">SELECT</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">  </span><span class="n">d</span><span class="p">.</span><span class="n">id</span><span class="p">,</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">  </span><span class="n">d</span><span class="p">.</span><span class="n">title</span><span class="p">,</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">  </span><span class="n">d</span><span class="p">.</span><span class="n">content</span><span class="p">,</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">  </span><span class="n">d</span><span class="p">.</span><span class="n">embedding</span><span class="w"> </span><span class="o">&lt;=&gt;</span><span class="w"> </span><span class="n">query_embedding</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">similarity</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="k">FROM</span><span class="w"> </span><span class="n">documents</span><span class="w"> </span><span class="n">d</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="k">WHERE</span><span class="w"> </span><span class="n">d</span><span class="p">.</span><span class="n">company_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">$</span><span class="mi">1</span><span class="w">  </span><span class="c1">-- RLS aplicado automaticamente</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="w">  </span><span class="k">AND</span><span class="w"> </span><span class="n">d</span><span class="p">.</span><span class="n">category</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;norma_tecnica&#39;</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="w">  </span><span class="k">AND</span><span class="w"> </span><span class="n">d</span><span class="p">.</span><span class="n">updated_at</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">NOW</span><span class="p">()</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nb">INTERVAL</span><span class="w"> </span><span class="s1">&#39;90 days&#39;</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="w">  </span><span class="k">AND</span><span class="w"> </span><span class="n">d</span><span class="p">.</span><span class="n">status</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;active&#39;</span>
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">similarity</span>
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="k">LIMIT</span><span class="w"> </span><span class="mi">5</span><span class="p">;</span>
+</code></pre></div>
+<h4 id="compliance-e-seguranca-infraestrutura">Compliance e Segurança Infraestrutura<a class="headerlink" href="#compliance-e-seguranca-infraestrutura" title="Permanent link">&para;</a></h4>
+<p><strong>Certificações:</strong></p>
+<ul>
+<li>✅ Supabase: SOC 2 Type II, GDPR compliant</li>
+<li>✅ AWS: ISO 27001, SOC 1/2/3, LGPD compliant</li>
+<li>✅ Upstash: SOC 2, GDPR</li>
+</ul>
+<p><strong>Segurança:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Camada</th>
+<th>Tecnologia</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Autenticação</td>
+<td>Supabase Auth (JWT)</td>
+<td>✅ Managed</td>
+</tr>
+<tr>
+<td>Autorização</td>
+<td>Row-Level Security (RLS)</td>
+<td>✅ Nativo PostgreSQL</td>
+</tr>
+<tr>
+<td>Criptografia em trânsito</td>
+<td>TLS 1.3</td>
+<td>✅ Obrigatório</td>
+</tr>
+<tr>
+<td>Criptografia em repouso</td>
+<td>AES-256 (Supabase Storage)</td>
+<td>✅ Automático</td>
+</tr>
+<tr>
+<td><strong>Isolamento multi-tenant</strong></td>
+<td><strong>RLS company_id</strong></td>
+<td><strong>✅ Dados + vectors + storage</strong></td>
+</tr>
+<tr>
+<td>DDoS protection</td>
+<td>Cloudflare (Supabase)</td>
+<td>✅ Included</td>
+</tr>
+<tr>
+<td>Backup</td>
+<td>Automated daily (Supabase)</td>
+<td>✅ 7 days retention</td>
+</tr>
+</tbody>
+</table>
+<h4 id="observabilidade">Observabilidade<a class="headerlink" href="#observabilidade" title="Permanent link">&para;</a></h4>
+<p><strong>Estratégia:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Tipo</th>
+<th>Ferramenta</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Logs aplicação</td>
+<td>Supabase Logs</td>
+<td>✅ Integrated</td>
+</tr>
+<tr>
+<td>Logs infraestrutura</td>
+<td>CloudWatch</td>
+<td>✅ AWS native</td>
+</tr>
+<tr>
+<td>APM/Tracing</td>
+<td>Sentry</td>
+<td>⚠️ MVP básico</td>
+</tr>
+<tr>
+<td>Métricas negócio</td>
+<td>Supabase Realtime</td>
+<td>✅ Dashboards</td>
+</tr>
+<tr>
+<td>Alertas</td>
+<td>Supabase + Slack</td>
+<td>✅ Webhooks</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Score Final Dimensão F: 8/10</strong> (Stack moderna e gerenciada, Supabase simplifica DevOps, economia $100-250/mês, compliance atendido, observabilidade básica suficiente MVP)</p>
+<hr />
+<h3 id="g-qualidade-manutencao">G) QUALIDADE &amp; MANUTENÇÃO<a class="headerlink" href="#g-qualidade-manutencao" title="Permanent link">&para;</a></h3>
+<h4 id="testabilidade">Testabilidade<a class="headerlink" href="#testabilidade" title="Permanent link">&para;</a></h4>
+<p><strong>Estratégia de Testes:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Tipo de Teste</th>
+<th>Coverage Target</th>
+<th>Ferramenta</th>
+<th>Viabilidade com IA</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Unitários</strong></td>
+<td>80%</td>
+<td>Jest/Vitest</td>
+<td>✅ IA gera 3-4x mais rápido</td>
+</tr>
+<tr>
+<td><strong>Integração</strong></td>
+<td>60%</td>
+<td>Supertest</td>
+<td>✅ IA gera mocks/fixtures</td>
+</tr>
+<tr>
+<td><strong>E2E Mobile</strong></td>
+<td>40% críticos</td>
+<td>Detox</td>
+<td>⚠️ Manual crítico</td>
+</tr>
+<tr>
+<td><strong>IA Local (on-device)</strong></td>
+<td>70%</td>
+<td>XCTest/Espresso</td>
+<td>⚠️ Testes performance</td>
+</tr>
+<tr>
+<td><strong>API IA Cloud</strong></td>
+<td>Mock 90%</td>
+<td>Nock/MSW</td>
+<td>✅ IA gera stubs</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Desafios Específicos:</strong></p>
+<ol>
+<li><strong>Testar IA Local:</strong></li>
+<li>Modelos deterministicos? ❌ (stochastic)</li>
+<li>Performance devices variados? ⚠️ (benchmark matrix)</li>
+<li>
+<p>Consumo bateria/memória? ⚠️ (profiling tools)</p>
+</li>
+<li>
+<p><strong>Testar Sincronização Offline:</strong></p>
+</li>
+<li>Simular network failures? ✅ (mock network)</li>
+<li>Conflitos concorrentes? ⚠️ (race conditions)</li>
+<li>Retry logic? ✅ (unit tests)</li>
+</ol>
+<p><strong>Score Testabilidade: 7/10</strong> (Arquitetura modular facilita, IA gera testes rápido, mas IA on-device adiciona complexidade)</p>
+<h4 id="frequencia-de-mudancas">Frequência de Mudanças<a class="headerlink" href="#frequencia-de-mudancas" title="Permanent link">&para;</a></h4>
+<p><strong>Volatilidade por Componente:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Componente</th>
+<th>Frequência Mudança</th>
+<th>Razão</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Modelos IA local</strong></td>
+<td><strong>Mensal</strong></td>
+<td><strong>Novas versões Whisper/Llama, otimizações</strong></td>
+</tr>
+<tr>
+<td>APIs IA cloud</td>
+<td>Trimestral</td>
+<td>Novos modelos GPT/Claude, breaking changes</td>
+</tr>
+<tr>
+<td>RAG bases conhecimento</td>
+<td>Semanal/Mensal</td>
+<td>Normas técnicas atualizadas</td>
+</tr>
+<tr>
+<td>Formulários por setor</td>
+<td>Mensal</td>
+<td>Clientes customizam campos</td>
+</tr>
+<tr>
+<td>Integrações legado</td>
+<td>Baixa (6 meses+)</td>
+<td>Sistemas estáveis</td>
+</tr>
+<tr>
+<td>UI/UX</td>
+<td>Mensal</td>
+<td>Feedback usuários</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Estratégia Arquitetural:</strong></p>
+<ul>
+<li>✅ <strong>Isolamento IA (local + cloud) como módulos independentes</strong> → Atualizar sem rebuild app</li>
+<li>✅ <strong>RAG por tenant</strong> → Atualizar base empresa sem afetar outras</li>
+<li>✅ Formulários dinâmicos → Configuração sem código</li>
+<li>✅ Feature flags → Deploy gradual</li>
+</ul>
+<h4 id="portabilidade">Portabilidade<a class="headerlink" href="#portabilidade" title="Permanent link">&para;</a></h4>
+<p><strong>Requisitos Portabilidade:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Aspecto</th>
+<th>Target</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Mobile OS</strong></td>
+<td>Android 8+ / iOS 14+</td>
+<td>✅ React Native cross-platform</td>
+</tr>
+<tr>
+<td><strong>Backend</strong></td>
+<td>Cloud-agnostic</td>
+<td>⚠️ Supabase lock-in (aceitável MVP)</td>
+</tr>
+<tr>
+<td><strong>IA Cloud</strong></td>
+<td>Multi-provider</td>
+<td>✅ Adapter pattern (Groq/OpenAI/Llama)</td>
+</tr>
+<tr>
+<td><strong>IA Local</strong></td>
+<td>Multi-device</td>
+<td>⚠️ Whisper.cpp funciona, performance varia</td>
+</tr>
+<tr>
+<td><strong>Vector DB</strong></td>
+<td>PostgreSQL pgvector</td>
+<td>✅ Open-source, self-hostable</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Lock-ins Aceitáveis MVP:</strong></p>
+<ul>
+<li><strong>Supabase:</strong> Managed PostgreSQL + pgvector (economia tempo/custos)</li>
+<li><strong>AWS S3/CloudFront:</strong> Standard storage (portável)</li>
+<li><strong>Whisper.cpp:</strong> Open-source (self-managed)</li>
+</ul>
+<p><strong>Exit Strategy (futuro):</strong></p>
+<ol>
+<li>Supabase → Self-hosted PostgreSQL + pgvector (6-12 meses)</li>
+<li>Groq/OpenAI → Self-hosted Llama 3.3 70B (12+ meses)</li>
+<li>Upstash Redis → ElastiCache (se necessário scale)</li>
+</ol>
+<h4 id="debito-tecnico">Débito Técnico<a class="headerlink" href="#debito-tecnico" title="Permanent link">&para;</a></h4>
+<p><strong>Dívidas Técnicas Planejadas MVP:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Dívida</th>
+<th>Justificativa</th>
+<th>Payback Planejado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>IA local sem otimização avançada</strong></td>
+<td><strong>Tempo MVP limitado</strong></td>
+<td><strong>Sprint 7-8 (quantização INT8, pruning)</strong></td>
+</tr>
+<tr>
+<td>Testes E2E parciais (40%)</td>
+<td>Foco testes críticos</td>
+<td>Sprint 9-10</td>
+</tr>
+<tr>
+<td>Observabilidade básica</td>
+<td>MVP não exige APM completo</td>
+<td>Sprint 11-12</td>
+</tr>
+<tr>
+<td>Self-hosted PostgreSQL</td>
+<td>Supabase managed suficiente MVP</td>
+<td>Mês 12+</td>
+</tr>
+<tr>
+<td><strong>Modelos IA local não customizados</strong></td>
+<td><strong>Modelos base suficientes MVP</strong></td>
+<td><strong>Mês 6-12 (fine-tuning setores)</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Score Final Dimensão G: 7/10</strong> (Testável com IA, mudanças frequentes gerenciáveis, portabilidade razoável, débito técnico controlado)</p>
+<hr />
+<h3 id="h-ia-on-device-performance-mobile-nova-dimensao-critica">H) IA ON-DEVICE &amp; PERFORMANCE MOBILE ⭐ <strong>NOVA DIMENSÃO CRÍTICA</strong><a class="headerlink" href="#h-ia-on-device-performance-mobile-nova-dimensao-critica" title="Permanent link">&para;</a></h3>
+<h4 id="modelos-embarcados">Modelos Embarcados<a class="headerlink" href="#modelos-embarcados" title="Permanent link">&para;</a></h4>
+<p><strong>Stack IA Local:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Modelo</th>
+<th>Tamanho</th>
+<th>Função</th>
+<th>Performance Target</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Whisper Tiny</strong></td>
+<td>~150 MB</td>
+<td>Transcrição básica (90% precisão)</td>
+<td>5-8s áudio 1min</td>
+</tr>
+<tr>
+<td><strong>Whisper Base</strong></td>
+<td>~500 MB</td>
+<td>Transcrição melhor (92% precisão)</td>
+<td>8-12s áudio 1min</td>
+</tr>
+<tr>
+<td><strong>Llama 3.2 1B (quantizado INT8)</strong></td>
+<td>~1 GB</td>
+<td>Análise semântica leve</td>
+<td>2-4s preenchimento</td>
+</tr>
+<tr>
+<td><strong>Phi-3 Mini (quantizado INT8)</strong></td>
+<td>~1.5 GB</td>
+<td>Alternativa Microsoft</td>
+<td>2-4s preenchimento</td>
+</tr>
+<tr>
+<td><strong>RAG local (ChromaDB/FAISS mobile)</strong></td>
+<td>~50-100 MB</td>
+<td>Top 50-100 docs essenciais</td>
+<td>&lt;500ms busca</td>
+</tr>
+<tr>
+<td><strong>TOTAL</strong></td>
+<td><strong>~2-2.5 GB</strong></td>
+<td><strong>Processamento completo offline</strong></td>
+<td><strong>≤10s total</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Tecnologias Inference:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Framework</th>
+<th>Plataforma</th>
+<th>Usado Para</th>
+<th>Experiência Equipe</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Whisper.cpp</strong></td>
+<td>iOS/Android</td>
+<td>Transcrição on-device</td>
+<td>1/10 (novo)</td>
+</tr>
+<tr>
+<td><strong>Llama.cpp</strong></td>
+<td>iOS/Android</td>
+<td>LLM inference</td>
+<td>1/10 (novo)</td>
+</tr>
+<tr>
+<td><strong>ONNX Runtime</strong></td>
+<td>Cross-platform</td>
+<td>Fallback geral</td>
+<td>2/10 (baixo)</td>
+</tr>
+<tr>
+<td><strong>CoreML</strong></td>
+<td>iOS</td>
+<td>Aceleração GPU Apple</td>
+<td>2/10 (baixo)</td>
+</tr>
+<tr>
+<td><strong>TensorFlow Lite</strong></td>
+<td>Android</td>
+<td>Aceleração GPU Android</td>
+<td>3/10 (básico)</td>
+</tr>
+</tbody>
+</table>
+<h4 id="tamanho-do-app">Tamanho do App<a class="headerlink" href="#tamanho-do-app" title="Permanent link">&para;</a></h4>
+<p><strong>Breakdown Tamanho Total:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Componente</th>
+<th>iOS</th>
+<th>Android</th>
+<th>Justificativa</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>App base (React Native)</td>
+<td>50 MB</td>
+<td>60 MB</td>
+<td>Código JS + assets</td>
+</tr>
+<tr>
+<td>Bibliotecas nativas</td>
+<td>30 MB</td>
+<td>40 MB</td>
+<td>Whisper.cpp, Llama.cpp bindings</td>
+</tr>
+<tr>
+<td><strong>Modelos IA embarcados</strong></td>
+<td><strong>2-2.5 GB</strong></td>
+<td><strong>2-2.5 GB</strong></td>
+<td><strong>Whisper + LLM + RAG</strong></td>
+</tr>
+<tr>
+<td><strong>TOTAL</strong></td>
+<td><strong>~2.6-3 GB</strong></td>
+<td><strong>~2.6-3 GB</strong></td>
+<td><strong>70-100x app típico (40MB)</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Estratégias de Distribuição:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Estratégia</th>
+<th>Viabilidade</th>
+<th>Trade-offs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>1. Download inicial WiFi obrigatório</strong></td>
+<td>✅ Recomendado</td>
+<td>Barreira entrada (+5min setup), UX offline compensa</td>
+</tr>
+<tr>
+<td>2. App modular (modelos opcionais)</td>
+<td>⚠️ Complexo</td>
+<td>Fragmentação (alguns users sem IA local)</td>
+</tr>
+<tr>
+<td>3. Modelos on-demand cloud</td>
+<td>❌ Inviável</td>
+<td>Perde objetivo offline-first</td>
+</tr>
+<tr>
+<td>4. Modelos comprimidos (gzip)</td>
+<td>✅ Complementar</td>
+<td>Reduz 20-30% (~1.8-2GB), descompressão device</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Impacto UX:</strong></p>
+<ul>
+<li><strong>Barreira adoção:</strong> Média-Alta (download ~2.5GB WiFi)</li>
+<li><strong>Compensação:</strong> Funciona 100% offline (diferencial CRÍTICO)</li>
+<li><strong>Competidor (sem IA local):</strong> App 40MB, MAS exige internet sempre (inviável campo)</li>
+<li><strong>Conclusão:</strong> Trade-off aceitável para mercado-alvo</li>
+</ul>
+<h4 id="performance-on-device">Performance On-Device<a class="headerlink" href="#performance-on-device" title="Permanent link">&para;</a></h4>
+<p><strong>RNFs Críticos (Repetidos com análise):</strong></p>
+<table>
+<thead>
+<tr>
+<th>RNF</th>
+<th>Target</th>
+<th>Dispositivo Mid-Range</th>
+<th>Dispositivo High-End</th>
+<th>Risco</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>RNF-301: Processamento ≤10s</strong></td>
+<td>90% casos</td>
+<td>8-12s (Whisper Base + Llama 1B)</td>
+<td>4-6s (acelerado GPU)</td>
+<td>Médio</td>
+</tr>
+<tr>
+<td><strong>RNF-421: Bateria ≤5%</strong></td>
+<td>Por processamento</td>
+<td>4-6% (CPU intensive)</td>
+<td>2-3% (GPU efficient)</td>
+<td>Baixo</td>
+</tr>
+<tr>
+<td><strong>RNF-422: Memória ≤500MB</strong></td>
+<td>RAM adicional</td>
+<td>400-600MB (picos)</td>
+<td>300-400MB (otimizado)</td>
+<td>Médio</td>
+</tr>
+<tr>
+<td><strong>RNF-423: CPU ≤80% ≤10s</strong></td>
+<td>Não travar</td>
+<td>70-90% por 8-12s</td>
+<td>50-70% por 4-6s</td>
+<td>Médio</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Benchmark Dispositivos:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Device</th>
+<th>RAM</th>
+<th>CPU</th>
+<th>Whisper Tiny</th>
+<th>Whisper Base</th>
+<th>Llama 1B</th>
+<th>Total</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Mid-range (Galaxy A52, iPhone 11)</strong></td>
+<td>4-6 GB</td>
+<td>Mid</td>
+<td>4-6s</td>
+<td>6-8s</td>
+<td>2-3s</td>
+<td><strong>8-11s</strong> ✅</td>
+</tr>
+<tr>
+<td><strong>Low-end (Galaxy A32, iPhone SE 2020)</strong></td>
+<td>3-4 GB</td>
+<td>Low</td>
+<td>8-12s</td>
+<td>12-18s</td>
+<td>4-6s</td>
+<td><strong>16-24s</strong> ❌</td>
+</tr>
+<tr>
+<td><strong>High-end (Galaxy S23, iPhone 14 Pro)</strong></td>
+<td>8-12 GB</td>
+<td>High</td>
+<td>2-3s</td>
+<td>3-4s</td>
+<td>1-2s</td>
+<td><strong>4-6s</strong> ✅✅</td>
+</tr>
+</tbody>
+</table>
+<p><strong>⚠️ PROBLEMA: Low-end devices (15-20% mercado) não atingem ≤10s</strong></p>
+<p><strong>Soluções:</strong></p>
+<ol>
+<li><strong>Fallback cloud automático:</strong> Se device &lt; 4GB RAM → skip IA local → direto cloud</li>
+<li><strong>Whisper Tiny obrigatório:</strong> Devices low-end usam apenas Tiny (5-6s) + LLM leve</li>
+<li><strong>Mensagem transparente:</strong> "Seu dispositivo processará na nuvem (requer internet)"</li>
+</ol>
+<h4 id="sincronizacao-de-modelos-ia">Sincronização de Modelos IA<a class="headerlink" href="#sincronizacao-de-modelos-ia" title="Permanent link">&para;</a></h4>
+<p><strong>Fluxo Download Inicial (First Install):</strong></p>
+<ol>
+<li><strong>App instalado:</strong> ~100MB (sem modelos)</li>
+<li><strong>Primeira abertura:</strong> Detecta WiFi → "Baixar modelos IA para uso offline (2.5GB)?"</li>
+<li><strong>Download CloudFront:</strong> Resumable, progresso visual, 5-10min WiFi</li>
+<li><strong>Descompressão:</strong> 2-3min background</li>
+<li><strong>Validação:</strong> Checksum, teste inference</li>
+<li><strong>Pronto:</strong> Funciona 100% offline</li>
+</ol>
+<p><strong>Atualizações Modelos (Incremental):</strong></p>
+<table>
+<thead>
+<tr>
+<th>Tipo Atualização</th>
+<th>Frequência</th>
+<th>Tamanho</th>
+<th>Estratégia</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Patch modelos</strong> (bugfix)</td>
+<td>Semanal</td>
+<td>10-50 MB</td>
+<td>Background WiFi, hot-swap</td>
+</tr>
+<tr>
+<td><strong>Minor</strong> (performance)</td>
+<td>Mensal</td>
+<td>100-300 MB</td>
+<td>Background WiFi, requer restart</td>
+</tr>
+<tr>
+<td><strong>Major</strong> (novo modelo)</td>
+<td>Trimestral</td>
+<td>1-2 GB</td>
+<td>Opt-in, download manual</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Gestão Armazenamento:</strong></p>
+<ul>
+<li><strong>Modelos permanentes:</strong> ~2.5GB (não deletam)</li>
+<li><strong>Áudios temporários:</strong> 30 dias (~500MB-2GB)</li>
+<li><strong>Cache RAG:</strong> ~100MB (atualização semanal)</li>
+<li><strong>Total dispositivo:</strong> ~3-5GB</li>
+</ul>
+<p><strong>Compatibilidade:</strong></p>
+<table>
+<thead>
+<tr>
+<th>OS</th>
+<th>Versão Mínima</th>
+<th>RAM Mínima</th>
+<th>Justificativa</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Android</strong></td>
+<td>8.0 (API 26)</td>
+<td>3 GB</td>
+<td>Whisper.cpp suporte, 70% mercado</td>
+</tr>
+<tr>
+<td><strong>iOS</strong></td>
+<td>14.0</td>
+<td>3 GB</td>
+<td>CoreML 4+, 85% mercado</td>
+</tr>
+</tbody>
+</table>
+<h4 id="fallback-inteligente">Fallback Inteligente<a class="headerlink" href="#fallback-inteligente" title="Permanent link">&para;</a></h4>
+<p><strong>Estratégia Degradação Graciosa:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Cenário</th>
+<th>Comportamento</th>
+<th>UX</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>IA local sucesso</strong></td>
+<td>Campo preenchido 5-10s offline</td>
+<td>✅ Ideal</td>
+</tr>
+<tr>
+<td><strong>IA local falha</strong></td>
+<td>Fallback imediato cloud (se online)</td>
+<td>⚠️ Aceitável</td>
+</tr>
+<tr>
+<td><strong>Offline + IA local falha</strong></td>
+<td>Gravação salva, processamento posterga</td>
+<td>⚠️ Degradado</td>
+</tr>
+<tr>
+<td><strong>Cloud refina local</strong></td>
+<td>Delta atualiza campo (+2-3s online)</td>
+<td>✅ Melhoria</td>
+</tr>
+<tr>
+<td><strong>Cloud falha</strong></td>
+<td>IA local já preencheu (mantém)</td>
+<td>✅ Robusto</td>
+</tr>
+</tbody>
+</table>
+<h4 id="impacto-arquitetural-ia-on-device">Impacto Arquitetural IA On-Device<a class="headerlink" href="#impacto-arquitetural-ia-on-device" title="Permanent link">&para;</a></h4>
+<p><strong>Decisões Arquiteturais Necessárias:</strong></p>
+<ol>
+<li><strong>Separação clara IA Local vs Cloud:</strong></li>
+<li>IA Local: Módulo nativo (C++ bindings React Native)</li>
+<li>IA Cloud: Backend API REST</li>
+<li>
+<p>Adapter pattern: Switch transparente local ↔ cloud</p>
+</li>
+<li>
+<p><strong>Download/Atualização Modelos:</strong></p>
+</li>
+<li>CDN CloudFront (~2.5GB)</li>
+<li>Versionamento semântico (major.minor.patch)</li>
+<li>
+<p>Rollback automático se falha</p>
+</li>
+<li>
+<p><strong>Gestão Memória Device:</strong></p>
+</li>
+<li>Lazy loading modelos (sob demanda)</li>
+<li>Liberar memória após processamento</li>
+<li>
+<p>Cache LRU para RAG local</p>
+</li>
+<li>
+<p><strong>Sincronização Híbrida:</strong></p>
+</li>
+<li>Local processa primeiro (sempre)</li>
+<li>Cloud refina depois (opcional)</li>
+<li>Delta merge (apenas diferenças)</li>
+</ol>
+<p><strong>Score Final Dimensão H: 6/10</strong> (IA on-device viável MAS desafiador, tamanho ~3GB aceitável para mercado-alvo, performance ≤10s atingível mid-range+, fallback robusto, curva aprendizado alta)</p>
+<hr />
+<h2 id="resumo-scores-por-dimensao">RESUMO SCORES POR DIMENSÃO<a class="headerlink" href="#resumo-scores-por-dimensao" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Dimensão</th>
+<th>Score</th>
+<th>Justificativa Sintética</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>A) Domínio &amp; Complexidade</strong></td>
+<td>8/10</td>
+<td>Complexidade alta (dual-track + IA híbrida), mas domínio bem definido</td>
+</tr>
+<tr>
+<td><strong>B) Integração &amp; Comunicação</strong></td>
+<td>8/10</td>
+<td>Integrações complexas, mas offline-first + IA local mitiga riscos</td>
+</tr>
+<tr>
+<td><strong>C) Escalabilidade &amp; Performance</strong></td>
+<td>7/10</td>
+<td>Volumes moderados, IA local reduz carga cloud 60-70%, pgvector performa bem</td>
+</tr>
+<tr>
+<td><strong>D) Contexto da Equipe</strong></td>
+<td>6/10</td>
+<td>Equipe mid-level acelerada por IA, novo desafio IA on-device</td>
+</tr>
+<tr>
+<td><strong>E) Restrições de Negócio</strong></td>
+<td>7/10</td>
+<td>Prazo agressivo viável com IA, budget controlado, riscos mitigados</td>
+</tr>
+<tr>
+<td><strong>F) Infraestrutura</strong></td>
+<td>8/10</td>
+<td>Stack moderna Supabase, economia $100-250/mês, DevOps simplificado</td>
+</tr>
+<tr>
+<td><strong>G) Qualidade &amp; Manutenção</strong></td>
+<td>7/10</td>
+<td>Testável, mudanças gerenciáveis, portabilidade razoável</td>
+</tr>
+<tr>
+<td><strong>H) IA On-Device &amp; Performance Mobile</strong></td>
+<td>6/10</td>
+<td>Viável mas desafiador, tamanho ~3GB aceitável, performance atingível</td>
+</tr>
+</tbody>
+</table>
+<p><strong>SCORE MÉDIO GERAL: 7.1/10</strong> (Projeto complexo mas viável com arquitetura adequada)</p>
+<hr />
+<h2 id="proxima-etapa">PRÓXIMA ETAPA<a class="headerlink" href="#proxima-etapa" title="Permanent link">&para;</a></h2>
+<p>Ver <strong>DONE_3_01_02_padroes_candidatos.md</strong> para identificação e análise detalhada de padrões arquiteturais candidatos.</p>
+<hr />
+<p><strong>Elaborado por:</strong> IA (Claude Sonnet 4.5)
+<strong>Validado por:</strong> [Aguardando validação humana]
+<strong>Última atualização:</strong> 2026-01-31
+<strong>Versão:</strong> 1.0</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Voltar para o topo
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Rodapé" >
+        
+          
+          <a href="../DONE_3_01_00_INDICE_MASTER/" class="md-footer__link md-footer__link--prev" aria-label="Anterior: [22] DECISÃO DE ARQUITETURA VOICECAP - ÍNDICE MASTER">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Anterior
+              </span>
+              <div class="md-ellipsis">
+                [22] DECISÃO DE ARQUITETURA VOICECAP - ÍNDICE MASTER
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../DONE_3_01_02_padroes_candidatos/" class="md-footer__link md-footer__link--next" aria-label="Próximo: [24] CONVERSA 1: DECISÃO DE ARQUITETURA - PARTE 2/7">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Próximo
+              </span>
+              <div class="md-ellipsis">
+                [24] CONVERSA 1: DECISÃO DE ARQUITETURA - PARTE 2/7
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2026 VoiceCap - Desenvolvido com Metodologia MDSIA
+    </div>
+  
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/voicecap" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://voicecap.com.br" target="_blank" rel="noopener" title="voicecap.com.br" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M351.9 280H161c2.9 64.5 17.2 123.9 37.5 167.4 11.4 24.5 23.7 41.8 35.1 52.4 11.2 10.5 18.9 12.2 22.9 12.2s11.7-1.7 22.9-12.2c11.4-10.6 23.7-28 35.1-52.4 20.3-43.5 34.6-102.9 37.5-167.4zm-191-48h190.9c-2.8-64.5-17.1-123.9-37.4-167.4-11.4-24.4-23.7-41.8-35.1-52.4C268.1 1.7 260.4 0 256.4 0s-11.7 1.7-22.9 12.2c-11.4 10.6-23.7 28-35.1 52.4-20.3 43.5-34.6 102.9-37.5 167.4m-48 0c3.5-85.6 25.6-165.1 57.9-217.3C78.7 47.3 10.9 131.2 1.5 232zM1.5 280c9.4 100.8 77.2 184.7 169.3 217.3-32.3-52.2-54.4-131.7-57.9-217.3zm398.4 0c-3.5 85.6-25.6 165.1-57.9 217.3 92.1-32.7 159.9-116.5 169.3-217.3zm111.4-48C501.9 131.2 434.1 47.3 342 14.7c32.3 52.2 54.4 131.7 57.9 217.3z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["announce.dismiss", "content.code.copy", "navigation.footer", "navigation.sections", "navigation.tabs", "navigation.tabs.sticky", "navigation.top", "search.highlight", "search.share", "search.suggest", "toc.follow"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado para \u00e1rea de transfer\u00eancia", "clipboard.copy": "Copiar para \u00e1rea de transfer\u00eancia", "search.result.more.one": "mais 1 nesta p\u00e1gina", "search.result.more.other": "# mais nesta p\u00e1gina", "search.result.none": "Nenhum documento encontrado", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Digite para iniciar a busca", "search.result.term.missing": "Ausente", "select.version": "Selecione a vers\u00e3o"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../js/print-site.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>
